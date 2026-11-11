@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Checkout de IMPARE: revisa tus artículos, deja tus datos y elige cómo pagar. Vista de demostración.">
+<meta name="robots" content="noindex,nofollow">
+<title>Checkout | IMPARE Automotive</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="media.css">
+</head>
+<body class="page-checkout">
+<a class="skip-link" href="#main">Saltar al contenido</a>
+<header class="top">
+  <a class="logo" href="index.html" aria-label="IMPARE, ir al inicio">IMPARE</a>
+  <nav aria-label="Navegación principal" class="desktop-nav">
+    <a href="index.html">Inicio</a>
+    <a href="collection.html">Collection</a>
+    <a href="proyectos.html">Proyectos</a>
+    <a href="atelier.html">ATELIER</a>
+    <a href="firma.html">La Firma</a>
+  </nav>
+  <a class="cart-link" href="carrito.html" aria-label="Carrito de compras"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M2 3h3l2.6 12.4a1 1 0 0 0 1 .6h8.9a1 1 0 0 0 1-.8L20.5 7H6"/></svg><span class="visually-hidden">Carrito de compras</span><span class="cart-count" data-cart-count aria-live="polite" hidden>0</span></a>
+  <details class="menu">
+    <summary>Menú</summary>
+    <nav class="menu-panel" aria-label="Menú móvil">
+      <a href="index.html">Inicio</a>
+      <a href="collection.html">Collection</a>
+      <a href="proyectos.html">Proyectos</a>
+      <a href="atelier.html">ATELIER</a>
+      <a href="firma.html">La Firma</a>
+      <a href="carrito.html">Carrito</a>
+    </nav>
+  </details>
+</header>
+
+<main id="main">
+  <div class="shell">
+    <div class="intro">
+      <span class="eyebrow">IMPARE · Checkout</span>
+      <h1 class="serif">Checkout.</h1>
+      <p>Tres pasos, en esta misma página. Revisas, dejas tus datos y eliges cómo pagar.</p>
+    </div>
+
+    <div class="demo-notice" role="note">
+      <strong>Vista de demostración — no se cobra nada, no se envía ningún pago.</strong>
+      <span>Este checkout es para ver cómo funciona la compra. No hay proveedor de pago conectado y no se pide ni se guarda ningún dato de tarjeta.</span>
+    </div>
+
+    <div data-checkout>
+      <ol class="steps" aria-label="Pasos del checkout">
+        <li data-step-item aria-current="step"><span class="step-no">1</span> Tus artículos</li>
+        <li data-step-item><span class="step-no">2</span> Tus datos y envío</li>
+        <li data-step-item><span class="step-no">3</span> Pago</li>
+      </ol>
+
+      <div data-checkout-empty class="cart-empty" hidden>
+        <p>Tu carrito está vacío, así que no hay nada que pagar todavía.</p>
+        <div class="button-row">
+          <a class="button" href="collection.html">Ver Collection</a>
+        </div>
+      </div>
+
+      <form data-checkout-form novalidate>
+        <section class="step-panel" data-step-panel aria-labelledby="step-1-title">
+          <h2 id="step-1-title" class="serif">Tus artículos</h2>
+          <ul class="summary-items" data-summary-items></ul>
+          <dl class="totals">
+            <div><dt>Subtotal</dt><dd data-summary-subtotal>—</dd></div>
+            <div><dt>Envío</dt><dd data-summary-shipping>—</dd></div>
+            <div class="total-row"><dt>Total</dt><dd data-summary-total>—</dd></div>
+          </dl>
+          <p class="fine">Precios de referencia — por confirmar. El envío se calcula con tu CP en el siguiente paso.</p>
+          <div class="button-row">
+            <button type="button" class="button" data-to-step-2>Continuar a tus datos</button>
+            <a class="quiet-link" href="carrito.html">Editar carrito</a>
+          </div>
+        </section>
+
+        <section class="step-panel" data-step-panel aria-labelledby="step-2-title" hidden>
+          <h2 id="step-2-title" class="serif">Tus datos y envío</h2>
+          <div class="form-grid">
+            <label class="field">Nombre completo
+              <input name="nombre" type="text" autocomplete="name" required>
+            </label>
+            <label class="field">Teléfono
+              <input name="telefono" type="tel" autocomplete="tel" minlength="10" required>
+            </label>
+            <label class="field">Correo
+              <input name="correo" type="email" autocomplete="email" required>
+            </label>
+            <label class="field">Ciudad
+              <input name="ciudad" type="text" autocomplete="address-level2" required>
+            </label>
+            <label class="field">Código postal
+              <input name="cp" type="text" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" autocomplete="postal-code" placeholder="64000" required>
+            </label>
+            <label class="field">Calle y número
+              <input name="direccion" type="text" autocomplete="street-address" required>
+            </label>
+            <label class="field full">Colonia <span class="fine">(opcional)</span>
+              <input name="colonia" type="text" autocomplete="address-level3">
+            </label>
+          </div>
+          <p class="ship-method" data-ship-method>Escribe tu CP para calcular el envío</p>
+          <dl class="totals">
+            <div><dt>Subtotal</dt><dd data-summary-subtotal>—</dd></div>
+            <div><dt>Envío</dt><dd data-summary-shipping>—</dd></div>
+            <div class="total-row"><dt>Total</dt><dd data-summary-total>—</dd></div>
+          </dl>
+          <div class="button-row">
+            <button type="button" class="button" data-to-step-3>Continuar al pago</button>
+            <button type="button" class="quiet-link" data-back="0">Volver a tus artículos</button>
+          </div>
+        </section>
+
+        <section class="step-panel" data-step-panel aria-labelledby="step-3-title" hidden>
+          <h2 id="step-3-title" class="serif">Pago</h2>
+          <p class="muted">¿Cómo te gustaría pagar? En la versión final, aquí se procesa el pago de forma segura. En esta demostración, elige una opción y confirma: no se cobra nada.</p>
+          <fieldset class="pay-methods">
+            <legend class="fine">Método de pago</legend>
+            <label class="pay-method">
+              <input type="radio" name="pago" value="tarjeta" checked>
+              <span><strong>Tarjeta</strong> <span class="fine">Crédito o débito</span></span>
+            </label>
+            <label class="pay-method">
+              <input type="radio" name="pago" value="transferencia">
+              <span><strong>Transferencia</strong> <span class="fine">SPEI</span></span>
+            </label>
+          </fieldset>
+          <p class="fine" data-pay-note-card>En esta demostración no se pide ningún dato de tarjeta. En la versión final, el pago se procesa con el proveedor elegido, sin que IMPARE vea ni guarde tu tarjeta.</p>
+          <p class="fine" data-pay-note-transfer hidden>En la versión final, al confirmar verías aquí los datos de la cuenta para hacer la transferencia, y tu pedido quedaría en espera de confirmación del pago.</p>
+          <h3 class="serif summary-title">Tu pedido</h3>
+          <ul class="summary-items" data-summary-items></ul>
+          <dl class="totals">
+            <div><dt>Subtotal</dt><dd data-summary-subtotal>—</dd></div>
+            <div><dt>Envío</dt><dd data-summary-shipping>—</dd></div>
+            <div class="total-row"><dt>Total</dt><dd data-summary-total>—</dd></div>
+          </dl>
+          <div class="button-row">
+            <button type="submit" class="button">Confirmar pedido</button>
+            <button type="button" class="quiet-link" data-back="1">Volver a tus datos</button>
+          </div>
+        </section>
+      </form>
+
+      <section class="step-panel order-confirm" data-confirm aria-labelledby="confirm-title" hidden>
+        <span class="eyebrow">IMPARE · Pedido de demostración</span>
+        <h2 id="confirm-title" class="serif">Pedido confirmado.</h2>
+        <p>Gracias, <span data-confirm-name>—</span>. Tu número de pedido es <strong data-order-number>—</strong>.</p>
+        <p class="muted">Esto es una demostración: no se cobró nada, no se envió ningún pago y no se guardaron tus datos.</p>
+        <h3 class="serif summary-title">Qué seguiría con tu pedido</h3>
+        <ol class="checklist">
+          <li>Pago confirmado</li>
+          <li>Pieza verificada — que sea la correcta y esté en buen estado</li>
+          <li>Empaque — protección, caja, etiqueta</li>
+          <li>Guía generada</li>
+          <li>Paquete entregado a la paquetería</li>
+          <li>En camino — guía activa</li>
+          <li>Entregado</li>
+        </ol>
+        <p class="fine">En la versión final, cada paso se marca conforme avanza tu pedido, y te llegaría tu número de guía con el enlace de rastreo.</p>
+        <div class="button-row">
+          <a class="button" href="collection.html">Volver a Collection</a>
+          <a class="quiet-link" href="index.html">Ir al inicio</a>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <span class="ftlogo">IMPARE</span>
+  <nav aria-label="Secciones">
+    <a href="index.html">Inicio</a>
+    <a href="collection.html">Collection</a>
+    <a href="proyectos.html">Proyectos</a>
+    <a href="atelier.html">ATELIER</a>
+    <a href="firma.html">La Firma</a>
+  </nav>
+  <span>Monterrey · México</span>
+  <span>Citas privadas · San Pedro</span>
+</footer>
+<script src="liquid-glass.js" defer></script>
+<script src="app.js" defer></script>
+<script src="cart.js" defer></script>
+</body>
+</html>

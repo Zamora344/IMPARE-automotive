@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Revisa tu carrito de IMPARE: piezas, cantidades, envío y total.">
+<meta name="robots" content="noindex,nofollow">
+<title>Carrito | IMPARE Automotive</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="media.css">
+</head>
+<body class="page-carrito">
+<a class="skip-link" href="#main">Saltar al contenido</a>
+<header class="top">
+  <a class="logo" href="index.html" aria-label="IMPARE, ir al inicio">IMPARE</a>
+  <nav aria-label="Navegación principal" class="desktop-nav">
+    <a href="index.html">Inicio</a>
+    <a href="collection.html">Collection</a>
+    <a href="proyectos.html">Proyectos</a>
+    <a href="atelier.html">ATELIER</a>
+    <a href="firma.html">La Firma</a>
+  </nav>
+  <a class="cart-link" href="carrito.html" aria-current="page" aria-label="Carrito de compras"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M2 3h3l2.6 12.4a1 1 0 0 0 1 .6h8.9a1 1 0 0 0 1-.8L20.5 7H6"/></svg><span class="visually-hidden">Carrito de compras</span><span class="cart-count" data-cart-count aria-live="polite" hidden>0</span></a>
+  <details class="menu">
+    <summary>Menú</summary>
+    <nav class="menu-panel" aria-label="Menú móvil">
+      <a href="index.html">Inicio</a>
+      <a href="collection.html">Collection</a>
+      <a href="proyectos.html">Proyectos</a>
+      <a href="atelier.html">ATELIER</a>
+      <a href="firma.html">La Firma</a>
+      <a href="carrito.html" aria-current="page">Carrito</a>
+    </nav>
+  </details>
+</header>
+
+<main id="main">
+  <div class="shell">
+    <div class="intro">
+      <span class="eyebrow">IMPARE · Tu carrito</span>
+      <h1 class="serif">Tu carrito.</h1>
+      <p>Revisa las piezas, ajusta las cantidades y calcula el envío. Sin sorpresas al final.</p>
+    </div>
+
+    <div data-cart-empty class="cart-empty" hidden>
+      <p>Tu carrito está vacío.</p>
+      <div class="button-row">
+        <a class="button" href="collection.html">Ver Collection</a>
+      </div>
+    </div>
+
+    <ul class="cart-list" data-cart-list></ul>
+
+    <div class="cart-summary" data-cart-summary hidden>
+      <div class="ship-calc">
+        <label class="field" for="ship-cp">Tu código postal
+          <span class="field-row">
+            <input id="ship-cp" name="cp" type="text" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" placeholder="64000" data-ship-cp>
+            <button type="button" class="button" data-ship-calc>Calcular envío</button>
+          </span>
+        </label>
+        <p class="fine" data-ship-line>Escribe tu CP para calcular el envío</p>
+      </div>
+      <dl class="totals">
+        <div><dt>Subtotal</dt><dd data-cart-subtotal>—</dd></div>
+        <div><dt>Envío</dt><dd data-ship-cost>—</dd></div>
+        <div class="total-row"><dt>Total</dt><dd data-cart-total>—</dd></div>
+      </dl>
+      <p class="fine">Precios de referencia — por confirmar. Monterrey y área metropolitana: entrega personal a acordar, sin costo. Resto de México: paquetería estimada.</p>
+      <div class="button-row">
+        <a class="button" href="checkout.html" data-goto-checkout>Pagar</a>
+        <a class="quiet-link" href="collection.html">Seguir explorando</a>
+      </div>
+      <p class="demo-note">Vista de demostración — el checkout no cobra nada, no se envía ningún pago.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <span class="ftlogo">IMPARE</span>
+  <nav aria-label="Secciones">
+    <a href="index.html">Inicio</a>
+    <a href="collection.html">Collection</a>
+    <a href="proyectos.html">Proyectos</a>
+    <a href="atelier.html">ATELIER</a>
+    <a href="firma.html">La Firma</a>
+  </nav>
+  <span>Monterrey · México</span>
+  <span>Citas privadas · San Pedro</span>
+</footer>
+<script src="liquid-glass.js" defer></script>
+<script src="app.js" defer></script>
+<script src="cart.js" defer></script>
+</body>
+</html>

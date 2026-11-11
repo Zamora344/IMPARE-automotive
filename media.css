@@ -1,72 +1,107 @@
-/* IMPARE v1.4 — authoritative image geometry. No layout depends on image load. */
-img{display:block;max-inline-size:100%;object-fit:contain;object-position:center}
-/* Product frames reserve their complete area before image decoding. */
-.product-photo,.detail-main,.gallery button,.project-media,.firm-media{position:relative;min-inline-size:0;overflow:hidden}
-.product-photo{block-size:260px;min-block-size:0;max-block-size:320px;aspect-ratio:auto;padding:0}
-.product:nth-child(-n+2) .product-photo{block-size:320px;aspect-ratio:auto}
-.product-photo img,.detail-main img,.gallery img,.project-media img,.firm-media img{position:absolute;inset:0;inline-size:100%;block-size:100%;max-inline-size:100%;max-block-size:100%;margin:0;object-fit:contain;object-position:center;transform:none}
-.product-photo img{padding:12px}
-.detail-main{block-size:clamp(360px,38vw,480px);min-block-size:0;max-block-size:480px;aspect-ratio:auto;padding:0}
-.detail-main img{padding:12px}
-.gallery{grid-template-columns:repeat(4,minmax(0,1fr));align-items:start}
-.gallery button{block-size:72px;min-block-size:0;max-block-size:72px;padding:0}
-.gallery img{padding:4px}
-/* Whole vehicles: a fixed viewing frame, without large letterbox margins. */
-.project-media{block-size:clamp(210px,24vw,340px);max-block-size:340px;background:#17191a}
-.project .project-media img{position:absolute;inset:0;inline-size:100%;block-size:100%;aspect-ratio:auto;object-fit:contain;z-index:auto}
-.project-full-media{inline-size:100%;max-inline-size:1100px;margin:0 auto 45px;block-size:clamp(300px,44vw,560px);max-block-size:560px;position:relative;overflow:hidden;background:#141617}
-.project-full-media .project-full{position:absolute;inset:0;inline-size:100%;block-size:100%;max-block-size:100%;max-inline-size:100%;margin:0;object-fit:contain;aspect-ratio:auto}
-/* The real cabin photograph keeps its own ratio; no tall artificial panel. */
-.firm-media{inline-size:100%;aspect-ratio:960/617;max-inline-size:560px;justify-self:center;background:#17191a}
-.firm .firm-media img{block-size:100%;max-block-size:100%;object-fit:contain}
-/* Editorial entry: bounded composition with a centered, uncropped real wheel. */
-.hero{height:clamp(540px,74svh,680px);min-height:0;max-height:680px}
-.hero-art{inline-size:58%;block-size:100%;max-block-size:680px;object-fit:contain;object-position:65% center;z-index:-1;background:#141617}
-.hero-content{padding:42px 0}
-.hero:before{background:linear-gradient(90deg,#101112 0%,#101112 30%,rgba(16,17,18,.8) 43%,transparent 69%)}
-.split-card{min-height:0;height:340px;max-height:340px}
-.split-card:before{background-position:50% 44%;transform:none!important}
-.split-card:nth-child(2):before{background-position:60% 50%}
-/* Cinematic overlay remains five seconds; video and poster never stretch. */
-.atelier-entry video{inline-size:100%;block-size:100%;object-fit:cover;object-position:50% 50%}
-.atelier-hero{min-height:0;height:clamp(430px,65svh,620px);max-height:620px;padding:55px 0}
-.atelier-hero:before{background-position:60% 50%;background-size:cover}
-@media(max-width:900px){
- .product-photo{block-size:230px}.product:nth-child(-n+2) .product-photo{block-size:280px}
- .detail-main{block-size:430px;max-block-size:430px}
- .firm-media{max-inline-size:560px}
- .hero{height:600px;min-height:0;max-height:600px}
- .hero-art{object-position:center}
-}
-@media(max-width:650px){
- .product-photo{block-size:180px;max-block-size:260px}
- .product:nth-child(-n+2) .product-photo{block-size:260px;aspect-ratio:auto}
- .product-photo img{padding:10px}
- .detail-main{block-size:320px;min-block-size:0;max-block-size:320px}
- .detail-main img{padding:10px}
- .gallery button{block-size:62px;min-block-size:0;max-block-size:62px}
- .project-media{block-size:240px;max-block-size:240px}
- .project-full-media{block-size:250px;min-block-size:0;max-block-size:250px;margin-bottom:35px}
- .firm-media{max-inline-size:430px;max-block-size:300px;aspect-ratio:960/617}
- .hero{height:auto;min-height:0;max-height:none;padding-top:280px}
- .hero-art{inline-size:100%;block-size:280px;max-block-size:280px;top:0;left:0;object-fit:contain;object-position:center}
- .hero:before{background:linear-gradient(0deg,#101112 0%,#101112 52%,transparent 75%)}
- .hero-content{margin-top:0;padding:22px 0 32px}
- .hero h1{margin-top:14px;font-size:clamp(3.2rem,13vw,3.7rem)}
- .split-card{height:280px;min-height:0;max-height:280px}
- .atelier-hero{height:480px;min-height:0;max-height:480px;padding:42px 0}
-}
-@media(max-width:365px){
- .product-photo,.product:nth-child(-n+2) .product-photo{block-size:240px;max-block-size:240px;aspect-ratio:auto}
- .detail-main{block-size:290px;max-block-size:290px}
- .gallery button{block-size:56px;min-block-size:0;max-block-size:56px}
- .project-media{block-size:210px;max-block-size:210px}.project-full-media{block-size:220px;max-block-size:220px}
- .hero{padding-top:240px}.hero-art{block-size:240px;max-block-size:240px}
- .atelier-hero{height:500px;max-height:500px}
-}
-/* Show the full original vertical photo on the Collection editorial link too. */
-.split-card:first-child:before{background-size:cover,contain;background-position:center,center;background-repeat:no-repeat;background-color:#17191a}
-.detail-visual{inline-size:100%;max-inline-size:560px;justify-self:center}
+/* IMPARE v1.5 — media.css
+   Responsive companion to styles.css. Breakpoints: 640 / 900 / 1200.
+   All rules use the tokens in styles.css. */
 
-/* Reserve the collapsed mobile-filter layout before deferred JS initializes. */
-@media(max-width:650px){.filter-disclosure[open]:not([data-ready]) .filters{display:none}.filter-disclosure[open]:not([data-ready]) summary{margin-bottom:0}}
+/* ---------- ≤ 1200px ---------- */
+@media (max-width: 1200px) {
+  .products { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .product { grid-column: span 2; }
+  .product:nth-child(-n+2) { grid-column: span 2; }
+  .atelier-steps { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- ≤ 900px ---------- */
+@media (max-width: 900px) {
+  .desktop-nav { display: none; }
+  .menu { display: block; }
+  .hero { min-height: 0; padding-top: calc(var(--nav-h) + 48px); padding-bottom: 64px; }
+  .hero-art { width: 100%; height: 46%; top: 0; right: 0; object-position: 50% 40%; opacity: .55; }
+  .hero:before { background: linear-gradient(0deg, var(--obsidian) 0%, var(--obsidian) 55%, transparent 90%); }
+  .hero-content { padding-top: 46vh; }
+  .hero-lower { display: none; }
+  .split { grid-template-columns: 1fr; }
+  .split-card { min-height: 0; aspect-ratio: 16/10; }
+  .products { grid-template-columns: 1fr 1fr; gap: 28px 18px; }
+  .product, .product:nth-child(-n+2) { grid-column: span 1; }
+  .product:first-child .product-photo { aspect-ratio: 4/3; }
+  .product:nth-child(-n+2) .product-photo { aspect-ratio: 4/3; }
+  .detail { grid-template-columns: 1fr; gap: 24px; padding-bottom: 64px; }
+  .detail-heading { grid-column: 1; grid-row: auto; }
+  .detail-visual { grid-column: 1; grid-row: auto; }
+  .detail-copy { grid-column: 1; grid-row: auto; }
+  .detail-main { height: auto; aspect-ratio: 4/3; }
+  .ba-pair { grid-template-columns: 1fr; }
+  .projects { grid-template-columns: 1fr; }
+  .atelier-hero { min-height: 0; padding: 7.5rem 0 3rem; }
+  .atelier-steps { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .firm { grid-template-columns: 1fr; padding-bottom: 64px; }
+  .firm img { height: auto; aspect-ratio: 4/3; }
+  .footer { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .site-intro-title { font-size: clamp(2.6rem, 12vw, 4.5rem); }
+  .zone-links { grid-template-columns: 1fr; }
+}
+
+/* ---------- ≤ 640px ---------- */
+@media (max-width: 640px) {
+  .top { top: .6rem; padding: 0 14px; }
+  .logo { font-size: 1rem; letter-spacing: .3em; }
+  .logo:after { font-size: .34rem; margin-top: 6px; }
+  .hero h1 { font-size: clamp(2.4rem, 9vw, 3.4rem); }
+  .hero p { font-size: 1.02rem; }
+  .hero-content { padding-top: 42vh; }
+  .products { grid-template-columns: 1fr; }
+  .product-photo { aspect-ratio: 4/3; }
+  .product:first-child .product-photo { aspect-ratio: 3/4; }
+  .detail-main { aspect-ratio: 1/1; }
+  .gallery { grid-template-columns: repeat(4, 1fr); }
+  .gallery button { height: 64px; min-height: 64px; }
+  .btn, .button { min-height: 48px; }
+  .field input, .field select, .field textarea { min-height: 48px; }
+  .site-intro { padding: 1.5rem; }
+  .site-intro-skip { right: 16px; bottom: 16px; }
+  .atelier-hero h1 { font-size: clamp(3.2rem, 14vw, 5rem); }
+  .breadcrumbs { flex-wrap: wrap; }
+  .spec-list li { flex-direction: column; gap: 2px; }
+  .spec-list li span:last-child { text-align: left; }
+  .acc-item, .acc-item--photo { grid-template-columns: 1fr; gap: 10px; }
+  .acc-thumb { width: 100%; max-width: 220px; }
+  .acc-status { white-space: normal; }
+}
+
+/* ---------- ≤ 360px ---------- */
+@media (max-width: 360px) {
+  .hero h1 { font-size: 2.2rem; }
+  .product-photo { aspect-ratio: 3/4; }
+  .detail-main { aspect-ratio: 3/4; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .page-atelier .atelier-hero-new .shell>div>*,.page-atelier .atelier-hero-new .atelier-photo{animation:none;opacity:1;transform:none}
+  .site-intro { display: none; }
+  .site-intro-title span, .site-intro-sub { animation: none; opacity: 1; transform: none; }
+  .hero-art { animation: none; }
+  .split-card:hover:before { transform: none; }
+  .product:hover img { transform: none; }
+  * { scroll-behavior: auto !important; }
+}
+
+/* ---------- v1.8: carrito y checkout ---------- */
+@media (max-width: 900px) {
+  .cart-line{grid-template-columns:96px minmax(0,1fr) auto;grid-template-areas:"thumb info qty" "thumb total remove"}
+  .cart-thumb{grid-area:thumb}
+  .cart-thumb img{height:72px}
+  .cart-info{grid-area:info}
+  .cart-qty{grid-area:qty}
+  .cart-line-total{grid-area:total}
+  .cart-remove{grid-area:remove;justify-self:end}
+}
+@media (max-width: 640px) {
+  .cart-link{font-size:.68rem}
+  .field-row{flex-direction:column}
+  .field-row .button{width:100%}
+  .steps{flex-direction:column}
+  .steps li{width:100%}
+  .product-buy .button{width:100%;justify-content:center}
+}
