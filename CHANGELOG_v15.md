@@ -5,6 +5,21 @@
 support: frontend-design, impeccable-design, web-design-guidelines, web-quality,
 liquid-glass. **Not pushed to GitHub, not published, nothing bought.**
 
+## v1.8.2 — Vista previa para compartir + 404 + favicon (2026-11-12)
+
+Mauricio compartió el link en vivo en WhatsApp y salía una URL pelada, sin título, descripción ni foto. El sitio estaba público en GitHub Pages pero sin nada para que WhatsApp lo presentara.
+
+### Qué cambió
+- **Open Graph + Twitter Card en las 14 páginas** (13 + la nueva 404): `og:title`, `og:description` (la descripción de cada página, sin afirmaciones inventadas), `og:type` website, `og:locale` es_MX, `og:site_name`, `og:url` propia por página, `og:image` con la foto del BMW M4 rojo, `og:image:width/height` 1920×1280, `og:image:alt`, `twitter:card` summary_large_image con título, descripción e imagen. Verificado por grep: 10 etiquetas `og:` y 4 `twitter:` por página, sin duplicados.
+- **Elección de `og:image`:** se usa `assets/hero-bmw.webp` (1920×1280, 3:2), la foto que ya está en el repo y en vivo. WhatsApp recomienda 1200×630 (1.91:1) y recorta al centro, así que la foto se verá con un leve recorte arriba y abajo; el M4 queda centrado y no se corta. No se hizo un recorte 1200×630 aparte porque es un archivo binario nuevo y el conector de GitHub solo acepta texto — quedaría pendiente subirlo por la interfaz web y cambiar `og:image` a esa versión. Tampoco hay versión JPEG de la foto (solo WebP): WhatsApp/Facebook aceptan WebP en `og:image` en la mayoría de los casos, pero si la vista previa no muestra la foto, el primer sospechoso es el formato y habría que subir un JPEG 1200×630.
+- **Página 404 (`404.html`):** mismo diseño Obsidiana/Titanio/Marfil, "No encontramos esa página." y un solo botón claro "Volver a Inicio". GitHub Pages la sirve para enlaces rotos.
+- **Favicon:** marca IMPARE como SVG en línea (letra "I" Didone en Titanio #B7A187 sobre Obsidiana #101215), sin archivo externo, en las 14 páginas. La pestaña y la vista previa ya no muestran el globo genérico.
+- **Caché de WhatsApp:** WhatsApp guarda la vista previa de un enlace y puede tardar horas en refrescarla. El link ya se compartió una vez sin meta, así que aunque el sitio ya tenga todo, Edgard (o cualquiera) puede seguir viendo la vista previa vieja o pelada hasta que WhatsApp la vuelva a leer. No se puede forzar desde el sitio; se puede probar con un parámetro distinto (por ejemplo `?v=2` al final del link) para que WhatsApp lo lea como enlace nuevo.
+
+### Pendiente — decisión de los fundadores (no se tocó aquí)
+- **El sitio sigue con `noindex,nofollow` en las 14 páginas**, herencia de la época de "vista privada de prueba". Ahora que está público en GitHub Pages y se comparte en WhatsApp, ese `noindex` impide que Google lo indexe. Quitarlo es una decisión de Mauricio/Edgard, no se hizo en v1.8.2.
+- Proveedor de pago real, tarifas reales de envío, inventario real, política de devoluciones, guías y rastreo; fotos reales para las piezas retiradas; fotos reales de los G20; método de contacto real; dominio `impareautomotive.com` ($12.08/año); búsqueda oficial IMPI.
+
 ## v1.8.1 — QA + UX final antes de compartir con Edgard (2026-11-10)
 
 Mauricio: "si jalo bien, has un QA y UX y se lo compartimos a edgard, que quede super mamalon, de primer nivel premium". Veredicto: **LISTO PARA COMPARTIR** (la vista previa está sincronizada con la fuente; el link público todavía sirve la versión anterior y necesita un nuevo `artifact.share` del padre para mostrar v1.8.1).
