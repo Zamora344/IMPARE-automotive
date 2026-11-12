@@ -669,3 +669,82 @@ body.leaving main{opacity:0;transition:opacity .18s ease}
 .form-next{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px}
 .form-next li{display:flex;gap:12px;font-size:.92rem;line-height:1.6}
 .form-next li b{color:#534b43;font-weight:600;white-space:nowrap}
+
+/* ================================================================
+   v2.1 — Otra ronda (Mauricio, 2026-11-12).
+   Compartir, también te puede interesar, menú móvil a pantalla
+   completa, pase de accesibilidad y teclado, y carrito/checkout
+   más claro. Todo calmado; solo tokens aprobados. Sin librerías.
+   ================================================================ */
+
+/* ---- 1. Compartir: un botón tranquilo, con texto honesto ---- */
+.share-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:22px 0 0}
+.share-btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;
+  background:transparent;color:var(--marfil);border:1px solid var(--line-strong);
+  font-size:.72rem;letter-spacing:.09em;font-weight:650;text-transform:uppercase;
+  transition:border-color .25s,color .25s,transform .25s}
+.share-btn:hover{border-color:var(--titanio);color:var(--titanio);transform:translateY(-1px)}
+.share-btn svg{width:16px;height:16px}
+.share-feedback{font-size:.82rem;color:var(--titanio);min-height:1.4em}
+
+/* ---- 2. También te puede interesar: un paso siguiente por página ---- */
+.related{margin:8px 0 72px;border-top:1px solid var(--line-strong);padding-top:28px}
+.related h2{font-size:1.5rem;margin:0 0 8px}
+.related-intro{color:var(--muted);font-size:.9rem;margin:0 0 24px}
+.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.related-card{display:block;border:1px solid var(--line);padding:20px 20px 18px;
+  transition:border-color .3s,transform .3s}
+.related-card:hover{border-color:var(--titanio-dim);transform:translateY(-3px)}
+.related-card .eyebrow{display:block;margin-bottom:8px}
+.related-card h3{font-size:1.15rem;margin:0 0 6px}
+.related-card p{font-size:.86rem;color:var(--muted);margin:0}
+.related-card .related-go{display:inline-block;margin-top:12px;color:var(--titanio);
+  font-size:.78rem;text-decoration:underline;text-underline-offset:4px}
+
+/* ---- 3. Menú móvil a pantalla completa (lo crea app.js desde los
+   enlaces del menú; sin JS, el <details> original sigue funcionando) ---- */
+.menu-toggle{display:none;align-items:center;min-height:44px;padding:0 6px;background:none;border:0;
+  color:var(--muted);font-size:.74rem;text-transform:uppercase;letter-spacing:.08em}
+.menu-toggle:hover{color:var(--marfil)}
+.js .menu{display:none!important}
+.js .menu-toggle{display:inline-flex}
+.menu-overlay{position:fixed;inset:0;z-index:70;display:flex;flex-direction:column;
+  background:color-mix(in srgb, var(--obsidian) 98%, transparent);
+  padding:calc(var(--nav-h) + 48px) clamp(24px,7vw,64px) 40px;
+  animation:menuIn .3s ease-out both}
+@keyframes menuIn{from{opacity:0}to{opacity:1}}
+.menu-overlay-nav{display:flex;flex-direction:column;gap:4px;max-width:640px}
+.menu-overlay-nav a{display:flex;align-items:center;min-height:64px;
+  font-family:var(--serif);font-size:clamp(1.7rem,6vw,2.4rem);letter-spacing:-.02em;color:var(--marfil);
+  border-bottom:1px solid var(--line);opacity:0;transform:translateY(10px);
+  animation:menuLinkIn .45s cubic-bezier(.22,.8,.3,1) forwards}
+.menu-overlay-nav a:nth-child(1){animation-delay:.05s}
+.menu-overlay-nav a:nth-child(2){animation-delay:.1s}
+.menu-overlay-nav a:nth-child(3){animation-delay:.15s}
+.menu-overlay-nav a:nth-child(4){animation-delay:.2s}
+.menu-overlay-nav a:nth-child(5){animation-delay:.25s}
+.menu-overlay-nav a:nth-child(6){animation-delay:.3s}
+@keyframes menuLinkIn{to{opacity:1;transform:translateY(0)}}
+.menu-overlay-nav a:hover{color:var(--titanio)}
+.menu-overlay-nav a[aria-current="page"]{color:var(--titanio)}
+.menu-overlay-note{margin-top:auto;padding-top:32px;font-size:.78rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint)}
+.menu-close{position:absolute;top:20px;right:20px;display:inline-flex;align-items:center;justify-content:center;
+  min-width:48px;min-height:48px;border-radius:999px;border:1px solid var(--line-strong);
+  background:transparent;color:var(--marfil);font-size:1.1rem}
+.menu-close:hover{border-color:var(--titanio);color:var(--titanio)}
+
+/* ---- 4. Accesibilidad: el foco se ve también sobre Marfil ---- */
+.atelier-book :focus-visible,.home-atelier :focus-visible,.atelier-hero-new :focus-visible{outline-color:#534b43}
+
+/* ---- 5. Carrito: resumen fijo en escritorio; estado vacío útil ---- */
+.cart-empty-more{margin-top:26px;border-top:1px solid var(--line);padding-top:22px}
+.cart-empty-more p{font-size:.9rem;color:var(--muted);margin:0 0 14px}
+.cart-empty-pieces{display:grid;gap:10px;max-width:560px}
+.cart-empty-pieces a{display:flex;justify-content:space-between;gap:16px;align-items:center;
+  border:1px solid var(--line);padding:14px 16px;font-size:.92rem;
+  transition:border-color .25s}
+.cart-empty-pieces a:hover{border-color:var(--titanio-dim)}
+.cart-empty-pieces a span:last-child{color:var(--titanio);white-space:nowrap}
+.cart-qty button:disabled{opacity:.35;cursor:not-allowed}
+.cart-qty button:disabled:hover{color:var(--marfil)}

@@ -5,6 +5,21 @@
 support: frontend-design, impeccable-design, web-design-guidelines, web-quality,
 liquid-glass. **Not pushed to GitHub, not published, nothing bought.**
 
+## v2.1 — Otra ronda (2026-11-12)
+
+Mauricio: "Haz otra implementación de mejoras, te lo dejo a tu criterio... con QA y UX y que funcione tanto como en celular como en computadora". Cinco mejoras nuevas (nada repetido de v2.0): compartir, también te puede interesar, menú móvil a pantalla completa, pase de accesibilidad y teclado, y carrito/checkout más claro. **El ítem 5 (indexación + sitemap + analítica) NO se tocó**, como siempre: `robots.txt` sigue en `Disallow: /`, todas las páginas siguen en `noindex,nofollow`, no hay `sitemap.xml` ni scripts de medición.
+
+### Qué cambió
+- **1. Compartir**: botón "Compartir" en las dos fichas, los tres proyectos y la nota. Usa la API nativa de compartir del teléfono o del navegador y, si no está disponible, copia el enlace y avisa "Enlace copiado." El texto es honesto: nombre, origen y precio de referencia, sin afirmaciones inventadas. En el buscador, el resultado ahora se puede copiar como enlace (`finder.html?serie=&gen=&ano=`): al abrir ese enlace, el buscador muestra el resultado directamente, y al ver un resultado la URL se actualiza sola para poder compartirla.
+- **2. También te puede interesar**: al final de cada ficha, proyecto, nota y del buscador, tres tarjetas con un paso siguiente claro (volante ↔ consola ↔ retrofit X6 ↔ G20 ↔ nota ↔ finder ↔ ATELIER). Nada de catálogo infinito: tres opciones, una idea por tarjeta.
+- **3. Menú móvil a pantalla completa**: el menú chico de antes ahora abre una pantalla completa en Obsidiana, con los enlaces grandes en Didone y una línea tranquila ("Citas privadas · San Pedro"). Se construye por JS desde los enlaces del menú original, que queda como respaldo si no hay JS. Al abrirse, el foco va al primer enlace; Escape o tocar un enlace lo cierra y devuelve el foco al botón. El enrutado en memoria de la vista previa no se toca (los enlaces son `<a>` normales).
+- **4. Accesibilidad y teclado**: el enlace "Saltar al contenido" ahora mueve el foco de verdad (todas las páginas llevan `tabindex="-1"` en `<main>`); el lightbox tiene trampa de foco (Tab no se escapa de él mientras está abierto); el foco visible también se ve sobre las secciones en Marfil (antes el Titanio se perdía en el fondo claro); la miniatura activa de la galería se anuncia con `aria-current`.
+- **5. Carrito y checkout**: al cambiar una cantidad con el teclado, el foco ya no se pierde (antes el botón se destruía al redibujar la línea); el botón "+" se deshabilita al llegar al máximo de 2 por pieza, con su aviso; el estado vacío ya no dice solo "vacío": muestra las dos piezas con sus precios de referencia y el enlace a cada una; en el paso 3 del checkout hay un recordatorio de demostración junto al botón de confirmar; en escritorio, el resumen del carrito queda fijo al hacer scroll.
+
+### QA (por script, `qa-v21.js`)
+- **104/104 checks**: primero corre toda la suite de v2.0 (que incluye v1.9) y luego 40+ de v2.1: `node --check` en los 3 JS; skip-link + `tabindex` en las 20 páginas; todas las imágenes con `width` y `height`; botones de compartir con sus datos honestos; deep-link del buscador; 3 tarjetas relacionadas por página; menú overlay (construcción, Escape, foco, respaldo sin JS); trampa de foco del lightbox; foco en cantidades; vacío útil; demo en paso 3; resumen fijo; sin peticiones externas nuevas; `noindex` intacto; cero cadenas prohibidas.
+- **Sin verificar en navegador real**: no hay navegador headless en este entorno, así que el menú a pantalla completa en un teléfono real, el compartir nativo (Web Share API) y el flujo completo del carrito con teclado quedan para verificación en la vista previa y en el teléfono de Mauricio.
+
 ## v2.0 — "A tu imaginación" (2026-11-12)
 
 Mauricio: "mete mas mejoras, te lo dejo a tu imaginacion". Seis mejoras elegidas por valer de verdad, no por decorar: transiciones de página, lightbox, progreso de lectura + volver arriba, comparador de las dos piezas, preguntas frecuentes y formulario ATELIER más claro. **El ítem 5 (indexación + sitemap + analítica) NO se tocó**, como en v1.9: `robots.txt` sigue en `Disallow: /`, todas las páginas siguen en `noindex,nofollow`, no hay `sitemap.xml` ni scripts de medición.

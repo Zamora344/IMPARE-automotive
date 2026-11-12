@@ -141,6 +141,19 @@
   .to-top { transition: none; }
 }
 
+/* ---------- v2.1 ---------- */
+@media (min-width: 901px) {
+  .cart-summary { position: sticky; top: 110px; }
+}
+@media (max-width: 900px) {
+  .related-grid { grid-template-columns: 1fr; }
+  .menu-overlay-nav a { min-height: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-overlay, .menu-overlay-nav a { animation: none; opacity: 1; transform: none; }
+  .related-card:hover, .share-btn:hover { transform: none; }
+}
+
 /* ---------- v1.9: movimiento apagado ---------- */
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }

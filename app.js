@@ -287,7 +287,7 @@
       row.querySelector('[data-result-tag]').className = 'result-tag result-tag--' + tag;
       row.querySelector('[data-result-text]').textContent = text;
     };
-    finder.querySelector('[data-finder-submit]').addEventListener('click', () => {
+    const runFinder = () => {
       const serie = valueOf('serie'), gen = valueOf('generacion'), ano = valueOf('ano');
       if (!serie || !gen || !ano) return;
       /* Volante */
@@ -314,13 +314,49 @@
       steps.forEach(s => { s.hidden = true; });
       result.hidden = false;
       result.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
-    });
+      /* Guardar el resultado en la URL (reemplazo, sin navegar), para
+         poder copiarlo y compartirlo. En la vista previa el origen es
+         opaco y la URL no se puede tocar: se ignora el error. */
+      try {
+        history.replaceState(null, '', 'finder.html?serie=' + encodeURIComponent(serie) + '&gen=' + encodeURIComponent(gen) + '&ano=' + encodeURIComponent(ano));
+      } catch (e) { /* origen opaco */ }
+    };
+    finder.querySelector('[data-finder-submit]').addEventListener('click', runFinder);
     finder.querySelector('[data-finder-restart]').addEventListener('click', () => {
       finder.querySelectorAll('input[type="radio"]').forEach(i => { i.checked = false; });
       markSelected();
       result.hidden = true;
       showStep(1);
     });
+
+    /* ---- v2.1: copiar el enlace al resultado, y abrir un resultado
+       desde el enlace (?serie=&gen=&ano=). ---- */
+    const copyBtn = finder.querySelector('[data-finder-copy]');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        const serie = valueOf('serie'), gen = valueOf('generacion'), ano = valueOf('ano');
+        const url = (location.origin === 'null' ? 'https://zamora344.github.io/IMPARE-automotive' : location.origin) +
+          '/finder.html?serie=' + encodeURIComponent(serie || '') + '&gen=' + encodeURIComponent(gen || '') + '&ano=' + encodeURIComponent(ano || '');
+        const row = copyBtn.closest('.share-row');
+        const feedback = row ? row.querySelector('[data-share-feedback]') : null;
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) await navigator.clipboard.writeText(url);
+          else throw new Error('sin portapapeles');
+          if (feedback) feedback.textContent = 'Enlace copiado.';
+        } catch (e) { if (feedback) feedback.textContent = 'Copia el enlace de la barra del navegador.'; }
+      });
+    }
+    /* Abrir un resultado desde el enlace, si trae las tres respuestas. */
+    const finderParams = new URLSearchParams(location.search);
+    const pSerie = finderParams.get('serie'), pGen = finderParams.get('gen'), pAno = finderParams.get('ano');
+    const hasOpt = (name, v) => !!finder.querySelector('input[name="' + name + '"][value="' + CSS.escape(v || '') + '"]');
+    if (pSerie && pGen && pAno && hasOpt('serie', pSerie) && hasOpt('generacion', pGen) && hasOpt('ano', pAno)) {
+      finder.querySelector('input[name="serie"][value="' + CSS.escape(pSerie) + '"]').checked = true;
+      finder.querySelector('input[name="generacion"][value="' + CSS.escape(pGen) + '"]').checked = true;
+      finder.querySelector('input[name="ano"][value="' + CSS.escape(pAno) + '"]').checked = true;
+      markSelected();
+      runFinder();
+    }
   }
 
   /* ---- ATELIER: prefill también desde el buscador (?modelo=&gen=&ano=) ---- */
@@ -443,6 +479,14 @@
         if (e.key === 'Escape') closeLightbox();
         else if (e.key === 'ArrowLeft') showLightbox(lightboxIndex - 1);
         else if (e.key === 'ArrowRight') showLightbox(lightboxIndex + 1);
+        else if (e.key === 'Tab') {
+          /* Trampa de foco: Tab no sale del lightbox mientras está abierto. */
+          const focusables = [...lightbox.querySelectorAll('button:not([hidden])')];
+          if (!focusables.length) return;
+          const first = focusables[0], last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
       });
     }
     lastFocus = document.activeElement;
@@ -480,6 +524,116 @@
         alt: p.getAttribute('alt') || '', width: Number(p.getAttribute('width')) || 0, height: Number(p.getAttribute('height')) || 0
       }));
       openLightbox(items, pagePhotos.indexOf(img));
+    });
+  });
+
+  /* ================================================================
+     v2.1 — Otra ronda (Mauricio, 2026-11-12).
+     Compartir, resultado del buscador que se puede copiar y abrir
+     por enlace, menú móvil a pantalla completa y pase de
+     accesibilidad. Todo calmado; sin librerías.
+     ================================================================ */
+
+  /* ---- 1. Compartir: Web Share API, con copiar el enlace como
+     respaldo. El texto es honesto: nombre, origen y precio de
+     referencia, sin afirmaciones inventadas. ---- */
+  document.querySelectorAll('[data-share]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const data = {
+        title: btn.getAttribute('data-share-title') || document.title,
+        text: btn.getAttribute('data-share-text') || '',
+        url: btn.getAttribute('data-share-url') || location.href
+      };
+      const row = btn.closest('.share-row');
+      const feedback = row ? row.querySelector('[data-share-feedback]') : null;
+      const say = msg => { if (feedback) feedback.textContent = msg; };
+      if (navigator.share) {
+        try { await navigator.share(data); return; }
+        catch (e) { if (e && e.name === 'AbortError') return; /* si falla, probar copiar */ }
+      }
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(data.url);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = data.url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select();
+          document.execCommand('copy'); ta.remove();
+        }
+        say('Enlace copiado.');
+      } catch (e) { say('Copia el enlace de la barra del navegador.'); }
+    });
+  });
+
+  /* ---- 3. Menú móvil a pantalla completa. Se construye desde los
+     enlaces del <details> original (que queda como respaldo sin JS):
+     al abrirse, el foco va al primer enlace; Escape o tocar un enlace
+     lo cierra y devuelve el foco al botón. La navegación en memoria
+     de la vista previa no se toca: los enlaces son <a> normales. ---- */
+  const menuDetails = document.querySelector('.menu');
+  const topBar = document.querySelector('.top');
+  if (menuDetails && topBar) {
+    document.documentElement.classList.add('js');
+    const menuLinks = [...menuDetails.querySelectorAll('.menu-panel a')].map(a => ({
+      href: a.getAttribute('href'), text: a.textContent.trim(),
+      current: a.getAttribute('aria-current') === 'page'
+    }));
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'menu-toggle';
+    toggle.textContent = 'Menú';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', 'menu-overlay');
+    toggle.setAttribute('aria-label', 'Abrir menú');
+    topBar.insertBefore(toggle, topBar.querySelector('.cart-link'));
+    const overlay = document.createElement('div');
+    overlay.className = 'menu-overlay';
+    overlay.id = 'menu-overlay';
+    overlay.hidden = true;
+    overlay.innerHTML = '<button type="button" class="menu-close" aria-label="Cerrar menú">✕</button>' +
+      '<nav class="menu-overlay-nav" aria-label="Menú móvil"></nav>' +
+      '<p class="menu-overlay-note">Citas privadas · San Pedro</p>';
+    const overlayNav = overlay.querySelector('.menu-overlay-nav');
+    menuLinks.forEach(l => {
+      const a = document.createElement('a');
+      a.href = l.href; a.textContent = l.text;
+      if (l.current) a.setAttribute('aria-current', 'page');
+      overlayNav.appendChild(a);
+    });
+    document.body.appendChild(overlay);
+    let menuOpen = false, menuLastFocus = null;
+    const openMenu = () => {
+      menuOpen = true; menuLastFocus = document.activeElement;
+      overlay.hidden = false;
+      document.body.style.overflow = 'hidden';
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Cerrar menú');
+      const first = overlayNav.querySelector('a');
+      if (first) first.focus();
+    };
+    const closeMenu = () => {
+      if (!menuOpen) return;
+      menuOpen = false;
+      overlay.hidden = true;
+      document.body.style.overflow = '';
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Abrir menú');
+      if (menuLastFocus && menuLastFocus.focus) menuLastFocus.focus();
+    };
+    toggle.addEventListener('click', () => { if (menuOpen) closeMenu(); else openMenu(); });
+    overlay.querySelector('.menu-close').addEventListener('click', closeMenu);
+    overlayNav.addEventListener('click', e => { if (e.target.closest('a')) closeMenu(); });
+    document.addEventListener('keydown', e => { if (menuOpen && e.key === 'Escape') closeMenu(); });
+  }
+
+  /* ---- 4. Accesibilidad: que Tab recorra la página en orden.
+     Los controles principales ya son <button>, <a> o <input>; aquí
+     se cierran los huecos: la miniatura activa de la galería se
+     anuncia, y el slider ya tiene rol y teclado (v1.9). ---- */
+  thumbs.forEach(button => {
+    button.addEventListener('click', () => {
+      button.setAttribute('aria-current', 'true');
+      thumbs.forEach(t => { if (t !== button) t.removeAttribute('aria-current'); });
     });
   });
 

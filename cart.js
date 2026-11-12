@@ -139,7 +139,7 @@
           '<div class="cart-qty" role="group" aria-label="Cantidad de ' + p.name + '">' +
           '<button type="button" data-dec="' + id + '" aria-label="Quitar uno">−</button>' +
           '<span aria-live="polite">' + qty + '</span>' +
-          '<button type="button" data-inc="' + id + '" aria-label="Agregar uno">+</button></div>' +
+          '<button type="button" data-inc="' + id + '" aria-label="Agregar uno"' + (qty >= MAX_QTY ? ' disabled title="Máximo 2 por pieza"' : '') + '>+</button></div>' +
           '<p class="cart-line-total">' + money(p.price * qty) + '</p>' +
           '<button type="button" class="cart-remove" data-remove="' + id + '">Quitar</button>';
         cartList.appendChild(line);
@@ -164,12 +164,25 @@
       var cart = loadCart();
       var id = button.getAttribute('data-inc') || button.getAttribute('data-dec') || button.getAttribute('data-remove');
       if (!id || !PRODUCTS[id]) return;
+      /* v2.1: al redibujar el carrito el foco se perdía (el botón se
+         destruía con la línea). Se guarda qué botón era y se devuelve
+         el foco al equivalente, para poder seguir con el teclado. */
+      var focusKey = button.hasAttribute('data-inc') ? 'inc' : button.hasAttribute('data-dec') ? 'dec' : 'remove';
       if (button.hasAttribute('data-inc')) cart[id] = Math.min(MAX_QTY, (cart[id] || 0) + 1);
       if (button.hasAttribute('data-dec')) { cart[id] = (cart[id] || 1) - 1; if (cart[id] <= 0) delete cart[id]; }
       if (button.hasAttribute('data-remove')) delete cart[id];
       saveCart(cart);
       updateBadges();
       renderCart();
+      if (focusKey !== 'remove' && cart[id]) {
+        var next = cartList.querySelector('[data-' + focusKey + '="' + id + '"]');
+        if (next) next.focus();
+      } else if (!cart[id] && Object.keys(cart).length === 0) {
+        /* La línea desapareció y el carrito quedó vacío: el foco va
+           al botón del estado vacío, no se queda en el aire. */
+        var emptyCta = emptyState ? emptyState.querySelector('a.button') : null;
+        if (emptyCta) emptyCta.focus();
+      }
     });
 
     function saveCP() {
