@@ -397,6 +397,10 @@
       if (url.origin !== location.origin) return;
       if (!url.pathname.endsWith('.html') && url.pathname !== '/' && url.pathname !== '') return;
       if (url.pathname === location.pathname && url.search === location.search) return;
+      /* v2.1.1: si ya se está saliendo (primer toque), el segundo toque
+         rápido no reinicia el temporizador: la navegación del primero
+         sigue su curso y el toque no se traga. */
+      if (document.body.classList.contains('leaving')) return;
       e.preventDefault();
       document.body.classList.add('leaving');
       setTimeout(() => { location.href = url.href; }, 180);

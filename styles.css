@@ -33,8 +33,8 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--obsidian);color:var(--ink);font:16px/1.75 var(--sans);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 body,button,input,select,textarea{font-family:var(--sans)}
-a{color:inherit;text-decoration:none}
-button{cursor:pointer}
+a{color:inherit;text-decoration:none;touch-action:manipulation}
+button{cursor:pointer;touch-action:manipulation}
 img,video{display:block;max-width:100%}
 img{height:auto}
 h1,h2,h3,p{margin-top:0}
@@ -70,7 +70,7 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 .logo:after{content:"AUTOMOTIVE";display:block;font-family:var(--sans);font-size:.38rem;letter-spacing:.42em;margin-top:9px;color:var(--muted)}
 .desktop-nav{display:flex;gap:clamp(12px,2vw,32px);align-items:center}
 .desktop-nav a{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);white-space:nowrap;min-height:44px;display:flex;align-items:center}
-.desktop-nav a:hover,.desktop-nav a[aria-current="page"]{color:var(--marfil)}
+.desktop-nav a[aria-current="page"]{color:var(--marfil)}
 .desktop-nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:9px;text-decoration-color:var(--titanio)}
 .menu{display:none}
 .menu summary{list-style:none;cursor:pointer;font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);min-height:44px;display:flex;align-items:center;padding:0 6px}
@@ -85,12 +85,8 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
   border:1px solid var(--titanio);padding:13px 24px;background:var(--titanio);color:var(--obsidian);
   font-size:.72rem;letter-spacing:.09em;font-weight:650;text-transform:uppercase;
   transition:background .2s,transform .2s}
-.button:hover{background:var(--titanio-soft);transform:translateY(-1px)}
 .button:disabled{opacity:.45;cursor:not-allowed;transform:none}
-.button:disabled:hover{background:var(--titanio);transform:none}
-.button:active{transform:translateY(0)}
 .button--line{background:transparent;color:var(--marfil);border-width:0 0 1px;padding-left:0;padding-right:0;margin-left:12px}
-.button--line:hover{color:var(--titanio)}
 .button-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 
 /* Hero — one idea, one photograph. */
@@ -119,7 +115,6 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
   background:linear-gradient(0deg,rgba(16,18,21,.92) 0%,rgba(16,18,21,.25) 70%,transparent 90%),url("assets/wheel-front.webp") center 42%/cover no-repeat;
   transition:transform .45s}
 .split-card:nth-child(2):before{background-image:linear-gradient(0deg,rgba(16,18,21,.92) 0%,rgba(16,18,21,.25) 70%,transparent 90%),url("assets/wheel-cabin.webp")}
-.split-card:hover:before{transform:scale(1.025)}
 .split-card h2{margin:9px 0 7px}
 .split-card p{color:color-mix(in srgb, var(--marfil) 82%, transparent);max-width:30ch}
 .split-card .eyebrow{color:var(--titanio)}
@@ -127,7 +122,7 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 /* Collection */
 .collection-areas{display:flex;gap:30px;flex-wrap:wrap;padding:0 0 20px;border-bottom:1px solid var(--line)}
 .collection-areas a{font-size:.9rem;min-height:44px;display:inline-flex;align-items:center;color:var(--muted);border-bottom:1px solid transparent}
-.collection-areas a:hover,.collection-areas a[aria-current]{color:var(--marfil);border-color:var(--titanio)}
+.collection-areas a[aria-current]{color:var(--marfil);border-color:var(--titanio)}
 .section-rule{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:23px 0 10px}
 .section-rule h2{font:400 1.55rem var(--serif);letter-spacing:-.02em;margin:0}
 .filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -143,8 +138,6 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 .product:first-child .product-photo{aspect-ratio:3/4}
 .product:nth-child(-n+2) .product-photo{aspect-ratio:1.22}
 .product-photo img{width:100%;height:100%;object-fit:contain;transition:transform .35s}
-.product:hover .product-photo{border-color:var(--titanio-dim)}
-.product:hover img{transform:scale(1.02)}
 .product-meta{padding:18px 0 0}
 .product-kind{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
 .product-meta h3{font-size:1.6rem;margin:8px 0}
@@ -199,7 +192,6 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 .project>div{padding:20px 0 0}
 .project h2{font-size:2.3rem;margin:7px 0}
 .project p{font-size:.85rem;color:var(--muted);margin-bottom:0}
-.project:hover img{filter:brightness(1.06)}
 .project-media--text{aspect-ratio:1.5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--surface);border:1px solid var(--line);text-align:center;padding:20px}
 .project-media--text strong{font-family:var(--serif);font-weight:400;font-size:1.6rem;letter-spacing:.06em}
 .project-media--text span{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--titanio)}
@@ -283,7 +275,6 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 .quiet-link{display:inline-flex;align-items:center;min-height:50px;color:var(--muted);
   font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:underline;
   text-underline-offset:5px}
-.quiet-link:hover{color:var(--titanio)}
 /* Inicio: antes/después visible, no solo texto. */
 .home-ba{padding:clamp(56px,8vw,110px) 0}
 .home-ba h2{margin:14px 0 18px}
@@ -294,7 +285,6 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 .home-atelier h2{margin:14px 0 16px}
 .home-atelier p{color:var(--light-muted);max-width:56ch}
 .home-atelier .button{background:var(--obsidian);color:var(--marfil);border-color:var(--obsidian)}
-.home-atelier .button:hover{background:color-mix(in srgb, var(--obsidian) 82%, var(--marfil))}
 /* ATELIER v1.7 — sin entrada fija, sin foto de fondo peleando con el texto.
    Hero claro en Marfil: texto a un lado, foto enmarcada al otro. */
 .atelier-hero-new{background:var(--marfil);color:var(--light-ink);
@@ -375,7 +365,6 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
   clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap}
 .cart-link{position:relative;display:inline-flex;align-items:center;gap:8px;min-height:44px;min-width:44px;justify-content:center;
   font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);white-space:nowrap}
-.cart-link:hover{color:var(--marfil)}
 .cart-link svg{width:22px;height:22px;display:block}
 .cart-count{position:absolute;top:2px;right:-8px;display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;
   padding:0 6px;border-radius:999px;background:var(--titanio);color:var(--obsidian);
@@ -404,12 +393,10 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 .cart-info p{font-size:.86rem;color:var(--muted);margin:0}
 .cart-qty{display:flex;align-items:center;gap:2px;border:1px solid var(--line-strong)}
 .cart-qty button{width:44px;height:44px;background:transparent;border:0;color:var(--marfil);font-size:1.15rem;line-height:1}
-.cart-qty button:hover{color:var(--titanio)}
 .cart-qty span{min-width:32px;text-align:center;font-weight:600}
 .cart-line-total{font-weight:600;white-space:nowrap;margin:0}
 .cart-remove{background:none;border:0;padding:0 4px;min-height:44px;color:var(--faint);
   font-size:.78rem;text-decoration:underline;text-underline-offset:4px}
-.cart-remove:hover{color:var(--marfil)}
 .cart-summary{max-width:640px;padding:28px 0 80px}
 .ship-calc{margin-bottom:8px}
 .ship-calc .field{display:grid;gap:8px;font-size:.9rem}
@@ -470,20 +457,15 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 
 /* ---- Micro-interacciones: casi todo responde, con calma ---- */
 .product,.project{transition:transform .35s cubic-bezier(.22,.8,.3,1)}
-.product:hover,.project:hover{transform:translateY(-3px)}
-.project:hover img{transform:scale(1.02);transition:transform .5s cubic-bezier(.22,.8,.3,1)}
 .project img{transition:transform .5s cubic-bezier(.22,.8,.3,1)}
 .acc-item{transition:background .3s,padding-left .3s}
-.acc-item:hover h3{color:var(--titanio)}
 .acc-item h3{transition:color .3s}
 .detail-main img,.project-full{transition:transform .5s cubic-bezier(.22,.8,.3,1)}
-.detail-main:hover img{transform:scale(1.015)}
 .quiet-link{transition:color .25s}
 .button{transition:background .25s,transform .25s,border-color .25s}
 .desktop-nav a,.menu-panel a{transition:color .25s}
 .cart-link{transition:color .25s}
 .gallery button{transition:border-color .25s,transform .25s}
-.gallery button:hover{transform:translateY(-2px)}
 
 /* ---- 1. Slider antes/después ---- */
 .ba-slider{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--surface);
@@ -504,7 +486,7 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
   width:46px;height:46px;border-radius:999px;background:var(--titanio);color:var(--obsidian);
   display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;letter-spacing:.08em;
   box-shadow:0 6px 22px rgba(0,0,0,.5);transition:transform .25s}
-.ba-handle:hover .ba-handle-knob,.ba-handle:focus-visible .ba-handle-knob{transform:translate(-50%,-50%) scale(1.08)}
+.ba-handle:focus-visible .ba-handle-knob{transform:translate(-50%,-50%) scale(1.08)}
 .ba-handle:focus-visible{outline:2px solid var(--marfil);outline-offset:2px}
 
 /* ---- 2. CTA fijo "Hablar de mi proyecto" ---- */
@@ -513,7 +495,6 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
   font-size:.72rem;letter-spacing:.09em;font-weight:650;text-transform:uppercase;
   border:1px solid var(--titanio);border-radius:999px;box-shadow:0 10px 28px rgba(0,0,0,.45);
   animation:ctaIn .8s .6s cubic-bezier(.22,.8,.3,1) both;transition:transform .25s,background .25s}
-.sticky-cta:hover{background:var(--titanio-soft);transform:translateY(-2px)}
 @keyframes ctaIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .page-carrito .sticky-cta,.page-checkout .sticky-cta{display:none}
 
@@ -527,7 +508,6 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 .finder-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 .finder-opt{display:flex;align-items:center;min-height:56px;padding:12px 14px;border:1px solid var(--line-strong);
   cursor:pointer;font-size:.92rem;transition:border-color .25s,background .25s,transform .25s;background:transparent}
-.finder-opt:hover{border-color:var(--titanio-dim);transform:translateY(-1px)}
 .finder-opt.selected{border-color:var(--titanio);background:var(--surface-2)}
 .finder-opt input{position:absolute;opacity:0;width:1px;height:1px}
 .finder-nav{display:flex;gap:14px;align-items:center;margin-top:26px;flex-wrap:wrap}
@@ -609,7 +589,6 @@ body.leaving main{opacity:0;transition:opacity .18s ease}
   border:1px solid var(--line-strong);font-size:1.05rem;line-height:1;cursor:pointer;
   opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .3s,transform .3s,visibility .3s}
 .to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
-.to-top:hover{border-color:var(--titanio);color:var(--titanio)}
 
 /* ---- 3. Lightbox (lo crea app.js; la foto nunca se estira más allá de su tamaño nativo) ---- */
 .lightbox{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;
@@ -626,7 +605,6 @@ body.leaving main{opacity:0;transition:opacity .18s ease}
 .lightbox-close{top:16px;right:16px}
 .lightbox-prev{left:14px;top:50%;transform:translateY(-50%)}
 .lightbox-next{right:14px;top:50%;transform:translateY(-50%)}
-.lightbox-close:hover,.lightbox-prev:hover,.lightbox-next:hover{border-color:var(--titanio);color:var(--titanio)}
 .detail-main img[data-lightbox-open]{cursor:zoom-in}
 .project-full[data-lightbox]{cursor:zoom-in}
 .gallery-hint{font-size:.8rem;color:var(--faint);margin:10px 0 0}
@@ -683,7 +661,6 @@ body.leaving main{opacity:0;transition:opacity .18s ease}
   background:transparent;color:var(--marfil);border:1px solid var(--line-strong);
   font-size:.72rem;letter-spacing:.09em;font-weight:650;text-transform:uppercase;
   transition:border-color .25s,color .25s,transform .25s}
-.share-btn:hover{border-color:var(--titanio);color:var(--titanio);transform:translateY(-1px)}
 .share-btn svg{width:16px;height:16px}
 .share-feedback{font-size:.82rem;color:var(--titanio);min-height:1.4em}
 
@@ -694,7 +671,6 @@ body.leaving main{opacity:0;transition:opacity .18s ease}
 .related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
 .related-card{display:block;border:1px solid var(--line);padding:20px 20px 18px;
   transition:border-color .3s,transform .3s}
-.related-card:hover{border-color:var(--titanio-dim);transform:translateY(-3px)}
 .related-card .eyebrow{display:block;margin-bottom:8px}
 .related-card h3{font-size:1.15rem;margin:0 0 6px}
 .related-card p{font-size:.86rem;color:var(--muted);margin:0}
@@ -705,7 +681,6 @@ body.leaving main{opacity:0;transition:opacity .18s ease}
    enlaces del menú; sin JS, el <details> original sigue funcionando) ---- */
 .menu-toggle{display:none;align-items:center;min-height:44px;padding:0 6px;background:none;border:0;
   color:var(--muted);font-size:.74rem;text-transform:uppercase;letter-spacing:.08em}
-.menu-toggle:hover{color:var(--marfil)}
 .js .menu{display:none!important}
 .js .menu-toggle{display:inline-flex}
 .menu-overlay{position:fixed;inset:0;z-index:70;display:flex;flex-direction:column;
@@ -725,14 +700,12 @@ body.leaving main{opacity:0;transition:opacity .18s ease}
 .menu-overlay-nav a:nth-child(5){animation-delay:.25s}
 .menu-overlay-nav a:nth-child(6){animation-delay:.3s}
 @keyframes menuLinkIn{to{opacity:1;transform:translateY(0)}}
-.menu-overlay-nav a:hover{color:var(--titanio)}
 .menu-overlay-nav a[aria-current="page"]{color:var(--titanio)}
 .menu-overlay-note{margin-top:auto;padding-top:32px;font-size:.78rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--faint)}
 .menu-close{position:absolute;top:20px;right:20px;display:inline-flex;align-items:center;justify-content:center;
   min-width:48px;min-height:48px;border-radius:999px;border:1px solid var(--line-strong);
   background:transparent;color:var(--marfil);font-size:1.1rem}
-.menu-close:hover{border-color:var(--titanio);color:var(--titanio)}
 
 /* ---- 4. Accesibilidad: el foco se ve también sobre Marfil ---- */
 .atelier-book :focus-visible,.home-atelier :focus-visible,.atelier-hero-new :focus-visible{outline-color:#534b43}
@@ -744,7 +717,75 @@ body.leaving main{opacity:0;transition:opacity .18s ease}
 .cart-empty-pieces a{display:flex;justify-content:space-between;gap:16px;align-items:center;
   border:1px solid var(--line);padding:14px 16px;font-size:.92rem;
   transition:border-color .25s}
-.cart-empty-pieces a:hover{border-color:var(--titanio-dim)}
 .cart-empty-pieces a span:last-child{color:var(--titanio);white-space:nowrap}
 .cart-qty button:disabled{opacity:.35;cursor:not-allowed}
-.cart-qty button:disabled:hover{color:var(--marfil)}
+
+/* ================================================================
+   v2.1.1 — Doble toque en iOS Safari (2026-11-12).
+   Causa: las reglas hover sin proteger. En iOS Safari el primer toque
+   aplica el estado hover y solo el segundo dispara el clic, así que
+   enlaces y botones pedían dos toques, de forma intermitente,
+   en todo el sitio. Las 31 reglas hover viven ahora dentro de
+   @media (hover: hover) and (pointer: fine): solo existen en
+   dispositivos con hover real (ratón/trackpad). En táctil no hay
+   estado hover que se quede pegado y el primer toque es el clic.
+   Nada se quitó: en escritorio el hover sigue exactamente igual
+   (elevaciones, zoom de foto, cambios de color y borde).
+   Las neutralizaciones de hover en media.css se quedan: solo
+   actúan bajo prefers-reduced-motion, donde siguen haciendo falta.
+   ================================================================ */
+@media (hover: hover) and (pointer: fine) {
+  .desktop-nav a:hover {color:var(--marfil)}
+  .button:hover {background:var(--titanio-soft);transform:translateY(-1px)}
+  .button:disabled:hover {background:var(--titanio);transform:none}
+  .button--line:hover {color:var(--titanio)}
+  .split-card:hover:before {transform:scale(1.025)}
+  .collection-areas a:hover {color:var(--marfil);border-color:var(--titanio)}
+  .product:hover .product-photo {border-color:var(--titanio-dim)}
+  .product:hover img {transform:scale(1.02)}
+  .project:hover img {filter:brightness(1.06)}
+  .quiet-link:hover {color:var(--titanio)}
+  .home-atelier .button:hover {background:color-mix(in srgb, var(--obsidian) 82%, var(--marfil))}
+  .cart-link:hover {color:var(--marfil)}
+  .cart-qty button:hover {color:var(--titanio)}
+  .cart-remove:hover {color:var(--marfil)}
+  .product:hover, .project:hover {transform:translateY(-3px)}
+  .project:hover img {transform:scale(1.02);transition:transform .5s cubic-bezier(.22,.8,.3,1)}
+  .acc-item:hover h3 {color:var(--titanio)}
+  .detail-main:hover img {transform:scale(1.015)}
+  .gallery button:hover {transform:translateY(-2px)}
+  .ba-handle:hover .ba-handle-knob {transform:translate(-50%,-50%) scale(1.08)}
+  .sticky-cta:hover {background:var(--titanio-soft);transform:translateY(-2px)}
+  .finder-opt:hover {border-color:var(--titanio-dim);transform:translateY(-1px)}
+  .to-top:hover {border-color:var(--titanio);color:var(--titanio)}
+  .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {border-color:var(--titanio);color:var(--titanio)}
+  .share-btn:hover {border-color:var(--titanio);color:var(--titanio);transform:translateY(-1px)}
+  .related-card:hover {border-color:var(--titanio-dim);transform:translateY(-3px)}
+  .menu-toggle:hover {color:var(--marfil)}
+  .menu-overlay-nav a:hover {color:var(--titanio)}
+  .menu-close:hover {border-color:var(--titanio);color:var(--titanio)}
+  .cart-empty-pieces a:hover {border-color:var(--titanio-dim)}
+  .cart-qty button:disabled:hover {color:var(--marfil)}
+}
+
+/* v2.1.1 — Respuesta al toque: sin hover en táctil, el estado active es
+   lo que hace sentir vivo el toque. Reglas fuera del media de
+   hover, así que valen en todos los dispositivos; en escritorio
+   solo se ven durante el clic. */
+.button:active{transform:translateY(0) scale(.985)}
+.product:active,.project:active{transform:translateY(-1px)}
+.related-card:active{transform:translateY(-1px);border-color:var(--titanio-dim)}
+.share-btn:active{border-color:var(--titanio);color:var(--titanio)}
+.finder-opt:active{border-color:var(--titanio)}
+.sticky-cta:active{transform:translateY(0)}
+.to-top:active{border-color:var(--titanio);color:var(--titanio)}
+.gallery button:active{transform:translateY(0)}
+.cart-qty button:active{color:var(--titanio)}
+.menu-overlay-nav a:active{color:var(--titanio)}
+.menu-toggle:active,.cart-link:active{color:var(--marfil)}
+.desktop-nav a:active,.collection-areas a:active{color:var(--marfil)}
+.quiet-link:active{color:var(--titanio)}
+.acc-item:active h3{color:var(--titanio)}
+.lightbox-close:active,.lightbox-prev:active,.lightbox-next:active,.menu-close:active{border-color:var(--titanio);color:var(--titanio)}
+.cart-empty-pieces a:active{border-color:var(--titanio-dim)}
+.cart-remove:active{color:var(--marfil)}

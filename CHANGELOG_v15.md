@@ -5,6 +5,27 @@
 support: frontend-design, impeccable-design, web-design-guidelines, web-quality,
 liquid-glass. **Not pushed to GitHub, not published, nothing bought.**
 
+## v2.1.1 — Doble toque en iOS Safari (2026-11-12)
+
+Mauricio probó el sitio en vivo en su iPhone: funciona super bien en general, PERO a veces un toque no hace nada y hay que tocar otra vez — enlaces y botones pedían doble toque en lugar de uno, de forma intermitente, en todo el sitio.
+
+### Causa raíz (confirmada en el código)
+- **Las 31 reglas `:hover` sin proteger de `styles.css`.** En iOS Safari el primer toque aplica el estado hover y solo el segundo dispara el clic: es el comportamiento clásico del navegador cuando un elemento tiene hover. Las reglas estaban en todo el sitio (navegación, botones, tarjetas de producto/proyecto/relacionadas, buscador, slider, lightbox, CTA fijo, menú, compartir, carrito), así que el doble toque aparecía en cualquier parte, según qué elemento se tocara. `media.css` (máx. 900 px) solo neutralizaba las transformaciones del hover, no los cambios de color y borde, así que el estado hover se quedaba pegado en táctil.
+- **Descartado, verificado:** el fundido de salida de v2.0 en `app.js` (clic en enlace interno → `preventDefault` → `body.leaving` → navegar a los 180 ms) retrasa la navegación pero no se traga el toque; se queda, con un resguardo nuevo (abajo). El reveal al hacer scroll (`.reveal`, opacidad 0 hasta `.in`) no desactiva eventos de puntero, así que tampoco bloquea toques. El enrutado en memoria solo corre en la vista previa (origen `null`), no en el sitio en vivo.
+
+### Qué cambió
+- **Todas las reglas hover, dentro de `@media (hover: hover) and (pointer: fine)`** — un solo bloque al final de `styles.css` con las 31 reglas, en el mismo orden y con las mismas declaraciones. En dispositivos táctiles (sin hover real) esas reglas ya no existen: el primer toque es el clic. En escritorio el hover sigue exactamente igual (elevaciones, zoom de foto, cambios de color y borde). Las tres reglas que compartían selector con algo que no es hover se partieron y lo otro se quedó fuera del bloque: `a[aria-current="page"]` en navegación y Collection, y `.ba-handle:focus-visible .ba-handle-knob`.
+- **Respuesta al toque con `:active`** (botones, tarjetas, buscador, compartir, CTA fijo, volver arriba, menú, galería, carrito): el toque se siente vivo aunque ya no haya hover en el teléfono. El `:active` del botón principal ahora es `translateY(0) scale(.985)` (antes solo `translateY(0)`).
+- **`touch-action: manipulation` en `a` y `button`**: quita cualquier resto de retardo por doble toque para zoom.
+- **Resguardo en el fundido de `app.js`**: si el cuerpo ya está saliendo (`body.leaving`), un segundo toque rápido no reinicia el temporizador de 180 ms; la navegación del primer toque sigue su curso.
+- **Neutralizaciones de hover en `media.css`: se quedan.** Las 8 líneas (10 ocurrencias) viven todas dentro de `prefers-reduced-motion`, donde siguen haciendo falta para usuarios de escritorio con movimiento reducido. No se tocó nada más de `media.css`.
+- **Cerrados que no tapan nada (verificado):** el menú móvil se crea con `hidden` y `[hidden]{display:none!important}`; el lightbox igual; el botón de volver arriba es `visibility:hidden` hasta `.show`; el progreso de lectura tiene `pointer-events:none`. El CTA fijo no tapa el pie en móvil (el pie ya dejaba 116 px abajo).
+- **Sin tocar:** animaciones que le gustan a Mauricio (reveal al hacer scroll, fundido de página, elevaciones en escritorio), `robots.txt`, `noindex`, OG/404/favicon, carrito demo, precios y textos. Cero fotos nuevas.
+
+### QA (por script, `qa-v211.js`)
+- **73/73 checks**: corre toda la suite de v2.1 y luego 30+ de v2.1.1: cero `:hover` fuera del bloque de hover (34 ocurrencias dentro, 31 reglas), las 31 reglas presentes con sus efectos de escritorio intactos, `aria-current` y `:focus-visible` intactos fuera del bloque, `:active` y `touch-action` presentes, resguardo de `leaving` en `app.js`, `media.css` sin hover fuera de `prefers-reduced-motion`, overlays cerrados sin bloquear toques, animaciones intactas, `node --check` en `app.js`.
+- **Sin verificar con toques reales en este entorno**: no hay navegador en vivo aquí, así que la comprobación de "cada enlace/botón actúa al primer toque a 390 px" no se pudo hacer con toques reales. La verificación es estática (el estado hover ya no existe en táctil por construcción del CSS) más el QA por script. **Mauricio debe re-probar en su iPhone**: Inicio, Collection, una ficha, un proyecto, el buscador, el slider antes/después, el menú y el carrito — un solo toque por elemento.
+
 ## v2.1 — Otra ronda (2026-11-12)
 
 Mauricio: "Haz otra implementación de mejoras, te lo dejo a tu criterio... con QA y UX y que funcione tanto como en celular como en computadora". Cinco mejoras nuevas (nada repetido de v2.0): compartir, también te puede interesar, menú móvil a pantalla completa, pase de accesibilidad y teclado, y carrito/checkout más claro. **El ítem 5 (indexación + sitemap + analítica) NO se tocó**, como siempre: `robots.txt` sigue en `Disallow: /`, todas las páginas siguen en `noindex,nofollow`, no hay `sitemap.xml` ni scripts de medición.
