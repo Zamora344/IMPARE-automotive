@@ -5,6 +5,29 @@
 support: frontend-design, impeccable-design, web-design-guidelines, web-quality,
 liquid-glass. **Not pushed to GitHub, not published, nothing bought.**
 
+## v1.9 — Mejora continua (2026-11-12)
+
+Mauricio, esperando la llamada con Edgard: "implementa una mejora que tu veas necesaria o que falte" y luego "explora todos los rubros". La lista rankeada está en `revision-v19.md`. Se construyeron los ítems 1–4 y 6–10. **El ítem 5 (indexación + sitemap + analítica) NO se tocó**: `robots.txt` sigue en `Disallow: /`, todas las páginas siguen en `noindex,nofollow`, no hay `sitemap.xml` ni scripts de medición. Quitar el `noindex` expone el nombre IMPARE (marca provisional, sin búsqueda IMPI) a Google: decisión de los fundadores, no técnica.
+
+### Qué cambió
+- **1. Slider interactivo antes/después del X6** (Inicio y `proyecto-retrofit-x6.html`): las dos fotos reales de la cabina, con arrastre en móvil y escritorio, teclado accesible (flechas, Inicio, Fin), y un guiño automático la primera vez que se ve (50% → 62% → 50% en 1.5 s) para que se entienda que se mueve. Sin JS, arranca en 50%.
+- **2. CTA fijo "Hablar de mi proyecto"**: píldora fija abajo en todas las páginas, lleva a ATELIER (en ATELIER, a #cita). Oculto en carrito y checkout. En móvil ocupa el ancho; el footer deja espacio para que no tape nada.
+- **3. Buscador guiado "¿Es para mi BMW?"** (`finder.html`, enlazado desde Collection, las fichas, Consulta e Inicio): 3 preguntas (Serie, generación F/G, año). Resultado por pieza: Aplica en principio / Por estudiar / No aplica, con enlace a ATELIER prellenado con el modelo. Reglas: volante G→F en generación F = por estudiar caso por caso; en G = aplica en principio. Consola = era G20/G22 (Serie 3 G20, Serie 4 G22). MINI = no aplica. Sin generación = por estudiar. Nunca se promete compatibilidad no validada; M1/M2 nunca se prometen.
+- **4. Fichas con datos duros**: volante (material, acabado, OEM genuino, números de parte 32307908499 / 32302462910, retrofit G→F) y consola (fibra de carbono, OEM Take-Off, número de parte 51168094583, aplica a G20/G22). Qué incluye la instalación y qué se verifica al final: **Por confirmar** (sin inventar).
+- **6. Página "Cómo trabajamos"**: evaluación → búsqueda y verificación → instalación → comprobación final, con la foto real del volante instalado. Solo el proceso real, sin fotos de taller ajeno.
+- **7. Proyectos como casos**: cada G20 y el X6 tienen su línea de historia y su bloque fijo (el auto, la idea, las piezas, el estado). Las etiquetas "Estudio conceptual" se mantienen; los G20 no se presentan como trabajo terminado.
+- **8. Notas editoriales**: `notas.html` + primera nota real, la historia del retrofit G→F (conector comprado en Europa, instalación, M1/M2 por revisar), con foto real.
+- **9. Footer completo** en las 20 páginas: aviso de privacidad y términos propios, y la nota que explica precios de referencia, estudio conceptual y carrito demo. Sin canal de contacto inventado.
+- **10. Rendimiento**: el hero ya tenía `fetchpriority="high"`; se añadió `<link rel="preload" as="image">` con el `srcset` correcto en Inicio. No se pudo medir LCP (no hay navegador headless en este entorno) ni re-codificar el hero: el conector de GitHub solo acepta texto, así que no hay versión AVIF/JPEG nueva. El hero sigue siendo el mismo WebP de 447 KB.
+- **Animación (pedido de Mauricio: "casi todo animado")**: reveal al hacer scroll en secciones, productos, proyectos, pasos y notas; hover en tarjetas (elevación + zoom suave de foto), botones, enlaces y galería; el slider y el CTA tienen su propia entrada. Todo lento y sutil, solo Titanio/Obsidiana/Marfil. Respetado `prefers-reduced-motion` (todo queda quieto y visible).
+
+### QA (por script, `qa-v19.js`)
+- **229/229 checks**: `node --check` OK en los 3 JS; un `<h1>` por página; `alt` en todas las imágenes; 0 enlaces internos rotos; 0 assets faltantes; OG/Twitter/favicon en las 20 páginas; `noindex` intacto; `robots.txt` sin tocar; cero scripts de analítica; cero cadenas prohibidas (Porsche, $250,000, Ambient Lighting, nombres de herramientas, "Edgard", "foto real", WhatsApp). Reglas del buscador probadas en 9 casos (volante/consola × serie/generación).
+- **Sin verificar en vivo**: no hay navegador en este entorno, así que el arrastre del slider, el CTA fijo en móvil real, el flujo completo del buscador y el LCP quedan para verificación en navegador real (padre).
+
+### Pendiente — decisión de los fundadores (no se tocó aquí)
+- Ítem 5: indexación + sitemap + analítica (ver arriba). Proveedor de pago real, tarifas reales de envío, inventario real, política de devoluciones, guías y rastreo; fotos reales para las piezas retiradas; fotos reales de los G20; método de contacto real; dominio `impareautomotive.com` ($12.08/año); búsqueda oficial IMPI.
+
 ## v1.8.2 — Vista previa para compartir + 404 + favicon (2026-11-12)
 
 Mauricio compartió el link en vivo en WhatsApp y salía una URL pelada, sin título, descripción ni foto. El sitio estaba público en GitHub Pages pero sin nada para que WhatsApp lo presentara.

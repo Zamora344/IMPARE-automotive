@@ -105,3 +105,33 @@
   .steps li{width:100%}
   .product-buy .button{width:100%;justify-content:center}
 }
+
+/* ---------- v1.9 ---------- */
+@media (max-width: 900px) {
+  .sticky-cta { left: 16px; right: 16px; justify-content: center; }
+  .footer { padding-bottom: 116px; }
+  .case-story { grid-template-columns: 1fr; }
+  .note-item { grid-template-columns: 1fr; }
+  .process-step { grid-template-columns: 1fr; gap: 4px; }
+  .ba-slider { aspect-ratio: 1290/742; }
+  .result-row { grid-template-columns: 1fr; }
+  .result-tag { justify-self: start; }
+}
+@media (max-width: 640px) {
+  .ba-tag { font-size: .6rem; padding: 5px 9px; top: 10px; }
+  .ba-tag--before { left: 10px; }
+  .ba-tag--after { right: 10px; }
+  .ba-handle-knob { width: 40px; height: 40px; }
+  .finder-options { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- v1.9: movimiento apagado ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .sticky-cta { animation: none; }
+  .product:hover, .project:hover { transform: none; }
+  .project:hover img { transform: none; }
+  .detail-main:hover img { transform: none; }
+  .finder-opt:hover { transform: none; }
+  .ba-handle:hover .ba-handle-knob, .ba-handle:focus-visible .ba-handle-knob { transform: translate(-50%, -50%); }
+}

@@ -22,6 +22,7 @@
 <meta name="twitter:description" content="IMPARE, una visión diferente de la personalización automotriz en Monterrey. Piezas OEM y retrofits BMW.">
 <meta name="twitter:image" content="https://zamora344.github.io/IMPARE-automotive/assets/hero-bmw.webp">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23101215'/%3E%3Ctext x='32' y='45' font-family='Didot,Bodoni MT,Georgia,serif' font-size='38' fill='%23B7A187' text-anchor='middle'%3EI%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="image" imagesrcset="assets/responsive/hero-bmw-640.webp 640w, assets/responsive/hero-bmw-900.webp 900w, assets/responsive/hero-bmw-1280.webp 1280w, assets/hero-bmw.webp 1920w" imagesizes="(max-width:900px) 100vw, 64vw" fetchpriority="high">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="media.css">
 </head>
@@ -82,18 +83,21 @@
       <span class="eyebrow">Retrofit · BMW X6</span>
       <h2 class="serif" id="retrofit-title">El volante G, en una cabina F.</h2>
       <p class="muted">La misma cabina, antes y después. Un volante de generación G, adaptado a una cabina de generación F. Cada vehículo se evalúa por separado.</p>
-      <div class="ba-pair">
-        <figure class="ba-figure">
-          <p class="ba-label">Antes</p>
-          <img width="1290" height="742" srcset="assets/responsive/antes-450.webp 450w, assets/responsive/antes-900.webp 900w, assets/antes.webp 1290w" sizes="(max-width:900px) 100vw, 50vw" decoding="async" loading="lazy" src="assets/antes.webp" alt="Cabina de BMW X6 con su volante original de generación F">
-        </figure>
-        <figure class="ba-figure">
-          <p class="ba-label">Después</p>
+      <div class="ba-slider" data-ba-slider>
+        <div class="ba-layer ba-layer--after">
           <img width="1290" height="735" srcset="assets/responsive/despues-450.webp 450w, assets/responsive/despues-900.webp 900w, assets/despues.webp 1290w" sizes="(max-width:900px) 100vw, 50vw" decoding="async" loading="lazy" src="assets/despues.webp" alt="La misma cabina de BMW X6 con el volante M de generación G ya instalado">
-        </figure>
+        </div>
+        <div class="ba-layer ba-layer--before">
+          <img width="1290" height="742" srcset="assets/responsive/antes-450.webp 450w, assets/responsive/antes-900.webp 900w, assets/antes.webp 1290w" sizes="(max-width:900px) 100vw, 50vw" decoding="async" loading="lazy" src="assets/antes.webp" alt="Cabina de BMW X6 con su volante original de generación F">
+        </div>
+        <span class="ba-tag ba-tag--before">Antes</span>
+        <span class="ba-tag ba-tag--after">Después</span>
+        <div class="ba-handle" data-ba-handle role="slider" tabindex="0" aria-label="Comparar antes y después" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-orientation="horizontal"><span class="ba-handle-knob">‹ ›</span></div>
       </div>
+      <p class="ba-note">Arrastra para comparar, o usa las flechas del teclado sobre el control. Un volante de generación G, adaptado a una cabina de generación F con un adaptador estudiado para esa aplicación.</p>
       <div class="button-row" style="margin-top:28px">
         <a class="button" href="proyecto-retrofit-x6.html">Ver el antes y después</a>
+        <a class="quiet-link" href="finder.html">¿Es para mi BMW?</a>
       </div>
     </div>
   </section>
@@ -108,20 +112,44 @@
       </div>
     </div>
   </section>
+
+  <section class="home-ba" aria-labelledby="home-notas-title">
+    <div class="shell">
+      <span class="eyebrow">Notas</span>
+      <h2 class="serif" id="home-notas-title">Historias que ya pasaron, contadas como pasaron.</h2>
+      <p class="muted">Cómo se adaptó un volante de generación G a una cabina de generación F, qué se tuvo que estudiar y qué quedó por revisar. Una nota, con su foto.</p>
+      <div class="button-row" style="margin-top:28px">
+        <a class="button" href="notas.html">Leer las notas</a>
+        <a class="quiet-link" href="como-trabajamos.html">Cómo trabajamos</a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="footer">
-  <span class="ftlogo">IMPARE</span>
-  <nav aria-label="Secciones">
-    <a href="index.html">Inicio</a>
-    <a href="collection.html">Collection</a>
-    <a href="proyectos.html">Proyectos</a>
-    <a href="atelier.html">ATELIER</a>
-    <a href="firma.html">La Firma</a>
-  </nav>
-  <span>Monterrey · México</span>
-  <span>Citas privadas · San Pedro</span>
+  <div class="footer-top">
+    <span class="ftlogo">IMPARE</span>
+    <nav aria-label="Secciones">
+      <a href="index.html">Inicio</a>
+      <a href="collection.html">Collection</a>
+      <a href="proyectos.html">Proyectos</a>
+      <a href="atelier.html">ATELIER</a>
+      <a href="firma.html">La Firma</a>
+      <a href="como-trabajamos.html">Cómo trabajamos</a>
+      <a href="notas.html">Notas</a>
+    </nav>
+  </div>
+  <p class="footer-note">Los precios son de referencia y están por confirmar. El carrito es una demostración: no se cobra nada y no se envía ningún pago. Los proyectos G20 son estudios conceptuales, no trabajos terminados para un cliente.</p>
+  <div class="footer-bottom">
+    <nav aria-label="Avisos">
+      <a href="aviso-privacidad.html">Aviso de privacidad</a>
+      <a href="terminos.html">Términos</a>
+    </nav>
+    <span>Monterrey · México</span>
+    <span>Citas privadas · San Pedro</span>
+  </div>
 </footer>
+<a class="sticky-cta" href="atelier.html">Hablar de mi proyecto</a>
 <script src="liquid-glass.js" defer></script>
 <script src="cart.js" defer></script>
 <script src="app.js" defer></script>

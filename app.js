@@ -155,4 +155,184 @@
       piezaLine.textContent = 'Tu consulta es sobre: ' + names[pieza] + '. Modelo, año y equipamiento son el punto de partida. Esta vista todavía no recibe consultas. Puedes seguir explorando las piezas o conocer la solicitud privada de ATELIER.';
     }
   }
+
+  /* ================================================================
+     v1.9 — Mejora continua (revision-v19.md).
+     Sin librerías. Todo con calma; nada se mueve bajo
+     prefers-reduced-motion. Sin JS, el contenido sigue visible:
+     el slider arranca en 50% por CSS y el buscador es un formulario.
+     ================================================================ */
+
+  /* ---- Reveal al hacer scroll ---- */
+  const revealEls = document.querySelectorAll('.product, .project, .atelier-step, .acc-item, .note, .home-ba, .home-atelier, .ba-slider, .case-story, .note-item, .process-step, .finder-result');
+  if (revealEls.length) {
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      revealEls.forEach(el => el.classList.add('in'));
+    } else {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(el => { el.classList.add('reveal'); io.observe(el); });
+    }
+  }
+
+  /* ---- 1. Slider antes/después (arrastre + teclado + guiño inicial) ---- */
+  document.querySelectorAll('[data-ba-slider]').forEach(slider => {
+    const handle = slider.querySelector('[data-ba-handle]');
+    if (!handle) return;
+    let pos = 50, dragging = false, nudged = false;
+    const set = p => {
+      pos = Math.max(4, Math.min(96, p));
+      slider.style.setProperty('--ba-pos', pos + '%');
+      handle.setAttribute('aria-valuenow', String(Math.round(pos)));
+    };
+    const fromEvent = e => {
+      const r = slider.getBoundingClientRect();
+      const x = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+      set((x - r.left) / r.width * 100);
+    };
+    slider.addEventListener('pointerdown', e => {
+      dragging = true;
+      try { slider.setPointerCapture(e.pointerId); } catch (err) { /* sin captura: sigue el arrastre */ }
+      fromEvent(e);
+    });
+    slider.addEventListener('pointermove', e => { if (dragging) fromEvent(e); });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => slider.addEventListener(ev, () => { dragging = false; }));
+    handle.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') { set(pos - 6); e.preventDefault(); }
+      else if (e.key === 'ArrowRight') { set(pos + 6); e.preventDefault(); }
+      else if (e.key === 'Home') { set(4); e.preventDefault(); }
+      else if (e.key === 'End') { set(96); e.preventDefault(); }
+    });
+    /* Guiño: la primera vez que se ve, se mueve solo un poco para
+       que se entienda que se puede arrastrar. */
+    if (!reducedMotion && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting || nudged) return;
+          nudged = true; io.disconnect();
+          const start = performance.now();
+          const tick = now => {
+            const t = Math.min(1, (now - start) / 1500);
+            set(50 + 12 * Math.sin(t * Math.PI));
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        });
+      }, { threshold: 0.4 });
+      io.observe(slider);
+    }
+    set(50);
+  });
+
+  /* ---- 3. Buscador guiado "¿Es para mi BMW?" ----
+     Reglas honestas, definidas por los fundadores:
+     - Volante G→F: en generación F, por estudiar caso por caso.
+       En generación G, aplica en principio (pieza de su generación).
+     - Consola M Carbon: era G20/G22 (Serie 3 G20, Serie 4 G22).
+       Todo lo demás, por estudiar. Sin generación, por estudiar.
+     - MINI: no aplica (Collection no tiene piezas para MINI).
+     - Si hay duda, "por estudiar". Nunca se promete compatibilidad. */
+  const finder = document.querySelector('[data-finder]');
+  if (finder) {
+    finder.addEventListener('submit', e => e.preventDefault());
+    const steps = [...finder.querySelectorAll('[data-finder-step]')];
+    const result = finder.querySelector('[data-finder-result]');
+    const seriesNames = {
+      serie1: 'Serie 1', serie2: 'Serie 2', serie3: 'Serie 3', serie4: 'Serie 4',
+      serie5: 'Serie 5', serie6: 'Serie 6', serie7: 'Serie 7',
+      x1: 'X1', x2: 'X2', x3: 'X3', x4: 'X4', x5: 'X5', x6: 'X6', z4: 'Z4',
+      mini: 'MINI', otro: 'Otro BMW'
+    };
+    const showStep = n => {
+      steps.forEach(s => { s.hidden = Number(s.dataset.finderStep) !== n; });
+      const current = steps.find(s => Number(s.dataset.finderStep) === n);
+      if (current) { const first = current.querySelector('input'); if (first) first.focus(); }
+    };
+    const valueOf = name => { const el = finder.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : null; };
+    const markSelected = () => {
+      finder.querySelectorAll('.finder-opt').forEach(label => {
+        const input = label.querySelector('input');
+        label.classList.toggle('selected', !!(input && input.checked));
+      });
+      /* El botón de cada paso solo se activa cuando hay una respuesta. */
+      const stepNames = { 1: 'serie', 2: 'generacion', 3: 'ano' };
+      steps.forEach(step => {
+        const n = Number(step.dataset.finderStep);
+        const btn = step.querySelector('[data-finder-next], [data-finder-submit]');
+        if (btn) btn.disabled = !valueOf(stepNames[n]);
+      });
+    };
+    finder.addEventListener('change', markSelected);
+    markSelected();
+    finder.querySelectorAll('[data-finder-next]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const step = Number(btn.closest('[data-finder-step]').dataset.finderStep);
+        if (!valueOf(step === 1 ? 'serie' : step === 2 ? 'generacion' : 'ano')) return;
+        showStep(step + 1);
+      });
+    });
+    finder.querySelectorAll('[data-finder-back]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const step = Number(btn.closest('[data-finder-step]').dataset.finderStep);
+        showStep(step - 1);
+      });
+    });
+    const volanteRow = result.querySelector('[data-result="volante"]');
+    const consolaRow = result.querySelector('[data-result="consola"]');
+    const setRow = (row, tag, tagLabel, text) => {
+      row.querySelector('[data-result-tag]').textContent = tagLabel;
+      row.querySelector('[data-result-tag]').className = 'result-tag result-tag--' + tag;
+      row.querySelector('[data-result-text]').textContent = text;
+    };
+    finder.querySelector('[data-finder-submit]').addEventListener('click', () => {
+      const serie = valueOf('serie'), gen = valueOf('generacion'), ano = valueOf('ano');
+      if (!serie || !gen || !ano) return;
+      /* Volante */
+      if (serie === 'mini') {
+        setRow(volanteRow, 'no', 'No aplica', 'Por ahora Collection no tiene piezas para MINI.');
+      } else if (gen === 'G') {
+        setRow(volanteRow, 'aplica', 'Aplica en principio', 'El volante es una pieza de generación G, como tu auto. Confirmamos modelo y año exactos antes de instalar.');
+      } else {
+        setRow(volanteRow, 'estudio', 'Por estudiar', 'El retrofit de volante G a F se evalúa caso por caso: modelo, año y equipamiento. Lo revisamos contigo, en persona.');
+      }
+      /* Consola */
+      if (serie === 'mini') {
+        setRow(consolaRow, 'no', 'No aplica', 'Por ahora Collection no tiene piezas para MINI.');
+      } else if ((serie === 'serie3' || serie === 'serie4') && gen === 'G') {
+        setRow(consolaRow, 'aplica', 'Aplica en principio', 'La consola es de la era G20/G22, como tu auto. Confirmamos modelo y año exactos antes de instalar.');
+      } else {
+        setRow(consolaRow, 'estudio', 'Por estudiar', 'La consola es una pieza de la era G20/G22. Para tu auto se revisa caso por caso: modelo, año y equipamiento.');
+      }
+      const summary = result.querySelector('[data-finder-summary]');
+      summary.textContent = 'Tu BMW: ' + (seriesNames[serie] || serie) + ' · generación ' + (gen === 'nose' ? 'por confirmar' : gen) + ' · año ' + ano + '.';
+      const cta = result.querySelector('[data-finder-cta]');
+      cta.href = 'atelier.html?modelo=' + encodeURIComponent(seriesNames[serie] || serie) +
+        '&gen=' + encodeURIComponent(gen) + '&ano=' + encodeURIComponent(ano);
+      steps.forEach(s => { s.hidden = true; });
+      result.hidden = false;
+      result.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+    });
+    finder.querySelector('[data-finder-restart]').addEventListener('click', () => {
+      finder.querySelectorAll('input[type="radio"]').forEach(i => { i.checked = false; });
+      markSelected();
+      result.hidden = true;
+      showStep(1);
+    });
+  }
+
+  /* ---- ATELIER: prefill también desde el buscador (?modelo=&gen=&ano=) ---- */
+  if (bookingForm) {
+    const params = new URLSearchParams(location.search);
+    const modelo = params.get('modelo'), gen = params.get('gen'), ano = params.get('ano');
+    const vehiculo = bookingForm.querySelector('[name="vehiculo"]');
+    const idea = bookingForm.querySelector('[name="idea"]');
+    if (modelo) {
+      const label = 'BMW ' + modelo + (gen && gen !== 'nose' ? ' · generación ' + gen : '') + (ano ? ' · año ' + ano : '');
+      if (vehiculo && !vehiculo.value) vehiculo.value = label;
+      if (idea && !idea.value) idea.value = 'Mi BMW: ' + label + '. ';
+    }
+  }
 })();
