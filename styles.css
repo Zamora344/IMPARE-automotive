@@ -305,6 +305,9 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 .atelier-hero-new .eyebrow,.atelier-book .eyebrow,.home-atelier .eyebrow{color:#534b43}
 .atelier-photo{margin:0;border:1px solid color-mix(in srgb, var(--obsidian) 16%, transparent);
   background:color-mix(in srgb, var(--marfil) 96%, var(--obsidian));padding:12px}
+/* v1.9.1 — wheel-cabin.webp is a real photo of 960 px native: never display it
+   wider than that, or high-DPI screens stretch it and it looks pixelated. */
+.page-como-trabajamos .atelier-photo{max-width:720px}
 .atelier-photo img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 .atelier-photo figcaption{font-size:.8rem;color:var(--light-muted);padding:12px 4px 2px}
 /* ATELIER: pasos en una línea tranquila, sin tarjetas que gritan. */

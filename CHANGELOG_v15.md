@@ -5,6 +5,19 @@
 support: frontend-design, impeccable-design, web-design-guidelines, web-quality,
 liquid-glass. **Not pushed to GitHub, not published, nothing bought.**
 
+## v1.9.1 — Foto de "Cómo trabajamos" sin pixelar (2026-11-12)
+
+Mauricio: "en la página se ve muy pixeleada en esa sección de cómo trabajamos". Causa: la figura de `como-trabajamos.html` usaba `wheel-cabin.webp`, una foto real de solo 960 × 617 px, pero se mostraba a lo ancho de todo el `.shell` (hasta ~1320 px CSS en escritorio, 100vw en móvil), y el `sizes` decía `60vw`, así que en un teléfono de alta densidad el navegador servía la variante de 640w y la estiraba. La foto no era mala: se estaba mostrando más grande que su resolución nativa.
+
+### Qué cambió
+- **Figura acotada**: `.page-como-trabajamos .atelier-photo` ahora tiene `max-width:720px` y está centrada (`margin:0 auto 64px`). La foto ya nunca se muestra más ancha que su resolución nativa. Regla con alcance solo a esa figura: el resto de las páginas no cambia (la otra `.atelier-photo`, en ATELIER, usa otra foto y no se tocó).
+- **`srcset`/`sizes` corregidos en esa imagen**: `sizes="(max-width:900px) 100vw, 720px"` (antes `60vw`) y se quitó la variante de 192w; la mayor sigue siendo el archivo completo de 960w, así que en pantallas de alta densidad el navegador ya sirve el archivo completo.
+- **Revisados los demás usos de `wheel-cabin.webp`**: en `volante.html` solo es una miniatura de 140 px y, al abrirla, la foto principal se muestra a ≤ ~560 px CSS con `object-fit:contain` y su `data-sizes` ya hace que el navegador elija el archivo de 960w — no hay pixelado ahí, sin cambios. La referencia de fondo en `styles.css` (`.split-card`) es CSS heredado sin uso en ninguna página: nunca se muestra, sin cambios.
+- **Sin atajos**: no se usó la versión mejorada con IA de esa foto (la de 1920 px que se generó para Mauricio), no se inventó ninguna foto nueva, no cambió el texto ni el pie de foto. La regla de cero fotos de IA en el sitio sigue intacta.
+
+### Límite honesto
+Esto quita el pixelado por estiramiento, pero el techo nativo de la foto sigue siendo 960 px: a pantalla completa o en un monitor muy grande no se puede mostrar más grande sin perder nitidez. Una versión realmente más grande necesita una foto real nueva de Edgard/Mauricio, o una decisión explícita de los fundadores de usar la versión mejorada con IA (que ya no sería la foto real).
+
 ## v1.9 — Mejora continua (2026-11-12)
 
 Mauricio, esperando la llamada con Edgard: "implementa una mejora que tu veas necesaria o que falte" y luego "explora todos los rubros". La lista rankeada está en `revision-v19.md`. Se construyeron los ítems 1–4 y 6–10. **El ítem 5 (indexación + sitemap + analítica) NO se tocó**: `robots.txt` sigue en `Disallow: /`, todas las páginas siguen en `noindex,nofollow`, no hay `sitemap.xml` ni scripts de medición. Quitar el `noindex` expone el nombre IMPARE (marca provisional, sin búsqueda IMPI) a Google: decisión de los fundadores, no técnica.
