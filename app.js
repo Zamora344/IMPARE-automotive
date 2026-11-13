@@ -89,7 +89,7 @@
   /* ---- ATELIER: prefill the idea when coming from a piece (consulta / detail) ---- */
   const bookingForm = document.querySelector('[data-booking]');
   if (bookingForm) {
-    const names = { volante: 'Volante M Alcántara LCI', consola: 'Consola central M Carbon' };
+    const names = { volante: 'Volante M Alcántara LCI', consola: 'Consola central M Carbon', umbral: 'Umbral M Performance Carbono' };
     const pieza = new URLSearchParams(location.search).get('pieza');
     const idea = bookingForm.querySelector('[name="idea"]');
     if (pieza && names[pieza] && idea && !idea.value) idea.value = 'Me interesa: ' + names[pieza] + '. ';
@@ -116,6 +116,7 @@
     const names = {
       volante: 'Volante M Alcántara LCI',
       consola: 'Consola central M Carbon',
+      umbral: 'Umbral M Performance Carbono',
     };
     const pieza = new URLSearchParams(location.search).get('pieza');
     if (pieza && names[pieza]) {
@@ -325,6 +326,7 @@
     });
     const volanteRow = result.querySelector('[data-result="volante"]');
     const consolaRow = result.querySelector('[data-result="consola"]');
+    const umbralRow = result.querySelector('[data-result="umbral"]');
     const setRow = (row, tag, tagLabel, text) => {
       row.querySelector('[data-result-tag]').textContent = tagLabel;
       row.querySelector('[data-result-tag]').className = 'result-tag result-tag--' + tag;
@@ -333,13 +335,15 @@
     const runFinder = () => {
       const serie = valueOf('serie'), gen = valueOf('generacion'), ano = valueOf('ano');
       if (!serie || !gen || !ano) return;
-      /* Volante */
+      /* Volante: el M Competition de M3/M4 (G80/G82) le queda a F y a G.
+         Lo que se vende es la estética: en carros que no son M, los
+         botones M1 y M2 son parte del diseño, no activan modos M. */
       if (serie === 'mini') {
         setRow(volanteRow, 'no', 'No aplica', 'Por ahora Collection no tiene piezas para MINI.');
-      } else if (gen === 'G') {
-        setRow(volanteRow, 'aplica', 'Aplica en principio', 'El volante es una pieza de generación G, como tu auto. Confirmamos modelo y año exactos antes de instalar.');
+      } else if (gen === 'G' || gen === 'F') {
+        setRow(volanteRow, 'aplica', 'Aplica en principio', 'El volante M Competition de M3/M4 (G80/G82) le queda a tu auto, sea F o G. Confirmamos modelo y año exactos antes de instalar.');
       } else {
-        setRow(volanteRow, 'estudio', 'Por estudiar', 'El retrofit de volante G a F se evalúa caso por caso: modelo, año y equipamiento. Lo revisamos contigo, en persona.');
+        setRow(volanteRow, 'estudio', 'Por estudiar', 'El volante M Competition le queda a F y a G, pero sin saber tu generación lo revisamos contigo, en persona.');
       }
       /* Consola */
       if (serie === 'mini') {
@@ -348,6 +352,13 @@
         setRow(consolaRow, 'aplica', 'Aplica en principio', 'La consola es de la era G20/G22, como tu auto. Confirmamos modelo y año exactos antes de instalar.');
       } else {
         setRow(consolaRow, 'estudio', 'Por estudiar', 'La consola es una pieza de la era G20/G22. Para tu auto se revisa caso por caso: modelo, año y equipamiento.');
+      }
+      /* Umbral: el modelo exacto todavía no está confirmado, así que
+         siempre es "por estudiar" salvo MINI, donde no aplica. */
+      if (serie === 'mini') {
+        setRow(umbralRow, 'no', 'No aplica', 'Por ahora Collection no tiene piezas para MINI.');
+      } else {
+        setRow(umbralRow, 'estudio', 'Por estudiar', 'El umbral M Performance es por modelo: todavía no está confirmado para tu BMW. Lo revisamos contigo, en persona.');
       }
       const summary = result.querySelector('[data-finder-summary]');
       summary.textContent = 'Tu BMW: ' + (seriesNames[serie] || serie) + ' · generación ' + (gen === 'nose' ? 'por confirmar' : gen) + ' · año ' + ano + '.';
@@ -695,7 +706,7 @@
   if (bookingForm) {
     const prefillNote = document.querySelector('[data-prefill-note]');
     const params = new URLSearchParams(location.search);
-    const piezaNames = { volante: 'Volante M Alcántara LCI', consola: 'Consola central M Carbon' };
+    const piezaNames = { volante: 'Volante M Alcántara LCI', consola: 'Consola central M Carbon', umbral: 'Umbral M Performance Carbono' };
     const pieza = params.get('pieza');
     const modelo = params.get('modelo');
     if (prefillNote) {

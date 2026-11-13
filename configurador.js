@@ -1,7 +1,7 @@
 /* Configurador visual v2.3 — IMPARE Automotive.
    Solo en proyecto-g20-rojo.html y proyecto-g20-blanco.html.
    Sin librerías, sin peticiones externas. Los datos del panel son
-   solo los ya publicados en el sitio: volante y consola tienen
+   solo los ya publicados en el sitio: volante, consola y umbral tienen
    precio de referencia y ficha; el resto está por estudiar. */
 (function () {
   'use strict';
@@ -28,10 +28,18 @@
     volante: {
       grupo: 'Interior',
       nombre: 'Volante M Competition de carbono',
-      desc: 'Volante M de Alcántara con detalles en carbono, con marca central y botones M.',
+      desc: 'Volante M Competition de piel, de M3/M4 (G80/G82), con botones M1 y M2. En carros que no son M, los botones son parte del diseño.',
       origen: 'OEM genuino',
       precio: '$21,500 MXN',
       enlace: 'volante.html'
+    },
+    umbral: {
+      grupo: 'Interior',
+      nombre: 'Umbral M Performance Carbono',
+      desc: 'Umbral de puerta en fibra de carbono con el logo M Performance. Se ve cada vez que abres la puerta; se ocupan dos, uno por lado.',
+      origen: 'OEM genuino',
+      precio: '$3,500 MXN',
+      enlace: 'umbral.html'
     },
     consola: {
       grupo: 'Interior',

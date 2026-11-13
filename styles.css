@@ -500,6 +500,10 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 
 /* ---- 7. Proyectos como casos ---- */
 .case-story{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 36px;margin:30px 0 48px}
+.case-photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 36px;margin:0 0 48px}
+.case-photo{margin:0;max-width:720px;border:1px solid color-mix(in srgb, var(--obsidian) 16%, transparent)}
+.case-photo img{width:100%;height:auto;display:block}
+.case-photo figcaption{font-size:.8rem;color:var(--light-muted);padding:12px 4px 2px}
 .case-story>div{border-top:1px solid var(--line-strong);padding-top:16px}
 .case-story h3{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--titanio);margin:0 0 8px}
 .case-story p{font-size:.92rem;color:var(--muted);margin:0;max-width:52ch}
@@ -577,7 +581,7 @@ body.leaving main{opacity:0;transition:opacity .18s ease}
 .compare{margin:8px 0 72px}
 .compare h2{margin:14px 0 10px}
 .compare-intro{color:var(--muted);max-width:62ch;margin:0 0 28px}
-.compare-grid{display:grid;grid-template-columns:170px repeat(2,minmax(0,1fr));border-top:1px solid var(--line-strong)}
+.compare-grid{display:grid;grid-template-columns:170px repeat(3,minmax(0,1fr));border-top:1px solid var(--line-strong)}
 .compare-row{display:contents}
 .compare-head,.compare-label,.compare-cell{padding:16px 18px;border-bottom:1px solid var(--line);font-size:.92rem}
 .compare-label{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);display:flex;align-items:center}

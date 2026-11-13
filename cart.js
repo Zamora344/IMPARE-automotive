@@ -9,12 +9,14 @@
 (function () {
   'use strict';
 
-  /* ---- Catálogo: solo las 2 piezas con fotografía en Collection.
+  /* ---- Catálogo: las 3 piezas con fotografía en Collection.
      Precios de referencia (ver revision-v18.md): volante $21,500 MXN,
-     consola $9,900 MXN. Etiquetados en el sitio como "por confirmar". ---- */
+     consola $9,900 MXN, umbral $3,500 MXN cada uno (se ocupan dos).
+     Etiquetados en el sitio como "por confirmar". ---- */
   var PRODUCTS = {
     volante: { id: 'volante', name: 'Volante M Alcántara LCI', price: 21500, img: 'assets/wheel-angle.webp', alt: 'Volante M Alcántara LCI', href: 'volante.html' },
-    consola: { id: 'consola', name: 'Consola central M Carbon', price: 9900, img: 'assets/console.webp', alt: 'Consola central M Carbon', href: 'consola.html' }
+    consola: { id: 'consola', name: 'Consola central M Carbon', price: 9900, img: 'assets/console.webp', alt: 'Consola central M Carbon', href: 'consola.html' },
+    umbral: { id: 'umbral', name: 'Umbral M Performance Carbono', price: 3500, img: 'assets/umbral-m-performance.webp', alt: 'Umbral M Performance Carbono', href: 'umbral.html' }
   };
   var CART_KEY = 'impare-cart-v1';
   var CP_KEY = 'impare-ship-cp';

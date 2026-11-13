@@ -1,3 +1,29 @@
+## v2.4 — Las dos fotos nuevas + tercera pieza: el umbral (2026-11-13)
+
+Mauricio subió 4 fotos nuevas del volante G a Drive (carpeta 01) y eligió 2: la de los guantes poniendo la bolsa (la principal, se ve profesional, como de preparación) y la de la bolsa con el umbral de carbono. Las otras dos (el volante solo de frente y el acercamiento de la tapa) las descartó él mismo y no se usan en ningún lado. Aprobó el plan: las 2 fotos en el caso del X6 y en la galería del volante, y el umbral como tercera pieza en Collection.
+
+### Las fotos
+- **Volante de piel M Competition, de M3/M4 (G80/G82):** Mauricio confirmó que es el volante G que se usa para los F **y** para los G, porque es el del M Competition y trae M1 y M2. Cree que les queda a todo (no verificado modelo por modelo). Los M1 y M2 obvio no jalan en carros que no son M — y no importa, **lo que se vende es la estética**. La página lo dice así, sin esconderlo: "En carros que no son M, los botones M1 y M2 son parte del diseño: no activan modos M."
+- **Foto 1 — la preparación** (`assets/volante-preparacion.webp`, 1141×959, con variantes 192/384/640/900): primera foto de la galería del volante y foto grande del acto de preparación en el caso del X6, con el texto exacto "La preparación: guantes, bolsa nueva, todo listo antes de instalar."
+- **Foto 2 — las piezas** (`assets/umbral-m-performance.webp`, 848×542, con variantes 192/384/640): foto de "las piezas" en el caso del X6 y foto principal del umbral. El pie nombra las dos cosas que salen: la tapa del airbag con el logo BMW y el umbral M Performance de carbono. Ninguna foto se muestra más ancha que su resolución nativa (las del caso llevan `.case-photo`, tope 720 px; el lightbox ya limita por `naturalWidth` desde v2.0).
+
+### El volante, con lo confirmado
+- La ficha del volante ahora dice que es el **M Competition de M3/M4 (G80/G82), de piel**, que le queda a **F y a G**. El Alcántara LCI sigue siendo la pieza listada con su precio de referencia de $21,500 MXN; **no se inventó un segundo precio para el volante de piel**: es la misma familia Volante M, en las fotos de la ficha y del caso.
+- El buscador ahora dice que el volante **aplica en principio para F y para G** (antes F era "por estudiar"). La descripción del configurador y la lista de accesorios de las páginas G20 dicen lo mismo.
+
+### Tercera pieza: Umbral M Performance Carbono
+- Nueva ficha `umbral.html` (misma estructura que volante/consola): umbral de puerta M Performance, fibra de carbono con el logo, original BMW, sustituye el umbral del paquete M Sport. **$3,500 MXN cada uno, precio de referencia por confirmar; se ocupan dos, uno por lado.** Número de parte y modelo exacto quedan **"Por confirmar"** — los números que se encontraron en internet son por modelo y los fundadores no han dicho para qué modelo es este. En el carrito llega hasta 2, en la comparativa tiene su columna, en el buscador sale como "Por estudiar" (salvo MINI, "No aplica"), en el configurador tiene su zona en la lista, y en el estado vacío del carrito se listan las tres piezas.
+- Collection pasa de 2 a 3 tarjetas y la comparativa de 2 a 3 columnas (`.compare-grid` ahora `repeat(3, ...)`). La FAQ de M1/M2 usa la línea honesta. Las páginas G20 llevan el botón de zona del umbral en la lista ("Interior · No se ve en esta vista", sin punto en la foto, como asientos y escapes).
+
+### QA (por script)
+- **qa-v24.js: 66/66** (nueva suite: fotos, tercera pieza, volante F y G, buscador, carrito, configurador, guardas). **qa-v232.js, qa-v231.js, qa-v23-a/b/c, qa-v21.js, qa-v211.js, qa-v20.js, qa-v19.js, qa-cart-test.js, qa-cart-memory-test.js: pasan**, solo con el fallo intencional del video pendiente (`assets/video-volante.mp4` no existe; lo graban los fundadores). Aserciones viejas actualizadas a v2.4 y documentadas en cada suite: comparativa 2→3 piezas (12 `data-label`), lista "No se ve" 3→4 en rojo y 2→3 en blanco (el umbral se suma), Datos del caso ahora con el volante de piel, baseline Part-A 105438→108838 B (+2400 B por la tercera pieza: fila del buscador, mapas de nombres, CSS de `.case-photo`), páginas 20→21.
+- Cero strings prohibidos, `noindex` intacto en las 21 páginas, `robots.txt` intacto, sin analítica, sin peticiones externas. Enrutado en memoria, doble toque y hover acotado intactos, botón de volver arriba intacto, aro de `.step-no` sigue acotado al checkout.
+
+### Pendiente (de Mauricio/Edgard, con el cel)
+- **Subir las dos fotos nuevas al repo por la interfaz web de GitHub** (el conector solo acepta texto): `assets/volante-preparacion.webp`, `assets/umbral-m-performance.webp` y sus variantes en `assets/responsive/`. Hasta que no estén en el repo, la página en vivo las referencia y no las muestra.
+- Probar en su iPhone: la galería del volante con la foto de preparación primera, el caso del X6 con las dos fotos, la tercera tarjeta en Collection, el carrito con el umbral hasta 2, y el buscador con Serie 3 F y G.
+- Todavía falta de los fundadores: el video real de 10 segundos, el número de parte y el modelo exacto del umbral, y su precio final.
+
 ## v2.3.2 — El aro de verdad + el botón vuelve + auditoría (2026-11-12)
 
 Mauricio mandó captura (ATELIER, en su cel): detrás de "PASO UNO" se veía un aro fino y vacío, y lo mismo en "PASO DOS" y "PASO TRES". Aclaró dos cosas: (1) el círculo NO era el botón de volver arriba — ese botón le gustaba y la v2.3.1 lo quitó por error; (2) revisáramos TODO el sitio buscando más errores parecidos.
