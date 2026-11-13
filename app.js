@@ -203,7 +203,9 @@
     }
     set(50);
     /* v2.3 — Película: el progreso del scroll mueve el control
-       (10% → 90%) mientras la sección fijada está en pantalla.
+       (90% → 10%) mientras la sección fijada está en pantalla:
+       primero se ve el ANTES y al bajar aparece el DESPUÉS.
+       v2.3.1: estaba al revés (10% → 90%, Después primero).
        Sticky de CSS, nunca secuestro de scroll: la sección termina
        y el scroll sigue; en móvil el recorrido es más corto.
        Solo se activa con JS + IntersectionObserver y sin movimiento
@@ -216,7 +218,7 @@
         const travel = film.offsetHeight - window.innerHeight;
         if (travel <= 0) return;
         const p = Math.max(0, Math.min(1, -film.getBoundingClientRect().top / travel));
-        set(10 + p * 80);
+        set(90 - p * 80);
       };
       const filmIO = new IntersectionObserver(entries => {
         filmInView = entries.some(entry => entry.isIntersecting);
@@ -448,22 +450,18 @@
     });
   }
 
-  /* ---- 2. Progreso de lectura + volver arriba (se crean por JS,
-     así no hay que tocar las 20 páginas) ---- */
+  /* ---- 2. Progreso de lectura + volver arriba (enlace en el pie) ----
+     v2.3.1: el botón flotante redondo estorbaba sobre el contenido —
+     se veía como un círculo debajo de los pasos. Ya no hay círculo
+     flotante: el regreso arriba es un enlace tranquilo en el pie de
+     cada página ([data-to-top]). La línea de progreso se queda. ---- */
   const progress = document.createElement('div');
   progress.className = 'scroll-progress';
   progress.setAttribute('aria-hidden', 'true');
   document.body.appendChild(progress);
-  const toTop = document.createElement('button');
-  toTop.type = 'button';
-  toTop.className = 'to-top';
-  toTop.setAttribute('aria-label', 'Volver arriba');
-  toTop.textContent = '↑';
-  document.body.appendChild(toTop);
   const onScroll = () => {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
-    toTop.classList.toggle('show', window.scrollY > 600);
   };
   let scrollQueued = false;
   window.addEventListener('scroll', () => {
@@ -472,7 +470,12 @@
     requestAnimationFrame(() => { scrollQueued = false; onScroll(); });
   }, { passive: true });
   onScroll();
-  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' }));
+  document.querySelectorAll('a[data-to-top]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    });
+  });
 
   /* ---- 3. Lightbox: tocar la foto principal para verla grande.
      La foto nunca se muestra más ancha que su tamaño nativo

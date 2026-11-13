@@ -74,6 +74,28 @@
   var abierto = null;
   var ultimoTrigger = null;
 
+  /* v2.3.1 — Vistas Exterior / Interior: dos botones grandes cambian
+     la foto del escenario. Al tocar una zona de la lista se cambia
+     primero a su vista y luego se abre el panel; si el panel ya estaba
+     abierto para esa zona, el toque lo cierra. */
+  var viewBtns = Array.prototype.slice.call(document.querySelectorAll('[data-cfg-view-btn]'));
+  var stages = Array.prototype.slice.call(document.querySelectorAll('[data-cfg-view-stage]'));
+  function mostrarVista(vista) {
+    viewBtns.forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-cfg-view-btn') === vista ? 'true' : 'false');
+    });
+    stages.forEach(function (st) {
+      st.hidden = st.getAttribute('data-cfg-view-stage') !== vista;
+    });
+  }
+  viewBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      mostrarVista(b.getAttribute('data-cfg-view-btn'));
+      /* Cambiar de vista cierra el panel; el foco se queda en el botón. */
+      cerrar(false);
+    });
+  });
+
   function setExpanded(id, value) {
     triggers.forEach(function (t) {
       if (t.getAttribute('data-cfg-zone') === id) {
@@ -147,8 +169,11 @@
   triggers.forEach(function (trigger) {
     trigger.addEventListener('click', function () {
       var id = trigger.getAttribute('data-cfg-zone');
-      if (abierto === id) { cerrar(true); }
-      else { abrir(id, trigger); }
+      var eraAbierto = (abierto === id);
+      var vista = trigger.getAttribute('data-cfg-view');
+      if (vista) { mostrarVista(vista); }
+      if (eraAbierto) { cerrar(true); return; }
+      abrir(id, trigger);
     });
   });
 

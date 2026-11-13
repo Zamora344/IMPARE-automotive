@@ -81,15 +81,24 @@
     <section class="cfg" aria-labelledby="cfg-title">
       <span class="eyebrow">Explora el auto</span>
       <h2 class="serif" id="cfg-title">Toca un punto para ver la pieza.</h2>
-      <p class="muted cfg-intro">Cada punto marca una zona del estudio. Las zonas que no se ven en estas vistas están en la lista de abajo, con la misma información.</p>
-      <figure class="cfg-stage">
+      <p class="muted cfg-intro">Cambia entre Exterior e Interior para ver cada vista. Cada punto marca una zona del estudio; la vista interior muestra la cabina con el volante y la consola ya instalados. Las zonas que no se ven en ninguna vista están en la lista de abajo, con la misma información.</p>
+      <div class="cfg-views" role="group" aria-label="Vista del auto">
+        <button type="button" class="cfg-view-btn" data-cfg-view-btn="exterior" aria-pressed="true">Exterior</button>
+        <button type="button" class="cfg-view-btn" data-cfg-view-btn="interior" aria-pressed="false">Interior</button>
+      </div>
+      <figure class="cfg-stage" data-cfg-view-stage="exterior">
         <img class="project-full" data-lightbox width="1920" height="1280" srcset="assets/responsive/g20-blanco-640.webp 640w, assets/responsive/g20-blanco-900.webp 900w, assets/responsive/g20-blanco-1280.webp 1280w, assets/g20-blanco.webp 1920w" sizes="(max-width:900px) 100vw, 80vw" decoding="async" src="assets/g20-blanco.webp" alt="BMW Serie 3 G20 330i blanco, vista frontal de tres cuartos">
         <button type="button" class="cfg-hotspot" style="--x:86%;--y:52%" data-cfg-zone="fascia" aria-expanded="false" aria-controls="cfg-panel" aria-label="Fascia estilo M2 Competition: ver pieza"><span aria-hidden="true">+</span></button>
         <button type="button" class="cfg-hotspot" style="--x:56%;--y:67%" data-cfg-zone="rines" aria-expanded="false" aria-controls="cfg-panel" aria-label="Rines: ver pieza"><span aria-hidden="true">+</span></button>
       </figure>
-      <figure class="cfg-stage">
+      <figure class="cfg-stage" data-cfg-view-stage="exterior">
         <img class="project-full" data-lightbox width="1920" height="1280" srcset="assets/responsive/g20-blanco-trasera-640.webp 640w, assets/responsive/g20-blanco-trasera-900.webp 900w, assets/responsive/g20-blanco-trasera-1280.webp 1280w, assets/g20-blanco-trasera.webp 1920w" sizes="(max-width:900px) 100vw, 80vw" decoding="async" loading="lazy" src="assets/g20-blanco-trasera.webp" alt="BMW Serie 3 G20 330i blanco, vista trasera de tres cuartos">
         <button type="button" class="cfg-hotspot" style="--x:28%;--y:41%" data-cfg-zone="spoiler" aria-expanded="false" aria-controls="cfg-panel" aria-label="Spoiler: ver pieza"><span aria-hidden="true">+</span></button>
+      </figure>
+      <figure class="cfg-stage" data-cfg-view-stage="interior" hidden>
+        <img class="project-full" data-lightbox width="960" height="617" srcset="assets/responsive/wheel-cabin-192.webp 192w, assets/responsive/wheel-cabin-384.webp 384w, assets/responsive/wheel-cabin-640.webp 640w, assets/wheel-cabin.webp 960w" sizes="(max-width:900px) 100vw, 80vw" decoding="async" loading="lazy" src="assets/wheel-cabin.webp" alt="Cabina BMW con el volante M de generación G ya instalado y la consola central M">
+        <button type="button" class="cfg-hotspot" style="--x:53%;--y:50%" data-cfg-zone="volante" aria-expanded="false" aria-controls="cfg-panel" aria-label="Volante M Competition de carbono: ver pieza"><span aria-hidden="true">+</span></button>
+        <button type="button" class="cfg-hotspot" style="--x:82%;--y:84%" data-cfg-zone="consola" aria-expanded="false" aria-controls="cfg-panel" aria-label="Consola M3: ver pieza"><span aria-hidden="true">+</span></button>
       </figure>
       <div class="cfg-panel" id="cfg-panel" role="region" aria-labelledby="cfg-panel-name" hidden>
         <p class="cfg-panel-eyebrow" data-cfg-eyebrow></p>
@@ -104,13 +113,13 @@
         </div>
       </div>
       <ul class="cfg-zones" aria-label="Zonas del estudio">
-        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="fascia" aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Fascia estilo M2 Competition</span><span class="cfg-zone-tag">Exterior · En la vista frontal</span></button></li>
-        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="rines" aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Rines</span><span class="cfg-zone-tag">Exterior · En la vista frontal</span></button></li>
-        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="spoiler" aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Spoiler</span><span class="cfg-zone-tag">Exterior · En la vista trasera</span></button></li>
-        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="volante" data-cfg-nota="Esta zona no se ve en las vistas de arriba." aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Volante M Competition de carbono</span><span class="cfg-zone-tag">Interior · No se ve en esta vista</span></button></li>
-        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="consola" data-cfg-nota="Esta zona no se ve en las vistas de arriba." aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Consola M3</span><span class="cfg-zone-tag">Interior · No se ve en esta vista</span></button></li>
-        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="asientos" data-cfg-nota="Esta zona no se ve en las vistas de arriba." aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Asientos M3</span><span class="cfg-zone-tag">Interior · No se ve en esta vista</span></button></li>
-        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="escapes" data-cfg-nota="Esta zona no se ve en las vistas de arriba." aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Escapes</span><span class="cfg-zone-tag">Escapes · No se ve en esta vista</span></button></li>
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="fascia" data-cfg-view="exterior" aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Fascia estilo M2 Competition</span><span class="cfg-zone-tag">Exterior · Vista exterior</span></button></li>
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="rines" data-cfg-view="exterior" aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Rines</span><span class="cfg-zone-tag">Exterior · Vista exterior</span></button></li>
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="spoiler" data-cfg-view="exterior" aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Spoiler</span><span class="cfg-zone-tag">Exterior · Vista trasera</span></button></li>
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="volante" data-cfg-view="interior" aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Volante M Competition de carbono</span><span class="cfg-zone-tag">Interior · Vista interior</span></button></li>
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="consola" data-cfg-view="interior" aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Consola M3</span><span class="cfg-zone-tag">Interior · Vista interior</span></button></li>
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="asientos" data-cfg-view="interior" data-cfg-nota="Esta zona no se ve en la vista interior." aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Asientos M3</span><span class="cfg-zone-tag">Interior · No se ve en esta vista</span></button></li>
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="escapes" data-cfg-nota="Esta zona no se ve en las vistas." aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Escapes</span><span class="cfg-zone-tag">Escapes · No se ve en esta vista</span></button></li>
       </ul>
     </section>
 
@@ -213,6 +222,7 @@
       <a href="aviso-privacidad.html">Aviso de privacidad</a>
       <a href="terminos.html">Términos</a>
     </nav>
+    <a href="#" data-to-top>Volver arriba</a>
     <span>Monterrey · México</span>
     <span>Citas privadas · San Pedro</span>
   </div>

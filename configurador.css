@@ -8,6 +8,26 @@
    foto, para no taparla nunca. Los hover van solo dentro del media
    de hover fino (regla v2.1.1); en táctil manda :active. */
 
+/* ---- Selector de vista Exterior / Interior (v2.3.1) ---- */
+
+.cfg-views{display:flex;gap:10px;margin:24px 0 0;flex-wrap:wrap}
+
+.cfg-view-btn{
+  flex:1 1 140px;min-height:52px;padding:12px 18px;
+  background:transparent;border:1px solid var(--line-strong);
+  color:var(--marfil);font:inherit;font-size:.95rem;letter-spacing:.04em;
+  cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  transition:background .25s,color .25s,border-color .25s;
+}
+
+.cfg-view-btn[aria-pressed="true"]{background:var(--titanio);border-color:var(--titanio);color:var(--obsidian);font-weight:700}
+
+.cfg-view-btn:focus-visible{outline:2px solid var(--marfil);outline-offset:2px}
+
+.cfg-view-btn:active{transform:scale(.98)}
+
+.cfg-stage[hidden]{display:none}
+
 /* ---- Escenario y puntos ---- */
 
 .cfg{margin:0 0 64px}
@@ -133,6 +153,7 @@
 /* ---- Hover: solo con puntero fino (regla v2.1.1) ---- */
 
 @media (hover:hover) and (pointer:fine){
+  .cfg-view-btn:hover{border-color:var(--titanio)}
   .cfg-hotspot:hover{background:var(--titanio);color:var(--obsidian)}
   .cfg-zone-btn:hover .cfg-zone-name{color:var(--titanio)}
   .cfg-link:hover{color:var(--titanio)}

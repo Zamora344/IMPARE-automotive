@@ -1,3 +1,20 @@
+## v2.3.1 — Arreglos de la prueba en el cel de Mauricio (2026-11-12)
+
+Mauricio probó la v2.3 en vivo en su iPhone: lo demás bien, pero tres cosas.
+
+### Qué cambió
+- **1. La película iba al revés — ahora Antes → Después:** el scroll movía el control de 10 a 90 %, así que al entrar se veía el Después y al bajar aparecía el Antes. Ahora va de 90 a 10 %: arriba de la sección fijada se ve el Antes y al bajar aparece el cambio (el Después). El arrastre y el teclado siguen igual (derecha = más Antes, izquierda = más Después) y el scroll sigue cediendo el control en cuanto el visitante arrastra o usa las flechas.
+- **2. Configurador con vistas Exterior / Interior:** dos botones grandes arriba de la foto — Exterior e Interior. Exterior muestra las fotos reales del G20 (frontal en el rojo; frontal y trasera en el blanco) con sus puntos. Interior muestra la foto real de la cabina (`wheel-cabin.webp`, la misma de Cómo trabajamos) con sus propios puntos: volante (53 %, 50 %) y consola (82 %, 84 %). Al tocar una zona de la lista se cambia primero a su vista y luego se abre el panel; si el panel ya estaba abierto para esa zona, el toque lo cierra y devuelve el foco. Las zonas sin pieza verificada siguen diciendo "Próximamente — por estudiar" (spoiler en el rojo, asientos, escapes). Botones de 52 px, foco visible, hover solo en `@media (hover:hover)`.
+- **3. El círculo flotante ya no estorba:** el botón redondo "Volver arriba" (↑) flotaba fijo abajo a la izquierda y se veía como un círculo debajo de los pasos (1, 2, 3 de checkout, pasos de Cómo trabajamos y de ATELIER). Se quitó el círculo flotante en móvil y en escritorio; el regreso arriba ahora es un enlace tranquilo "Volver arriba" en el pie de las 20 páginas (`[data-to-top]`, scroll suave, respeta movimiento reducido). Los números de los pasos no se tocaron: siguen igual.
+
+### QA (por script)
+- **qa-v231.js: 37/37** (los tres arreglos + nada roto). **qa-v23-a.js: 71/71, qa-v23-b.js: 152/152, qa-v23-c.js: 104/104** (suite v2.3 actualizada: hotspots del interior, conteo de lightbox 2+3+1). **qa-v211.js, qa-v21.js, qa-v20.js, qa-v19.js: solo queda el fallo intencional del video pendiente** (`assets/video-volante.mp4` no existe; se graba con los fundadores).
+- La suite v2.3-b (mini-DOM) atrapó un error real de la primera versión del arreglo: al tocar dos veces el mismo punto sin vista, el panel ya no se cerraba. Arreglado: el cierre con devolución de foco vuelve a funcionar en puntos y en botones de lista.
+- Cero strings prohibidos, `noindex` intacto en las 20 páginas, `robots.txt` intacto, sin analítica, sin peticiones externas. Enrutado en memoria, doble toque y hover acotado intactos.
+
+### Pendiente (de Mauricio, con el cel)
+- Probar en su iPhone: que el scroll de la película empiece en Antes y termine en Después; cambiar a Interior y tocar volante y consola; y que ya no aparezca ningún círculo sobre los pasos.
+
 ## v2.3 — Ronda "clase mundial" (2026-11-12)
 
 Mauricio: que al mandársela a Edgard diga que está increíble, como página de empresa a nivel mundial — eficiente, rápida, intuitiva. Aprobó los cinco ítems del top 5 de `revision-v23.md`. También dijo que en La Firma después sí pueden salir ellos, pero NO en esta ronda: sin fotos de personas ahora.
