@@ -24,6 +24,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23101215'/%3E%3Ctext x='32' y='45' font-family='Didot,Bodoni MT,Georgia,serif' font-size='38' fill='%23B7A187' text-anchor='middle'%3EI%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="media.css">
+<link rel="stylesheet" href="configurador.css">
 </head>
 <body class="page-proyecto-g20">
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -77,8 +78,41 @@
         <p>Estudio conceptual. Las piezas que ya están en Collection se enlazan a su ficha; las demás se añaden cuando estén disponibles.</p>
       </div>
     </div>
-    <img class="project-full" data-lightbox width="1920" height="1280" srcset="assets/responsive/g20-blanco-640.webp 640w, assets/responsive/g20-blanco-900.webp 900w, assets/responsive/g20-blanco-1280.webp 1280w, assets/g20-blanco.webp 1920w" sizes="(max-width:900px) 100vw, 80vw" decoding="async" src="assets/g20-blanco.webp" alt="BMW Serie 3 G20 330i blanco, vista frontal de tres cuartos">
-    <img class="project-full" data-lightbox width="1920" height="1280" srcset="assets/responsive/g20-blanco-trasera-640.webp 640w, assets/responsive/g20-blanco-trasera-900.webp 900w, assets/responsive/g20-blanco-trasera-1280.webp 1280w, assets/g20-blanco-trasera.webp 1920w" sizes="(max-width:900px) 100vw, 80vw" decoding="async" loading="lazy" src="assets/g20-blanco-trasera.webp" alt="BMW Serie 3 G20 330i blanco, vista trasera de tres cuartos">
+    <section class="cfg" aria-labelledby="cfg-title">
+      <span class="eyebrow">Explora el auto</span>
+      <h2 class="serif" id="cfg-title">Toca un punto para ver la pieza.</h2>
+      <p class="muted cfg-intro">Cada punto marca una zona del estudio. Las zonas que no se ven en estas vistas están en la lista de abajo, con la misma información.</p>
+      <figure class="cfg-stage">
+        <img class="project-full" data-lightbox width="1920" height="1280" srcset="assets/responsive/g20-blanco-640.webp 640w, assets/responsive/g20-blanco-900.webp 900w, assets/responsive/g20-blanco-1280.webp 1280w, assets/g20-blanco.webp 1920w" sizes="(max-width:900px) 100vw, 80vw" decoding="async" src="assets/g20-blanco.webp" alt="BMW Serie 3 G20 330i blanco, vista frontal de tres cuartos">
+        <button type="button" class="cfg-hotspot" style="--x:86%;--y:52%" data-cfg-zone="fascia" aria-expanded="false" aria-controls="cfg-panel" aria-label="Fascia estilo M2 Competition: ver pieza"><span aria-hidden="true">+</span></button>
+        <button type="button" class="cfg-hotspot" style="--x:56%;--y:67%" data-cfg-zone="rines" aria-expanded="false" aria-controls="cfg-panel" aria-label="Rines: ver pieza"><span aria-hidden="true">+</span></button>
+      </figure>
+      <figure class="cfg-stage">
+        <img class="project-full" data-lightbox width="1920" height="1280" srcset="assets/responsive/g20-blanco-trasera-640.webp 640w, assets/responsive/g20-blanco-trasera-900.webp 900w, assets/responsive/g20-blanco-trasera-1280.webp 1280w, assets/g20-blanco-trasera.webp 1920w" sizes="(max-width:900px) 100vw, 80vw" decoding="async" loading="lazy" src="assets/g20-blanco-trasera.webp" alt="BMW Serie 3 G20 330i blanco, vista trasera de tres cuartos">
+        <button type="button" class="cfg-hotspot" style="--x:28%;--y:41%" data-cfg-zone="spoiler" aria-expanded="false" aria-controls="cfg-panel" aria-label="Spoiler: ver pieza"><span aria-hidden="true">+</span></button>
+      </figure>
+      <div class="cfg-panel" id="cfg-panel" role="region" aria-labelledby="cfg-panel-name" hidden>
+        <p class="cfg-panel-eyebrow" data-cfg-eyebrow></p>
+        <h3 id="cfg-panel-name" tabindex="-1" data-cfg-name></h3>
+        <p class="cfg-panel-desc" data-cfg-desc></p>
+        <p class="cfg-panel-note" data-cfg-note hidden></p>
+        <dl class="cfg-facts" data-cfg-facts></dl>
+        <p class="cfg-status" data-cfg-status hidden></p>
+        <div class="cfg-panel-foot">
+          <a class="cfg-link" data-cfg-link hidden>Ver pieza</a>
+          <button type="button" class="cfg-close" data-cfg-close>Cerrar</button>
+        </div>
+      </div>
+      <ul class="cfg-zones" aria-label="Zonas del estudio">
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="fascia" aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Fascia estilo M2 Competition</span><span class="cfg-zone-tag">Exterior · En la vista frontal</span></button></li>
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="rines" aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Rines</span><span class="cfg-zone-tag">Exterior · En la vista frontal</span></button></li>
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="spoiler" aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Spoiler</span><span class="cfg-zone-tag">Exterior · En la vista trasera</span></button></li>
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="volante" data-cfg-nota="Esta zona no se ve en las vistas de arriba." aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Volante M Competition de carbono</span><span class="cfg-zone-tag">Interior · No se ve en esta vista</span></button></li>
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="consola" data-cfg-nota="Esta zona no se ve en las vistas de arriba." aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Consola M3</span><span class="cfg-zone-tag">Interior · No se ve en esta vista</span></button></li>
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="asientos" data-cfg-nota="Esta zona no se ve en las vistas de arriba." aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Asientos M3</span><span class="cfg-zone-tag">Interior · No se ve en esta vista</span></button></li>
+        <li><button type="button" class="cfg-zone-btn" data-cfg-zone="escapes" data-cfg-nota="Esta zona no se ve en las vistas de arriba." aria-expanded="false" aria-controls="cfg-panel"><span class="cfg-zone-name">Escapes</span><span class="cfg-zone-tag">Escapes · No se ve en esta vista</span></button></li>
+      </ul>
+    </section>
 
     <section class="acc-zones" aria-labelledby="accesorios-title">
       <span class="eyebrow">Lo que se le ha hecho</span>
@@ -102,12 +136,12 @@
       <h3 class="acc-zone-h">Interior</h3>
       <ul class="acc-list">
             <li class="acc-item acc-item--photo">
-              <a href="volante.html"><img class="acc-thumb" width="384" height="643" src="assets/responsive/wheel-angle-384.webp" alt="Volante M Alcántara LCI"></a>
+              <a href="volante.html"><img class="acc-thumb" decoding="async" loading="lazy" width="384" height="643" src="assets/responsive/wheel-angle-384.webp" alt="Volante M Alcántara LCI"></a>
               <div><h3>Volante M Competition de carbono</h3><p>Volante M de Alcántara con detalles en carbono, con marca central y botones M.</p></div>
               <span class="acc-status"><a href="volante.html">Ver pieza</a></span>
             </li>
             <li class="acc-item acc-item--photo">
-              <a href="consola.html"><img class="acc-thumb" width="384" height="484" src="assets/responsive/console-384.webp" alt="Consola central M Carbon"></a>
+              <a href="consola.html"><img class="acc-thumb" decoding="async" loading="lazy" width="384" height="484" src="assets/responsive/console-384.webp" alt="Consola central M Carbon"></a>
               <div><h3>Consola M3</h3><p>Consola central M3 con acabado en fibra de carbono.</p></div>
               <span class="acc-status"><a href="consola.html">Ver pieza</a></span>
             </li>
@@ -187,5 +221,6 @@
 <script src="liquid-glass.js" defer></script>
 <script src="cart.js" defer></script>
 <script src="app.js" defer></script>
+<script src="configurador.js" defer></script>
 </body>
 </html>

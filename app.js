@@ -16,6 +16,8 @@
         done = true;
         try { sessionStorage.setItem('impare-intro', '1'); } catch (e) { /* private mode */ }
         intro.classList.add('fading');
+        /* v2.3: la intro termina → arranca la entrada cinética del titular. */
+        document.documentElement.classList.add('kinetic-go');
         setTimeout(() => intro.remove(), 550);
       };
       const timer = setTimeout(finish, 2000);
@@ -26,41 +28,6 @@
       });
     }
   }
-
-  /* ---- Collection filters ---- */
-  const form = document.querySelector('[data-filter-form]');
-  if (form) {
-    const cards = [...document.querySelectorAll('[data-product]')];
-    const params = new URLSearchParams(location.search);
-    for (const key of ['area', 'gen', 'kind']) {
-      const value = params.get(key);
-      if (value && [...form.elements[key].options].some(o => o.value === value)) form.elements[key].value = value;
-    }
-    const run = () => {
-      let shown = 0;
-      cards.forEach(card => {
-        const {area, gen, kind} = form.elements;
-        const show = (area.value === 'all' || card.dataset.area === area.value) &&
-          (gen.value === 'all' || card.dataset.gen.includes(gen.value)) &&
-          (kind.value === 'all' || card.dataset.kind === kind.value);
-        card.hidden = !show;
-        if (show) shown++;
-      });
-      const count = document.querySelector('[data-count]');
-      if (count) count.textContent = shown + (shown === 1 ? ' pieza' : ' piezas') + ' para explorar';
-      const empty = document.querySelector('.empty');
-      if (empty) empty.classList.toggle('show', shown === 0);
-      document.querySelectorAll('.collection-areas a').forEach(a => {
-        const query = new URL(a.href).searchParams;
-        const active = query.has('kind') ? form.elements.kind.value === query.get('kind') : form.elements.kind.value === 'all' && form.elements.area.value === (query.get('area') || 'all');
-        if (active) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
-      });
-    };
-    form.addEventListener('change', run);
-    form.addEventListener('submit', e => e.preventDefault());
-    run();
-  }
-
 
   /* ---- Detail photo gallery (volante, consola) ---- */
   const photo = document.querySelector('[data-main-photo]');
@@ -178,11 +145,18 @@
     }
   }
 
-  /* ---- 1. Slider antes/después (arrastre + teclado + guiño inicial) ---- */
+  /* ---- 1. Slider antes/después (arrastre + teclado + guiño inicial) ----
+     v2.3: en Inicio el slider vive dentro de [data-ba-film]: ahí el
+     scroll mueve el control (sin secuestrarlo) y el guiño no se usa,
+     porque el scroll ya enseña que se puede comparar. En cuanto el
+     visitante arrastra o usa el teclado, manda él y el scroll deja
+     de mover el control. Con movimiento reducido o sin JS, el slider
+     queda en 50% y funciona como siempre. ---- */
   document.querySelectorAll('[data-ba-slider]').forEach(slider => {
     const handle = slider.querySelector('[data-ba-handle]');
     if (!handle) return;
-    let pos = 50, dragging = false, nudged = false;
+    const film = slider.closest('[data-ba-film]');
+    let pos = 50, dragging = false, nudged = false, userDriven = false;
     const set = p => {
       pos = Math.max(4, Math.min(96, p));
       slider.style.setProperty('--ba-pos', pos + '%');
@@ -195,20 +169,23 @@
     };
     slider.addEventListener('pointerdown', e => {
       dragging = true;
+      userDriven = true;
       try { slider.setPointerCapture(e.pointerId); } catch (err) { /* sin captura: sigue el arrastre */ }
       fromEvent(e);
     });
     slider.addEventListener('pointermove', e => { if (dragging) fromEvent(e); });
     ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => slider.addEventListener(ev, () => { dragging = false; }));
     handle.addEventListener('keydown', e => {
+      userDriven = true;
       if (e.key === 'ArrowLeft') { set(pos - 6); e.preventDefault(); }
       else if (e.key === 'ArrowRight') { set(pos + 6); e.preventDefault(); }
       else if (e.key === 'Home') { set(4); e.preventDefault(); }
       else if (e.key === 'End') { set(96); e.preventDefault(); }
     });
     /* Guiño: la primera vez que se ve, se mueve solo un poco para
-       que se entienda que se puede arrastrar. */
-    if (!reducedMotion && 'IntersectionObserver' in window) {
+       que se entienda que se puede arrastrar. Solo fuera de la
+       película: ahí el scroll ya mueve el control. */
+    if (!film && !reducedMotion && 'IntersectionObserver' in window) {
       const io = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (!entry.isIntersecting || nudged) return;
@@ -225,7 +202,71 @@
       io.observe(slider);
     }
     set(50);
+    /* v2.3 — Película: el progreso del scroll mueve el control
+       (10% → 90%) mientras la sección fijada está en pantalla.
+       Sticky de CSS, nunca secuestro de scroll: la sección termina
+       y el scroll sigue; en móvil el recorrido es más corto.
+       Solo se activa con JS + IntersectionObserver y sin movimiento
+       reducido; si el visitante ya tomó el control, no se le quita. */
+    if (film && !reducedMotion && 'IntersectionObserver' in window) {
+      document.documentElement.classList.add('js-ba-film');
+      let filmInView = false;
+      const driveFromScroll = () => {
+        if (!filmInView || userDriven || dragging) return;
+        const travel = film.offsetHeight - window.innerHeight;
+        if (travel <= 0) return;
+        const p = Math.max(0, Math.min(1, -film.getBoundingClientRect().top / travel));
+        set(10 + p * 80);
+      };
+      const filmIO = new IntersectionObserver(entries => {
+        filmInView = entries.some(entry => entry.isIntersecting);
+        if (filmInView) driveFromScroll();
+      }, { threshold: 0 });
+      filmIO.observe(film);
+      let filmQueued = false;
+      window.addEventListener('scroll', () => {
+        if (filmQueued) return;
+        filmQueued = true;
+        requestAnimationFrame(() => { filmQueued = false; driveFromScroll(); });
+      }, { passive: true });
+      driveFromScroll();
+    }
   });
+
+  /* ---- v2.3 — Titular del hero con entrada cinética por letras.
+     Solo sin movimiento reducido: divide el h1 [data-kinetic] en
+     spans por letra, conservando <em> y <br>; los espacios quedan
+     como texto para no romper el interletrado. Sin JS el h1 se ve
+     normal; con movimiento reducido no se divide y queda visible. ---- */
+  const kinetic = document.querySelector('[data-kinetic]');
+  if (kinetic && !reducedMotion) {
+    const wrapLetters = node => {
+      [...node.childNodes].forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const frag = document.createDocumentFragment();
+          [...child.textContent].forEach(ch => {
+            if (/\s/.test(ch)) frag.appendChild(document.createTextNode(ch));
+            else {
+              const s = document.createElement('span');
+              s.className = 'hero-letter';
+              s.textContent = ch;
+              frag.appendChild(s);
+            }
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'BR') {
+          wrapLetters(child);
+        }
+      });
+    };
+    wrapLetters(kinetic);
+    kinetic.querySelectorAll('.hero-letter').forEach((span, i) => {
+      span.style.animationDelay = (0.08 + i * 0.035) + 's';
+    });
+    /* Sin intro (visita repetida en la sesión: ya se quitó arriba),
+       la entrada arranca ya; con intro, la arranca finish() a los 2 s. */
+    if (!document.getElementById('site-intro')) document.documentElement.classList.add('kinetic-go');
+  }
 
   /* ---- 3. Buscador guiado "¿Es para mi BMW?" ----
      Reglas honestas, definidas por los fundadores:

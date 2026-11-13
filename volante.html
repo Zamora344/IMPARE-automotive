@@ -64,16 +64,16 @@
         </div>
         <div class="gallery">
           <button type="button" data-width="764" data-height="1280" data-srcset="assets/responsive/wheel-angle-192.webp 192w, assets/responsive/wheel-angle-384.webp 384w, assets/responsive/wheel-angle-640.webp 640w, assets/wheel-angle.webp 764w" data-sizes="(max-width:900px) 100vw, 50vw" data-thumb data-src="assets/wheel-angle.webp" data-alt="Volante M BMW Alcántara desde el lateral" aria-pressed="true" aria-label="Mostrar fotografía 1">
-            <img width="764" height="1280" srcset="assets/responsive/wheel-angle-192.webp 192w, assets/responsive/wheel-angle-384.webp 384w, assets/responsive/wheel-angle-640.webp 640w, assets/wheel-angle.webp 764w" sizes="140px" decoding="async" src="assets/wheel-angle.webp" alt="">
+            <img width="764" height="1280" srcset="assets/responsive/wheel-angle-192.webp 192w, assets/responsive/wheel-angle-384.webp 384w, assets/responsive/wheel-angle-640.webp 640w, assets/wheel-angle.webp 764w" sizes="140px" decoding="async" loading="lazy" src="assets/wheel-angle.webp" alt="">
           </button>
           <button type="button" data-width="960" data-height="733" data-srcset="assets/responsive/wheel-front-192.webp 192w, assets/responsive/wheel-front-384.webp 384w, assets/responsive/wheel-front-640.webp 640w, assets/wheel-front.webp 960w" data-sizes="(max-width:900px) 100vw, 50vw" data-thumb data-src="assets/wheel-front.webp" data-alt="Volante M BMW Alcántara vista frontal" aria-pressed="false" aria-label="Mostrar fotografía 2">
-            <img width="960" height="733" srcset="assets/responsive/wheel-front-192.webp 192w, assets/responsive/wheel-front-384.webp 384w, assets/responsive/wheel-front-640.webp 640w, assets/wheel-front.webp 960w" sizes="140px" decoding="async" src="assets/wheel-front.webp" alt="">
+            <img width="960" height="733" srcset="assets/responsive/wheel-front-192.webp 192w, assets/responsive/wheel-front-384.webp 384w, assets/responsive/wheel-front-640.webp 640w, assets/wheel-front.webp 960w" sizes="140px" decoding="async" loading="lazy" src="assets/wheel-front.webp" alt="">
           </button>
           <button type="button" data-width="960" data-height="816" data-srcset="assets/responsive/wheel-side-192.webp 192w, assets/responsive/wheel-side-384.webp 384w, assets/responsive/wheel-side-640.webp 640w, assets/wheel-side.webp 960w" data-sizes="(max-width:900px) 100vw, 50vw" data-thumb data-src="assets/wheel-side.webp" data-alt="Volante M BMW Alcántara detalle lateral" aria-pressed="false" aria-label="Mostrar fotografía 3">
-            <img width="960" height="816" srcset="assets/responsive/wheel-side-192.webp 192w, assets/responsive/wheel-side-384.webp 384w, assets/responsive/wheel-side-640.webp 640w, assets/wheel-side.webp 960w" sizes="140px" decoding="async" src="assets/wheel-side.webp" alt="">
+            <img width="960" height="816" srcset="assets/responsive/wheel-side-192.webp 192w, assets/responsive/wheel-side-384.webp 384w, assets/responsive/wheel-side-640.webp 640w, assets/wheel-side.webp 960w" sizes="140px" decoding="async" loading="lazy" src="assets/wheel-side.webp" alt="">
           </button>
           <button type="button" data-width="960" data-height="617" data-srcset="assets/responsive/wheel-cabin-192.webp 192w, assets/responsive/wheel-cabin-384.webp 384w, assets/responsive/wheel-cabin-640.webp 640w, assets/wheel-cabin.webp 960w" data-sizes="(max-width:900px) 100vw, 50vw" data-thumb data-src="assets/wheel-cabin.webp" data-alt="Volante M instalado en interior BMW" aria-pressed="false" aria-label="Mostrar fotografía 4">
-            <img width="960" height="617" srcset="assets/responsive/wheel-cabin-192.webp 192w, assets/responsive/wheel-cabin-384.webp 384w, assets/responsive/wheel-cabin-640.webp 640w, assets/wheel-cabin.webp 960w" sizes="140px" decoding="async" src="assets/wheel-cabin.webp" alt="">
+            <img width="960" height="617" srcset="assets/responsive/wheel-cabin-192.webp 192w, assets/responsive/wheel-cabin-384.webp 384w, assets/responsive/wheel-cabin-640.webp 640w, assets/wheel-cabin.webp 960w" sizes="140px" decoding="async" loading="lazy" src="assets/wheel-cabin.webp" alt="">
           </button>
         </div>
         <p class="gallery-hint">Toca la foto principal para verla grande.</p>
@@ -115,6 +115,19 @@
         </div>
       </div>
     </div>
+    <section class="video-slot" aria-labelledby="video-title">
+      <p class="spec-group" id="video-title">El volante, en video</p>
+      <h2 class="serif">Diez segundos en la cabina.</h2>
+      <video controls muted loop playsinline preload="none" poster="assets/wheel-cabin.webp" style="width:100%;aspect-ratio:960/617;object-fit:cover;background:var(--surface);border:1px solid var(--line)">
+        <source src="assets/video-volante.mp4" type="video/mp4">
+        Tu navegador no reproduce video.
+      </video>
+      <p class="ba-note">Video real pendiente — lo grabamos nosotros. Cuando el archivo esté en assets/video-volante.mp4, este reproductor lo muestra sin tocar la página. <a class="quiet-link" href="#video-instrucciones">Cómo se graba</a></p>
+      <div class="note" id="video-instrucciones">
+        <strong>Cómo se graba</strong>
+        <p>Teléfono en horizontal, 10 segundos, cabina de noche: el volante M girando suave o el cuadro encendiéndose. Sin caras, sin placas visibles, en silencio y con buena luz de cabina. Las instrucciones completas están en video-volante-instrucciones.md.</p>
+      </div>
+    </section>
     <section class="related" aria-labelledby="related-title">
       <h2 class="serif" id="related-title">También te puede interesar.</h2>
       <p class="related-intro">Un paso siguiente, no un catálogo.</p>

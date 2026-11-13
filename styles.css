@@ -86,7 +86,6 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
   font-size:.72rem;letter-spacing:.09em;font-weight:650;text-transform:uppercase;
   transition:background .2s,transform .2s}
 .button:disabled{opacity:.45;cursor:not-allowed;transform:none}
-.button--line{background:transparent;color:var(--marfil);border-width:0 0 1px;padding-left:0;padding-right:0;margin-left:12px}
 .button-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 
 /* Hero — one idea, one photograph. */
@@ -100,36 +99,14 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 .hero h1{margin:26px 0}
 .hero-rule{width:56px;height:2px;background:var(--titanio);border:0;margin:0 0 26px}
 .hero p{max-width:34ch;color:var(--muted);line-height:1.8;margin-bottom:32px}
-.hero-lower{position:absolute;z-index:1;right:4%;bottom:24px;font-size:.68rem;color:var(--faint);letter-spacing:.1em;text-transform:uppercase}
 
 /* Intro blocks */
 .intro{padding:calc(var(--nav-h) + 44px) 0 30px;max-width:1000px}
 .intro h1{margin:14px 0 20px}
 .intro p{color:var(--muted);max-width:54ch}
 
-/* Split — the one light band on the site. Marfil ground, Obsidiana ink.
-   This is the new finish: the page is not all black. */
-.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));background:var(--marfil);color:var(--light-ink)}
-.split-card{min-height:440px;position:relative;display:flex;align-items:flex-end;padding:clamp(24px,5vw,64px);overflow:hidden;isolation:isolate;color:var(--marfil)}
-.split-card:before{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(0deg,rgba(16,18,21,.92) 0%,rgba(16,18,21,.25) 70%,transparent 90%),url("assets/wheel-front.webp") center 42%/cover no-repeat;
-  transition:transform .45s}
-.split-card:nth-child(2):before{background-image:linear-gradient(0deg,rgba(16,18,21,.92) 0%,rgba(16,18,21,.25) 70%,transparent 90%),url("assets/wheel-cabin.webp")}
-.split-card h2{margin:9px 0 7px}
-.split-card p{color:color-mix(in srgb, var(--marfil) 82%, transparent);max-width:30ch}
-.split-card .eyebrow{color:var(--titanio)}
-
 /* Collection */
-.collection-areas{display:flex;gap:30px;flex-wrap:wrap;padding:0 0 20px;border-bottom:1px solid var(--line)}
-.collection-areas a{font-size:.9rem;min-height:44px;display:inline-flex;align-items:center;color:var(--muted);border-bottom:1px solid transparent}
 .collection-areas a[aria-current]{color:var(--marfil);border-color:var(--titanio)}
-.section-rule{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:23px 0 10px}
-.section-rule h2{font:400 1.55rem var(--serif);letter-spacing:-.02em;margin:0}
-.filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.filters select{background:var(--surface-2);border:1px solid var(--line-strong);border-radius:0;color:var(--marfil);padding:8px 10px;min-height:44px;min-width:96px;max-width:100%;font-size:.84rem}
-.filters label{font-size:.8rem;color:var(--muted)}
-.filters label:not(:first-child){margin-left:6px}
-.small-note{color:var(--faint);font-size:.8rem;margin:0 0 8px}
 .catalog-disclaimer{font-size:.82rem;color:var(--muted);max-width:none;margin-bottom:26px}
 .products{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:36px 22px;padding-bottom:75px}
 .product{display:block;background:transparent;border:0;grid-column:span 2;min-width:0}
@@ -143,8 +120,6 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 .product-meta h3{font-size:1.6rem;margin:8px 0}
 .product-meta p{font-size:.84rem;color:var(--muted);margin:0}
 .product-footer{display:inline-block;min-height:44px;line-height:44px;margin-top:0;color:var(--titanio);text-decoration:underline;text-underline-offset:5px;font-size:.78rem}
-.empty{display:none;color:var(--faint);min-height:120px}
-.empty.show{display:block}
 
 /* Detail pages */
 .breadcrumbs{display:flex;gap:10px;align-items:center;padding:calc(var(--nav-h) + 30px) 0 0;color:var(--faint);font-size:.82rem;min-height:60px}
@@ -166,23 +141,12 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 .note{border-left:2px solid var(--titanio);padding:3px 0 5px 21px;margin:28px 0}
 .note strong{display:block;font-weight:600;font-size:1.1rem}
 .note p{color:var(--muted);margin:8px 0 0}
-.detail details{border-bottom:1px solid var(--line);padding:14px 0}
-.detail details:first-of-type{border-top:1px solid var(--line)}
-.detail summary{cursor:pointer;font-weight:500;list-style:none;min-height:30px}
-.detail summary::-webkit-details-marker{display:none}
-.detail summary:after{content:"+";float:right;color:var(--titanio);font-size:20px;line-height:1}
-.detail details[open] summary:after{content:"−"}
-.detail details p{font-size:.88rem;color:var(--muted);margin:12px 0 0}
 .spec-list{list-style:none;padding:0;margin:0}
 .spec-list li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.9rem}
 .spec-list li span:first-child{color:var(--muted)}
 .spec-list li span:last-child{text-align:right}
 
 /* Before / After — the retrofit story. */
-.ba-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0 8px}
-.ba-figure{margin:0}
-.ba-label{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--titanio);margin:0 0 10px}
-.ba-figure img{width:100%;aspect-ratio:1290/742;object-fit:contain;background:var(--surface);border:1px solid var(--line)}
 .ba-note{font-size:.84rem;color:var(--muted)}
 
 /* Projects */
@@ -252,12 +216,6 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 @keyframes introBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .site-intro-skip{position:absolute;right:24px;bottom:24px;z-index:2;color:var(--marfil);border:1px solid var(--line-strong);background:color-mix(in srgb, var(--obsidian) 60%, transparent);padding:11px 18px;min-height:48px;min-width:120px;font-size:.8rem;letter-spacing:.08em}
 .site-intro.fading{opacity:0;transition:opacity .5s}
-.site-intro.done{display:none}
-
-/* Placeholder tile — an honest empty frame where a piece has no image yet. */
-.photo-pending{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;color:var(--faint);width:100%;height:100%;padding:20px}
-.photo-pending strong{font-family:var(--serif);font-weight:400;letter-spacing:.3em;color:var(--titanio);font-size:1.05rem}
-.photo-pending span{font-size:.8rem;max-width:26ch;line-height:1.6}
 
 /* ATELIER — the experience, three steps, no promises beyond the process. */
 .atelier-experience{padding:clamp(60px,8vw,110px) 0}
@@ -268,9 +226,6 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 .atelier-step p{font-size:.9rem;color:var(--muted);margin:0}
 .atelier-step .step-no{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--titanio)}
 
-
-.photo-credit{font-size:.78rem;color:var(--faint)}
-
 /* v1.7 — una casa, no un catálogo. Un camino, un paso siguiente por pantalla. */
 .quiet-link{display:inline-flex;align-items:center;min-height:50px;color:var(--muted);
   font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:underline;
@@ -278,7 +233,6 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 /* Inicio: antes/después visible, no solo texto. */
 .home-ba{padding:clamp(56px,8vw,110px) 0}
 .home-ba h2{margin:14px 0 18px}
-.home-ba .ba-pair{margin-top:36px}
 /* Inicio: invitación ATELIER en Marfil, aire, un solo CTA. */
 .home-atelier{background:var(--marfil);color:var(--light-ink);padding:clamp(60px,8vw,110px) 0}
 .home-atelier .shell{max-width:860px}
@@ -789,3 +743,42 @@ body.leaving main{opacity:0;transition:opacity .18s ease}
 .lightbox-close:active,.lightbox-prev:active,.lightbox-next:active,.menu-close:active{border-color:var(--titanio);color:var(--titanio)}
 .cart-empty-pieces a:active{border-color:var(--titanio-dim)}
 .cart-remove:active{color:var(--marfil)}
+
+/* ================================================================
+   v2.3 — Inicio como película (ítems 1 y 5, 2026-11-12).
+   Sin librerías, sin peticiones externas, sin contenido nuevo.
+   La intro de 2 s no se toca (decisión pendiente de Mauricio).
+   ================================================================ */
+
+/* ---- 1a. Titular del hero con entrada cinética por letras.
+   Las .hero-letter solo existen si JS divide el h1 (data-kinetic):
+   sin JS, el h1 se ve normal. Sobrio: subida corta + fundido, sin
+   rebote, con retardo escalonado que pone JS. La animación espera
+   en pausa hasta que la intro termina (html.kinetic-go, ver app.js):
+   sin esa espera, la entrada ocurriría detrás de la intro de 2 s y
+   nadie la vería en la primera visita. Con movimiento reducido JS
+   no divide y no hay animación (ver media.css). ---- */
+.hero h1 .hero-letter{display:inline-block;opacity:0;transform:translateY(.18em);animation:heroLetter .7s cubic-bezier(.22,.8,.3,1) forwards;animation-play-state:paused}
+html.kinetic-go .hero h1 .hero-letter{animation-play-state:running}
+@keyframes heroLetter{to{opacity:1;transform:translateY(0)}}
+
+/* ---- 1b. El antes/después fijado al scroll.
+   .ba-film solo crece cuando JS confirma el modo scroll-driven
+   (html.js-ba-film): sin JS o con movimiento reducido, la sección
+   es una sección normal y el slider funciona como siempre (50%).
+   Sticky no atrapa el scroll: no hay bloqueo ni secuestro, la
+   sección termina y el scroll sigue; en móvil el recorrido es
+   más corto (ver media.css). El slider sigue siendo arrastrable
+   y con teclado; en cuanto el visitante lo toca, el scroll deja
+   de moverlo y manda el visitante (ver app.js). ---- */
+.home-ba--film .ba-film{margin-top:36px}
+html.js-ba-film .home-ba--film .ba-film{min-height:175svh}
+html.js-ba-film .ba-film-sticky{position:sticky;top:calc(var(--nav-h) + 28px)}
+html.js-ba-film .ba-film .ba-slider{margin-top:0}
+
+/* ---- 1c. Ritmo de aire: ATELIER y Notas respiran más.
+   Una idea por pantalla: cada banda de aire ocupa casi una
+   pantalla y centra su contenido en vertical. Sin texto nuevo. ---- */
+.home-atelier{padding:clamp(96px,14vw,180px) 0}
+.home-notas{padding:clamp(96px,14vw,180px) 0}
+.home-atelier,.home-notas{min-height:72svh;display:flex;align-items:center}

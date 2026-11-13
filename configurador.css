@@ -1,0 +1,149 @@
+/* Configurador visual v2.3 — IMPARE Automotive.
+   Solo para proyecto-g20-rojo.html y proyecto-g20-blanco.html.
+   Sin librerías, sin peticiones externas, sin fuentes externas.
+   Los puntos van sobre la fotografía con coordenadas en % del ancho
+   y alto de la imagen; por eso la imagen del escenario no usa
+   max-height: sin ese límite no hay bandas vacías y el % coincide
+   con la imagen que se ve. El panel vive en el flujo, debajo de la
+   foto, para no taparla nunca. Los hover van solo dentro del media
+   de hover fino (regla v2.1.1); en táctil manda :active. */
+
+/* ---- Escenario y puntos ---- */
+
+.cfg{margin:0 0 64px}
+
+.cfg-intro{max-width:60ch}
+
+.cfg-stage{position:relative;margin:28px 0 20px;line-height:0}
+
+.cfg-stage .project-full{max-height:none;margin-bottom:0}
+
+.cfg-hotspot{
+  position:absolute;left:var(--x,50%);top:var(--y,50%);
+  transform:translate(-50%,-50%);
+  width:44px;height:44px;min-width:44px;min-height:44px;
+  padding:0;border-radius:50%;
+  border:1px solid var(--titanio);
+  background:color-mix(in srgb, var(--obsidian) 72%, transparent);
+  color:var(--marfil);
+  font:inherit;font-size:1.25rem;line-height:1;
+  display:grid;place-items:center;cursor:pointer;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  animation:cfg-pulse 2.6s ease-out infinite;
+  transition:background .25s,color .25s,transform .25s;
+}
+
+.cfg-hotspot[aria-expanded="true"]{background:var(--titanio);color:var(--obsidian)}
+
+.cfg-hotspot:focus-visible{outline:2px solid var(--marfil);outline-offset:3px}
+
+.cfg-hotspot:active{transform:translate(-50%,-50%) scale(.92)}
+
+@keyframes cfg-pulse{
+  0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--titanio) 45%, transparent)}
+  70%{box-shadow:0 0 0 12px color-mix(in srgb, var(--titanio) 0%, transparent)}
+  100%{box-shadow:0 0 0 0 color-mix(in srgb, var(--titanio) 0%, transparent)}
+}
+
+/* ---- Panel de la pieza ---- */
+
+.cfg-panel{
+  border:1px solid var(--line-strong);
+  background:var(--surface-2);
+  padding:22px 22px 18px;
+  max-width:62ch;
+}
+
+.cfg-panel[hidden]{display:none}
+
+.cfg-panel-eyebrow{
+  text-transform:uppercase;font-size:.68rem;letter-spacing:.32em;
+  font-weight:700;color:var(--titanio);margin:0;
+}
+
+.cfg-panel h3{
+  font-family:var(--serif);font-weight:400;font-size:1.5rem;
+  margin:6px 0 8px;letter-spacing:-.02em;
+}
+
+.cfg-panel h3:focus{outline:none}
+
+.cfg-panel-desc{color:var(--muted);margin:0 0 12px;max-width:56ch}
+
+.cfg-panel-note{font-size:.85rem;color:var(--faint);margin:0 0 12px}
+
+.cfg-panel-note[hidden]{display:none}
+
+.cfg-facts{
+  margin:0 0 12px;display:grid;grid-template-columns:auto 1fr;
+  gap:6px 16px;font-size:.9rem;
+}
+
+.cfg-facts dt{color:var(--faint)}
+
+.cfg-facts dd{margin:0}
+
+.cfg-status{font-size:.9rem;margin:0 0 14px}
+
+.cfg-status[hidden]{display:none}
+
+.cfg-panel-foot{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}
+
+.cfg-link{color:var(--titanio-soft);font-size:.95rem}
+
+.cfg-link[hidden]{display:none}
+
+.cfg-close{
+  min-height:44px;padding:10px 20px;
+  background:transparent;border:1px solid var(--line-strong);
+  color:var(--marfil);font:inherit;font-size:.92rem;cursor:pointer;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+
+.cfg-close:focus-visible{outline:2px solid var(--marfil);outline-offset:3px}
+
+.cfg-close:active{border-color:var(--titanio);color:var(--titanio)}
+
+/* ---- Lista de zonas bajo la foto ---- */
+
+.cfg-zones{list-style:none;margin:26px 0 0;padding:0}
+
+.cfg-zones li{border-top:1px solid var(--line)}
+
+.cfg-zones li:last-child{border-bottom:1px solid var(--line)}
+
+.cfg-zone-btn{
+  display:flex;flex-wrap:wrap;gap:2px 18px;align-items:baseline;
+  justify-content:space-between;width:100%;min-height:44px;
+  padding:15px 2px;background:none;border:0;color:var(--marfil);
+  font:inherit;text-align:left;cursor:pointer;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+
+.cfg-zone-btn:focus-visible{outline:2px solid var(--marfil);outline-offset:2px}
+
+.cfg-zone-name{font-size:1.05rem}
+
+.cfg-zone-tag{font-size:.82rem;color:var(--faint)}
+
+.cfg-zone-btn[aria-expanded="true"] .cfg-zone-name{color:var(--titanio)}
+
+.cfg-zone-btn:active .cfg-zone-name{color:var(--titanio)}
+
+/* ---- Hover: solo con puntero fino (regla v2.1.1) ---- */
+
+@media (hover:hover) and (pointer:fine){
+  .cfg-hotspot:hover{background:var(--titanio);color:var(--obsidian)}
+  .cfg-zone-btn:hover .cfg-zone-name{color:var(--titanio)}
+  .cfg-link:hover{color:var(--titanio)}
+  .cfg-close:hover{border-color:var(--titanio);color:var(--titanio)}
+}
+
+@media (min-width:900px){
+  .cfg-stage{margin-top:32px}
+  .cfg-panel{padding:28px 30px 22px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .cfg-hotspot{animation:none;transition:none}
+}

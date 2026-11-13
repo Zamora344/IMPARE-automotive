@@ -67,7 +67,7 @@
     <div class="shell">
       <div class="hero-content">
         <span class="eyebrow">IMPARE Automotive · Monterrey</span>
-        <h1 class="serif">El <em>carácter</em><br>se elige.</h1>
+        <h1 class="serif" data-kinetic>El <em>carácter</em><br>se elige.</h1>
         <hr class="hero-rule">
         <p>Piezas OEM y retrofits BMW. Una forma más personal de vivir tu automóvil.</p>
         <div class="button-row">
@@ -78,23 +78,27 @@
     </div>
   </section>
 
-  <section class="home-ba" aria-labelledby="retrofit-title">
+  <section class="home-ba home-ba--film" aria-labelledby="retrofit-title">
     <div class="shell">
       <span class="eyebrow">Retrofit · BMW X6</span>
       <h2 class="serif" id="retrofit-title">El volante G, en una cabina F.</h2>
       <p class="muted">La misma cabina, antes y después. Un volante de generación G, adaptado a una cabina de generación F. Cada vehículo se evalúa por separado.</p>
-      <div class="ba-slider" data-ba-slider>
-        <div class="ba-layer ba-layer--after">
-          <img width="1290" height="735" srcset="assets/responsive/despues-450.webp 450w, assets/responsive/despues-900.webp 900w, assets/despues.webp 1290w" sizes="(max-width:900px) 100vw, 50vw" decoding="async" loading="lazy" src="assets/despues.webp" alt="La misma cabina de BMW X6 con el volante M de generación G ya instalado">
+      <div class="ba-film" data-ba-film>
+        <div class="ba-film-sticky">
+          <div class="ba-slider" data-ba-slider>
+            <div class="ba-layer ba-layer--after">
+              <img width="1290" height="735" srcset="assets/responsive/despues-450.webp 450w, assets/responsive/despues-900.webp 900w, assets/despues.webp 1290w" sizes="(max-width:900px) 100vw, 50vw" decoding="async" loading="lazy" src="assets/despues.webp" alt="La misma cabina de BMW X6 con el volante M de generación G ya instalado">
+            </div>
+            <div class="ba-layer ba-layer--before">
+              <img width="1290" height="742" srcset="assets/responsive/antes-450.webp 450w, assets/responsive/antes-900.webp 900w, assets/antes.webp 1290w" sizes="(max-width:900px) 100vw, 50vw" decoding="async" loading="lazy" src="assets/antes.webp" alt="Cabina de BMW X6 con su volante original de generación F">
+            </div>
+            <span class="ba-tag ba-tag--before">Antes</span>
+            <span class="ba-tag ba-tag--after">Después</span>
+            <div class="ba-handle" data-ba-handle role="slider" tabindex="0" aria-label="Comparar antes y después" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-orientation="horizontal"><span class="ba-handle-knob">‹ ›</span></div>
+          </div>
+          <p class="ba-note">Arrastra para comparar, o usa las flechas del teclado sobre el control. Un volante de generación G, adaptado a una cabina de generación F con un adaptador estudiado para esa aplicación.</p>
         </div>
-        <div class="ba-layer ba-layer--before">
-          <img width="1290" height="742" srcset="assets/responsive/antes-450.webp 450w, assets/responsive/antes-900.webp 900w, assets/antes.webp 1290w" sizes="(max-width:900px) 100vw, 50vw" decoding="async" loading="lazy" src="assets/antes.webp" alt="Cabina de BMW X6 con su volante original de generación F">
-        </div>
-        <span class="ba-tag ba-tag--before">Antes</span>
-        <span class="ba-tag ba-tag--after">Después</span>
-        <div class="ba-handle" data-ba-handle role="slider" tabindex="0" aria-label="Comparar antes y después" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-orientation="horizontal"><span class="ba-handle-knob">‹ ›</span></div>
       </div>
-      <p class="ba-note">Arrastra para comparar, o usa las flechas del teclado sobre el control. Un volante de generación G, adaptado a una cabina de generación F con un adaptador estudiado para esa aplicación.</p>
       <div class="button-row" style="margin-top:28px">
         <a class="button" href="proyecto-retrofit-x6.html">Ver el antes y después</a>
         <a class="quiet-link" href="finder.html">¿Es para mi BMW?</a>
@@ -113,7 +117,7 @@
     </div>
   </section>
 
-  <section class="home-ba" aria-labelledby="home-notas-title">
+  <section class="home-ba home-notas" aria-labelledby="home-notas-title">
     <div class="shell">
       <span class="eyebrow">Notas</span>
       <h2 class="serif" id="home-notas-title">Historias que ya pasaron, contadas como pasaron.</h2>
