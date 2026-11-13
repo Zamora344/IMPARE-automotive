@@ -1,3 +1,27 @@
+## v2.3.2 — El aro de verdad + el botón vuelve + auditoría (2026-11-12)
+
+Mauricio mandó captura (ATELIER, en su cel): detrás de "PASO UNO" se veía un aro fino y vacío, y lo mismo en "PASO DOS" y "PASO TRES". Aclaró dos cosas: (1) el círculo NO era el botón de volver arriba — ese botón le gustaba y la v2.3.1 lo quitó por error; (2) revisáramos TODO el sitio buscando más errores parecidos.
+
+### El culpable de verdad
+La regla genérica `.step-no` en `styles.css` (caja de 26×26 px, `border-radius: 999px`, borde fino) se escribió para las insignias numeradas del checkout (1, 2, 3 — ahí el dígito sí cabe dentro del círculo), pero por ser genérica también se aplicaba a las etiquetas de texto "Paso uno/dos/tres" de ATELIER y a los numerales grandes (2,4 rem, serif) de "Cómo trabajamos". El texto no cabe en la caja de 26 px, así que solo se veía el aro vacío detrás de las palabras. Eso es exactamente lo de la captura.
+
+### Qué cambió
+- **1. El aro fuera, de verdad:** el círculo ahora solo existe en `.steps li .step-no` (las insignias del checkout, donde el dígito cabe). Las etiquetas de ATELIER y los numerales de "Cómo trabajamos" llevan un reset explícito (`width/height auto, border 0, border-radius 0, display inline`): "PASO UNO/DOS/TRES" y "1/2/3/4" quedan limpios, sin caja ni borde. Los textos no cambiaron.
+- **2. El botón redondo "Volver arriba" RESTAURADO tal como estaba en v2.1/v2.3:** botón fijo de 48 px (↑), aparece tras 600 px de scroll, en móvil a 88 px del fondo (por encima del CTA fijo, sin taparlo), con su hover (solo escritorio), su `:active`, su transición desactivada con movimiento reducido y su creación en `app.js`. El enlace tranquilo "Volver arriba" del pie de las 20 páginas se queda también. La v2.3.1 se equivocó de culpable y lo había quitado; queda corregido aquí.
+- **3. Auditoría de todo el sitio (20 páginas, 390 px y 1440 px):** se revisaron todos los `::before/::after` con contenido vacío, todos los `border-radius: 999px`, todos los elementos vacíos y todas las líneas/adornos. Hallazgos:
+  - Solo existen 3 pseudo-elementos de contenido vacío, los tres con función: el degradado del hero (para que el texto se lea sobre la foto), el brillo radial de la intro y el marcador de la lista de verificación de la confirmación de pedido. Ninguno se toca.
+  - Todos los círculos `999px` restantes tienen contenido y función: el botón de volver arriba (↑), el pomo del slider antes/después, los botones del lightbox (×, ‹, ›), el cierre del menú, el contador del carrito y la píldora del CTA fijo. Ninguno está vacío.
+  - Elementos vacíos en HTML: solo los funcionales (retroalimentación de "Compartir" y etiquetas de resultado del buscador, que llena JS; la celda en blanco `aria-hidden` de la comparativa; la barra de progreso de la intro). Ninguno se ve como mancha.
+  - **Dudoso, dejado anotado y NO quitado:** en la confirmación de pedido, cada ítem de la lista de verificación lleva un cuadrito vacío de 16 px (`.order-confirm .checklist li:before`, borde titanio, sin relleno ni palomita). Es un marcador de lista intencional (casilla sin marcar), no un aro, pero si a Mauricio le parece mancha, se cambia por una palomita o se quita en la siguiente ronda.
+
+### QA (por script)
+- **qa-v232.js: 29/29** (nueva suite: aro fuera, botón restaurado exacto, auditoría). **qa-v231.js, qa-v211.js, qa-v20.js: pasan** (sus aserciones de "sin botón" se actualizaron a la restauración; el conteo de hover vuelve a 34 con `.to-top:hover`). Solo queda el fallo intencional del video pendiente (`assets/video-volante.mp4` no existe; se graba con los fundadores).
+- El código del botón se verificó byte a byte contra la v2.3 (commit `ff1d9909`): mismo JS de creación/toggle/clic, mismo CSS base/hover/active, mismas reglas de `media.css`.
+- Cero strings prohibidos, `noindex` intacto en las 20 páginas, `robots.txt` intacto, sin analítica, sin peticiones externas. Enrutado en memoria, doble toque y hover acotado intactos.
+
+### Pendiente (de Mauricio, con el cel)
+- Probar en su iPhone: que en ATELIER ya no haya aro detrás de "PASO UNO/DOS/TRES", que en "Cómo trabajamos" los números 1–4 se vean limpios, y que el botón redondo de volver arriba aparezca al bajar y funcione al primer toque. En compu el aro se veía igual (misma regla CSS), así que el arreglo vale para los dos.
+
 ## v2.3.1 — Arreglos de la prueba en el cel de Mauricio (2026-11-12)
 
 Mauricio probó la v2.3 en vivo en su iPhone: lo demás bien, pero tres cosas.

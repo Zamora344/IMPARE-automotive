@@ -376,8 +376,16 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
   text-transform:uppercase;color:var(--faint);padding:10px 14px;border:1px solid var(--line)}
 .steps li[aria-current="step"]{color:var(--marfil);border-color:var(--titanio)}
 .steps li.is-done{color:var(--muted)}
-.step-no{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
+/* v2.3.2 — el aro vacío detrás de "PASO UNO": la regla genérica .step-no
+   (círculo de 26px, pensado para las insignias numeradas del checkout)
+   se aplicaba también a las etiquetas de texto "Paso uno/dos/tres" de
+   ATELIER y a los numerales grandes de "Cómo trabajamos", donde el texto
+   no cabe dentro del círculo y solo se veía el aro vacío detrás. El
+   círculo queda SOLO en las insignias del checkout; en ATELIER y en el
+   proceso el número/etiqueta va limpio, sin caja ni borde. */
+.steps li .step-no{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
   border-radius:999px;border:1px solid var(--line-strong);font-size:.78rem;letter-spacing:0}
+.atelier-step .step-no,.process-step .step-no{width:auto;height:auto;border:0;border-radius:0;display:inline}
 .steps li[aria-current="step"] .step-no{background:var(--titanio);border-color:var(--titanio);color:var(--obsidian);font-weight:700}
 .step-panel{max-width:760px;padding-bottom:80px}
 .step-panel h2{margin:0 0 22px}
@@ -540,6 +548,11 @@ body.leaving main{opacity:0;transition:opacity .18s ease}
 
 /* ---- 2. Progreso de lectura (lo crea app.js) ---- */
 .scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--titanio);z-index:50;pointer-events:none}
+.to-top{position:fixed;left:18px;bottom:18px;z-index:40;display:inline-flex;align-items:center;justify-content:center;
+  width:48px;height:48px;border-radius:999px;background:var(--surface-2);color:var(--marfil);
+  border:1px solid var(--line-strong);font-size:1.05rem;line-height:1;cursor:pointer;
+  opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .3s,transform .3s,visibility .3s}
+.to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
 
 /* ---- 3. Lightbox (lo crea app.js; la foto nunca se estira más allá de su tamaño nativo) ---- */
 .lightbox{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;
@@ -708,6 +721,7 @@ body.leaving main{opacity:0;transition:opacity .18s ease}
   .ba-handle:hover .ba-handle-knob {transform:translate(-50%,-50%) scale(1.08)}
   .sticky-cta:hover {background:var(--titanio-soft);transform:translateY(-2px)}
   .finder-opt:hover {border-color:var(--titanio-dim);transform:translateY(-1px)}
+  .to-top:hover {border-color:var(--titanio);color:var(--titanio)}
   .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {border-color:var(--titanio);color:var(--titanio)}
   .share-btn:hover {border-color:var(--titanio);color:var(--titanio);transform:translateY(-1px)}
   .related-card:hover {border-color:var(--titanio-dim);transform:translateY(-3px)}
@@ -728,6 +742,7 @@ body.leaving main{opacity:0;transition:opacity .18s ease}
 .share-btn:active{border-color:var(--titanio);color:var(--titanio)}
 .finder-opt:active{border-color:var(--titanio)}
 .sticky-cta:active{transform:translateY(0)}
+.to-top:active{border-color:var(--titanio);color:var(--titanio)}
 .gallery button:active{transform:translateY(0)}
 .cart-qty button:active{color:var(--titanio)}
 .menu-overlay-nav a:active{color:var(--titanio)}
