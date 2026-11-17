@@ -797,3 +797,79 @@ html.js-ba-film .ba-film .ba-slider{margin-top:0}
 .home-atelier{padding:clamp(96px,14vw,180px) 0}
 .home-notas{padding:clamp(96px,14vw,180px) 0}
 .home-atelier,.home-notas{min-height:72svh;display:flex;align-items:center}
+
+/* ---- v3.0 · Giro 360: volantes al centro ---- */
+.hero-banner{min-height:100svh;position:relative;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;background:#101215}
+.hero-banner-media{position:absolute;inset:0;z-index:0}
+.hero-banner-video,.hero-banner-photo{width:100%;height:100%;object-fit:cover;display:block}
+.hero-banner-video{position:absolute;inset:0}
+.hero-banner-video[data-missing]{display:none}
+.hero-banner-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(16,18,21,.18) 0%,rgba(16,18,21,.08) 45%,rgba(16,18,21,.72) 100%)}
+.hero-banner-content{position:relative;z-index:2;padding-bottom:clamp(72px,10vh,120px);color:#F2EEE8}
+.hero-banner-content .eyebrow{color:#B7A187}
+.hero-banner-content h1{font-size:clamp(2.6rem,7vw,5.2rem);line-height:1.02;margin:.35em 0 .4em}
+.hero-banner-content p{max-width:560px;font-size:clamp(1rem,1.4vw,1.15rem);color:#EDE8E0}
+.hero-sound{position:absolute;z-index:3;right:clamp(18px,4vw,48px);bottom:clamp(20px,3vh,32px);background:rgba(16,18,21,.55);color:#F2EEE8;border:1px solid rgba(242,238,232,.35);border-radius:999px;padding:10px 16px;font-size:.85rem;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.hero-scroll{position:absolute;z-index:3;left:50%;bottom:clamp(20px,3vh,32px);transform:translateX(-50%);color:#F2EEE8;text-decoration:none;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+@media (hover:hover) and (pointer:fine){.hero-scroll:hover{opacity:1}}
+.m-divider{display:flex;gap:0;justify-content:center;padding:0;line-height:0}
+.m-divider i{display:block;height:4px;flex:1;max-width:220px}
+.m-divider i:nth-child(1){background:#7EB6E8}
+.m-divider i:nth-child(2){background:#2E4B7A}
+.m-divider i:nth-child(3){background:#D22630}
+.home-que-es{padding:clamp(72px,11vw,150px) 0}
+.home-que-es .shell{max-width:860px}
+.que-es-list{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:14px}
+.que-es-list li{border-top:1px solid rgba(183,161,135,.35);padding-top:14px}
+.que-es-list li strong{color:#B7A187}
+.home-wheels{padding:clamp(72px,11vw,150px) 0}
+.wheel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(16px,2.5vw,28px);margin-top:36px}
+.wheel-card{display:flex;flex-direction:column;gap:8px;background:#F2EEE8;border:1px solid rgba(16,18,21,.08);border-radius:18px;padding:18px 18px 20px;text-decoration:none;color:#101215;transition:transform .25s ease,box-shadow .25s ease}
+@media (hover:hover) and (pointer:fine){.wheel-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(16,18,21,.14)}}
+.wheel-photo{display:block;background:#fff;border-radius:12px;overflow:hidden;aspect-ratio:1/1}
+.wheel-photo img{width:100%;height:100%;object-fit:contain;display:block}
+.wheel-name{font-family:Didot,"Bodoni MT",Playfair Display,Georgia,serif;font-size:1.25rem;line-height:1.2}
+.wheel-line{font-size:.95rem;color:#534b43}
+.wheel-price{font-size:.85rem;color:#534b43;border-top:1px solid rgba(16,18,21,.12);padding-top:10px;margin-top:4px}
+.home-fit{padding:clamp(72px,11vw,150px) 0}
+.home-fit .shell{max-width:860px}
+.wheel-detail{display:grid;grid-template-columns:1fr;gap:32px;padding:clamp(48px,7vw,96px) 0}
+@media (min-width:900px){.wheel-detail{grid-template-columns:1.05fr .95fr;gap:clamp(32px,4vw,64px);align-items:start}}
+.wheel-detail-photo{background:#fff;border-radius:20px;overflow:hidden}
+.wheel-detail-photo img{width:100%;height:auto;display:block}
+.wheel-facts{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:12px}
+.wheel-facts li{border-top:1px solid rgba(183,161,135,.35);padding-top:12px}
+.wheel-facts li strong{color:#B7A187}
+.fit-box{background:#F2EEE8;border:1px solid rgba(16,18,21,.08);border-radius:18px;padding:22px;margin-top:28px}
+.fit-box h3{margin:0 0 6px;font-size:1.05rem}
+.fit-box p{margin:0 0 14px}
+.fit-field{display:grid;gap:10px}
+.fit-field label{font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:#534b43}
+.fit-field select,.fit-field input{width:100%;padding:12px 14px;border:1px solid rgba(16,18,21,.25);border-radius:10px;background:#fff;color:#101215;font:inherit}
+.fit-result{margin-top:16px;padding:14px;border-radius:12px;background:#fff;border:1px solid rgba(16,18,21,.12)}
+.fit-result strong{display:block;margin-bottom:4px}
+.ba-compare{display:grid;gap:16px;margin-top:28px}
+@media (min-width:760px){.ba-compare{grid-template-columns:1fr 1fr}}
+.ba-compare figure{margin:0}
+.ba-compare img{width:100%;height:auto;display:block;border-radius:16px}
+.ba-compare figcaption{margin-top:10px;font-size:.9rem;color:#534b43}
+/* v3.0.1: las fotos de los proyectos van en marco fijo 16/9 con cover:
+   sin marco, la imagen se mostraba apachurrada en la vista de Proyectos. */
+.project-photo{display:block;aspect-ratio:16/9;overflow:hidden;border-radius:16px;background:#fff}
+.project-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.ref-note{font-size:.85rem;color:#534b43;border:1px dashed rgba(183,161,135,.6);border-radius:12px;padding:12px 14px;margin-top:20px}
+/* Chat */
+.chat-fab{position:fixed;right:18px;bottom:78px;z-index:60;background:#101215;color:#F2EEE8;border:1px solid #B7A187;border-radius:999px;padding:13px 20px;font-size:.95rem;cursor:pointer;box-shadow:0 10px 30px rgba(16,18,21,.35)}
+.chat-panel{position:fixed;right:18px;bottom:134px;z-index:61;width:min(360px,calc(100vw - 36px));background:#F2EEE8;color:#101215;border:1px solid rgba(16,18,21,.14);border-radius:18px;box-shadow:0 24px 60px rgba(16,18,21,.35);overflow:hidden}
+.chat-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#101215;color:#F2EEE8}
+.chat-title{font-size:.95rem;letter-spacing:.04em}
+.chat-close{background:none;border:0;color:#F2EEE8;font-size:1.4rem;cursor:pointer;line-height:1}
+.chat-log{height:280px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.chat-msg{max-width:88%;padding:10px 12px;border-radius:14px;font-size:.92rem;line-height:1.45}
+.chat-msg.bot{background:#fff;border:1px solid rgba(16,18,21,.1);align-self:flex-start}
+.chat-msg.user{background:#101215;color:#F2EEE8;align-self:flex-end}
+.chat-msg a{color:inherit}
+.chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(16,18,21,.12)}
+.chat-form input{flex:1;padding:11px 12px;border:1px solid rgba(16,18,21,.25);border-radius:10px;font:inherit;background:#fff;color:#101215;min-width:0}
+.chat-form button{padding:11px 16px;border:0;border-radius:10px;background:#101215;color:#F2EEE8;font:inherit;cursor:pointer}
+.chat-note{margin:0;padding:0 16px 14px;font-size:.78rem;color:#534b43}

@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
-<meta name="description" content="Tres preguntas, una respuesta honesta: qué piezas de IMPARE aplican a tu BMW y cuáles están por estudiar.">
+<meta name="description" content="Tres preguntas, una respuesta honesta: cuáles de los cinco volantes le quedan a tu BMW.">
 <meta name="robots" content="noindex,nofollow">
-<title>¿Es para mi BMW? | IMPARE Automotive</title>
-<meta property="og:title" content="¿Es para mi BMW? | IMPARE Automotive">
-<meta property="og:description" content="Tres preguntas, una respuesta honesta: qué piezas de IMPARE aplican a tu BMW y cuáles están por estudiar.">
+<title>¿Le queda a mi BMW? | IMPARE Automotive</title>
+<meta property="og:title" content="¿Le queda a mi BMW? | IMPARE Automotive">
+<meta property="og:description" content="Tres preguntas, una respuesta honesta: cuáles de los cinco volantes le quedan a tu BMW.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:site_name" content="IMPARE Automotive">
@@ -27,6 +27,14 @@
 </head>
 <body class="page-finder">
 <a class="skip-link" href="#main">Saltar al contenido</a>
+<div class="site-intro" id="site-intro" role="dialog" aria-label="Introducción de IMPARE">
+  <div class="site-intro-inner">
+    <p class="site-intro-title" aria-label="IMPARE"><span>I</span><span>M</span><span>P</span><span>A</span><span>R</span><span>E</span></p>
+    <span class="site-intro-sub">Personalización Premium</span>
+    <div class="site-intro-bar" aria-hidden="true"><i></i></div>
+  </div>
+  <button type="button" class="site-intro-skip" data-intro-skip>Entrar</button>
+</div>
 <header class="top">
   <a class="logo" href="index.html" aria-label="IMPARE, ir al inicio">IMPARE</a>
   <nav aria-label="Navegación principal" class="desktop-nav">
@@ -36,7 +44,6 @@
     <a href="atelier.html">ATELIER</a>
     <a href="firma.html">La Firma</a>
   </nav>
-  <a class="cart-link" href="carrito.html" aria-label="Carrito de compras"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M2 3h3l2.6 12.4a1 1 0 0 0 1 .6h8.9a1 1 0 0 0 1-.8L20.5 7H6"/></svg><span class="visually-hidden">Carrito de compras</span><span class="cart-count" data-cart-count aria-live="polite" hidden>0</span></a>
   <details class="menu">
     <summary>Menú</summary>
     <nav class="menu-panel" aria-label="Menú móvil">
@@ -45,7 +52,6 @@
       <a href="proyectos.html">Proyectos</a>
       <a href="atelier.html">ATELIER</a>
       <a href="firma.html">La Firma</a>
-      <a href="carrito.html">Carrito</a>
     </nav>
   </details>
 </header>
@@ -53,9 +59,9 @@
 <main id="main" tabindex="-1">
   <div class="shell">
     <div class="intro finder">
-      <span class="eyebrow">Collection · ¿Es para mi BMW?</span>
+      <span class="eyebrow">Collection · ¿Le queda a mi BMW?</span>
       <h1 class="serif">Tres preguntas,<br>una respuesta honesta.</h1>
-      <p>Sin prometer nada que no esté confirmado: te decimos qué piezas aplican, cuáles están por estudiar y cuáles no, para tu BMW.</p>
+      <p>Sin prometer nada que no esté confirmado: te decimos cuáles de los cinco volantes le quedan a tu BMW y cuáles están por estudiar.</p>
       <form data-finder>
         <fieldset class="finder-step" data-finder-step="1">
           <p class="finder-progress">Pregunta 1 de 3</p>
@@ -108,19 +114,27 @@
           <p class="finder-progress">Tu resultado</p>
           <h2 class="serif">Esto es lo que podemos decirte hoy.</h2>
           <p class="muted" data-finder-summary></p>
-          <div class="result-row" data-result="volante">
-            <div><h3>Volante M Alcántara LCI</h3><p data-result-text></p></div>
+          <div class="result-row" data-result="msport">
+            <div><h3>M Sport</h3><p data-result-text></p></div>
             <span class="result-tag" data-result-tag></span>
           </div>
-          <div class="result-row" data-result="consola">
-            <div><h3>Consola central M Carbon</h3><p data-result-text></p></div>
+          <div class="result-row" data-result="performance">
+            <div><h3>M Performance · Alcántara</h3><p data-result-text></p></div>
             <span class="result-tag" data-result-tag></span>
           </div>
-          <div class="result-row" data-result="umbral">
-            <div><h3>Umbral M Performance Carbono</h3><p data-result-text></p></div>
+          <div class="result-row" data-result="competition">
+            <div><h3>M Competition · Piel</h3><p data-result-text></p></div>
             <span class="result-tag" data-result-tag></span>
           </div>
-          <p class="fine" style="margin-top:18px">“Aplica en principio” no es una confirmación final: modelo, año y equipamiento se revisan en persona, en San Pedro, antes de instalar cualquier pieza.</p>
+          <div class="result-row" data-result="lci">
+            <div><h3>M LCI · Base plana</h3><p data-result-text></p></div>
+            <span class="result-tag" data-result-tag></span>
+          </div>
+          <div class="result-row" data-result="cs">
+            <div><h3>M CS · Alcántara y carbono</h3><p data-result-text></p></div>
+            <span class="result-tag" data-result-tag></span>
+          </div>
+          <p class="fine" style="margin-top:18px">“Aplica en principio” no es una confirmación final: modelo, año y equipamiento se revisan en persona, en San Pedro, antes de instalar cualquier volante. En carros que no son M, los botones M1 y M2 son parte del diseño, no activan modos M.</p>
           <div class="button-row" style="margin-top:26px">
             <a class="button" data-finder-cta href="atelier.html">Hablar de mi proyecto</a>
             <button type="button" class="quiet-link" data-finder-restart>Empezar de nuevo</button>
@@ -135,16 +149,16 @@
       <h2 class="serif" id="related-title">También te puede interesar.</h2>
       <p class="related-intro">Un paso siguiente, no un catálogo.</p>
       <div class="related-grid">
-        <a class="related-card" href="volante.html">
+        <a class="related-card" href="collection.html">
           <span class="eyebrow">Collection</span>
-          <h3>Volante M Alcántara LCI</h3>
-          <p>Alcántara, carbono y marca central roja. OEM genuino.</p>
+          <h3>Los cinco volantes</h3>
+          <p>Todos OEM, originales de agencia. Toca uno para verlo de cerca.</p>
           <span class="related-go">Ver</span>
         </a>
-        <a class="related-card" href="consola.html">
+        <a class="related-card" href="volante-m-competition.html">
           <span class="eyebrow">Collection</span>
-          <h3>Consola central M Carbon</h3>
-          <p>Fibra de carbono, OEM Take-Off. Precio de referencia por confirmar.</p>
+          <h3>M Competition · Piel</h3>
+          <p>El del M3 y M4. Piel, brazos plateados, M1 y M2.</p>
           <span class="related-go">Ver</span>
         </a>
         <a class="related-card" href="atelier.html">
@@ -168,11 +182,9 @@
       <a href="proyectos.html">Proyectos</a>
       <a href="atelier.html">ATELIER</a>
       <a href="firma.html">La Firma</a>
-      <a href="como-trabajamos.html">Cómo trabajamos</a>
-      <a href="notas.html">Notas</a>
     </nav>
   </div>
-  <p class="footer-note">Los precios son de referencia y están por confirmar. El carrito es una demostración: no se cobra nada y no se envía ningún pago. Los proyectos G20 son estudios conceptuales, no trabajos terminados para un cliente.</p>
+  <p class="footer-note">Los precios son de referencia y están por confirmar. La compatibilidad se verifica por vehículo.</p>
   <div class="footer-bottom">
     <nav aria-label="Avisos">
       <a href="aviso-privacidad.html">Aviso de privacidad</a>
@@ -184,8 +196,22 @@
   </div>
 </footer>
 <a class="sticky-cta" href="atelier.html">Hablar de mi proyecto</a>
+<button type="button" class="chat-fab" data-chat-open aria-label="Abrir el chat">Chat</button>
+<div class="chat-panel" data-chat-panel hidden role="dialog" aria-label="Chat de IMPARE">
+  <div class="chat-head">
+    <span class="chat-title">IMPARE · Chat</span>
+    <button type="button" class="chat-close" data-chat-close aria-label="Cerrar el chat">×</button>
+  </div>
+  <div class="chat-log" data-chat-log aria-live="polite"></div>
+  <form class="chat-form" data-chat-form>
+    <label class="visually-hidden" for="chat-input">Escribe tu mensaje</label>
+    <input id="chat-input" type="text" autocomplete="off" placeholder="Pregunta por un volante, tu modelo…" data-chat-input>
+    <button type="submit">Enviar</button>
+  </form>
+  <p class="chat-note">Respuestas sobre nuestros volantes y tu BMW. Para agendar, escríbenos en ATELIER.</p>
+</div>
 <script src="liquid-glass.js" defer></script>
-<script src="cart.js" defer></script>
+<script src="chat.js" defer></script>
 <script src="app.js" defer></script>
 </body>
 </html>

@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
-<meta name="description" content="IMPARE, una visión diferente de la personalización automotriz en Monterrey. Piezas OEM y retrofits BMW.">
+<meta name="description" content="IMPARE — Personalización Premium en Monterrey. Volantes OEM de BMW, de generación G para tu Serie F o G. Originales, de agencia.">
 <meta name="robots" content="noindex,nofollow">
 <title>Inicio | IMPARE Automotive</title>
 <meta property="og:title" content="Inicio | IMPARE Automotive">
-<meta property="og:description" content="IMPARE, una visión diferente de la personalización automotriz en Monterrey. Piezas OEM y retrofits BMW.">
+<meta property="og:description" content="IMPARE — Personalización Premium en Monterrey. Volantes OEM de BMW, de generación G para tu Serie F o G.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:site_name" content="IMPARE Automotive">
@@ -19,10 +19,10 @@
 <meta property="og:image:alt" content="BMW M4 rojo, vista frontal">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Inicio | IMPARE Automotive">
-<meta name="twitter:description" content="IMPARE, una visión diferente de la personalización automotriz en Monterrey. Piezas OEM y retrofits BMW.">
+<meta name="twitter:description" content="IMPARE — Personalización Premium en Monterrey. Volantes OEM de BMW, de generación G para tu Serie F o G.">
 <meta name="twitter:image" content="https://zamora344.github.io/IMPARE-automotive/assets/hero-bmw.webp">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23101215'/%3E%3Ctext x='32' y='45' font-family='Didot,Bodoni MT,Georgia,serif' font-size='38' fill='%23B7A187' text-anchor='middle'%3EI%3C/text%3E%3C/svg%3E">
-<link rel="preload" as="image" imagesrcset="assets/responsive/hero-bmw-640.webp 640w, assets/responsive/hero-bmw-900.webp 900w, assets/responsive/hero-bmw-1280.webp 1280w, assets/hero-bmw.webp 1920w" imagesizes="(max-width:900px) 100vw, 64vw" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="assets/responsive/hero-bmw-640.webp 640w, assets/responsive/hero-bmw-900.webp 900w, assets/responsive/hero-bmw-1280.webp 1280w, assets/hero-bmw.webp 1920w" imagesizes="100vw" fetchpriority="high">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="media.css">
 </head>
@@ -47,7 +47,6 @@
     <a href="atelier.html">ATELIER</a>
     <a href="firma.html">La Firma</a>
   </nav>
-  <a class="cart-link" href="carrito.html" aria-label="Carrito de compras"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M2 3h3l2.6 12.4a1 1 0 0 0 1 .6h8.9a1 1 0 0 0 1-.8L20.5 7H6"/></svg><span class="visually-hidden">Carrito de compras</span><span class="cart-count" data-cart-count aria-live="polite" hidden>0</span></a>
   <details class="menu">
     <summary>Menú</summary>
     <nav class="menu-panel" aria-label="Menú móvil">
@@ -56,75 +55,115 @@
       <a href="proyectos.html">Proyectos</a>
       <a href="atelier.html">ATELIER</a>
       <a href="firma.html">La Firma</a>
-      <a href="carrito.html">Carrito</a>
     </nav>
   </details>
 </header>
 
 <main id="main" tabindex="-1">
-  <section class="hero">
-    <img width="1920" height="1280" srcset="assets/responsive/hero-bmw-640.webp 640w, assets/responsive/hero-bmw-900.webp 900w, assets/responsive/hero-bmw-1280.webp 1280w, assets/hero-bmw.webp 1920w" sizes="(max-width:900px) 100vw, 64vw" decoding="async" class="hero-art" src="assets/hero-bmw.webp" alt="BMW M4 rojo, vista frontal" fetchpriority="high">
+  <section class="hero-banner" aria-label="IMPARE, personalización premium">
+    <div class="hero-banner-media">
+      <video class="hero-banner-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-bmw.webp" data-hero-video>
+        <!-- Video del héroe pendiente: al subir el archivo hero-video.mp4 a assets/, añadir la línea source correspondiente. Por ahora, la foto es el héroe. -->
+      </video>
+      <img width="1920" height="1280" srcset="assets/responsive/hero-bmw-640.webp 640w, assets/responsive/hero-bmw-900.webp 900w, assets/responsive/hero-bmw-1280.webp 1280w, assets/hero-bmw.webp 1920w" sizes="100vw" decoding="async" class="hero-banner-photo" src="assets/hero-bmw.webp" alt="BMW M4 rojo, vista frontal" fetchpriority="high">
+    </div>
+    <div class="hero-banner-shade" aria-hidden="true"></div>
+    <div class="shell hero-banner-content">
+      <span class="eyebrow">Personalización Premium · Monterrey</span>
+      <h1 class="serif" data-kinetic>El volante<br>lo cambia <em>todo.</em></h1>
+      <p>Es lo que tocas cada vez que manejas. Un volante OEM de BMW, de generación G, en tu Serie F o en tu Serie G. Original, de agencia.</p>
+      <div class="button-row">
+        <a class="button" href="collection.html">Ver los cinco volantes</a>
+        <a class="quiet-link" href="finder.html">¿Le queda a mi BMW?</a>
+      </div>
+    </div>
+    <button type="button" class="hero-sound" data-hero-sound hidden aria-pressed="false">Sonido: apagado</button>
+    <a class="hero-scroll" href="#que-es" aria-label="Bajar a la siguiente sección">Baja ↓</a>
+  </section>
+
+  <section class="home-que-es" id="que-es" aria-labelledby="que-es-title">
     <div class="shell">
-      <div class="hero-content">
-        <span class="eyebrow">Personalización Premium · Monterrey</span>
-        <h1 class="serif" data-kinetic>El <em>carácter</em><br>se elige.</h1>
-        <hr class="hero-rule">
-        <p>Piezas OEM y retrofits BMW. Una forma más personal de vivir tu automóvil.</p>
-        <div class="button-row">
-          <a class="button" href="proyectos.html">Ver los autos</a>
-          <a class="quiet-link" href="collection.html">Ver las piezas</a>
-        </div>
+      <span class="eyebrow">El volante</span>
+      <h2 class="serif" id="que-es-title">¿Qué es el volante?</h2>
+      <p class="muted">Es lo primero que ves al subirte y lo último que sueltas al bajarte. Cambia el volante y cambia toda la cabina: el tacto, la vista, la sensación al manejar.</p>
+      <ul class="que-es-list">
+        <li><strong>Piel.</strong> Suave, de todos los días, con el agarre de siempre.</li>
+        <li><strong>Alcántara.</strong> El tacto de los M más bravos, firme en las manos.</li>
+        <li><strong>Carbono.</strong> Ligero a la vista, el detalle que se nota sin gritar.</li>
+      </ul>
+      <p class="muted">Cinco volantes, todos originales de BMW. Tú eliges el que va con tu auto y con tu forma de manejar.</p>
+      <div class="button-row" style="margin-top:28px">
+        <a class="button" href="collection.html">Ver los cinco</a>
       </div>
     </div>
   </section>
 
-  <section class="home-ba home-ba--film" aria-labelledby="retrofit-title">
+  <div class="m-divider" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <section class="home-wheels" aria-labelledby="home-wheels-title">
     <div class="shell">
-      <span class="eyebrow">Retrofit · BMW X6</span>
-      <h2 class="serif" id="retrofit-title">El volante G, en una cabina F.</h2>
-      <p class="muted">La misma cabina, antes y después. Un volante de generación G, adaptado a una cabina de generación F. Cada vehículo se evalúa por separado.</p>
-      <div class="ba-film" data-ba-film>
-        <div class="ba-film-sticky">
-          <div class="ba-slider" data-ba-slider>
-            <div class="ba-layer ba-layer--after">
-              <img width="1290" height="735" srcset="assets/responsive/despues-450.webp 450w, assets/responsive/despues-900.webp 900w, assets/despues.webp 1290w" sizes="(max-width:900px) 100vw, 50vw" decoding="async" loading="lazy" src="assets/despues.webp" alt="La misma cabina de BMW X6 con el volante M de generación G ya instalado">
-            </div>
-            <div class="ba-layer ba-layer--before">
-              <img width="1290" height="742" srcset="assets/responsive/antes-450.webp 450w, assets/responsive/antes-900.webp 900w, assets/antes.webp 1290w" sizes="(max-width:900px) 100vw, 50vw" decoding="async" loading="lazy" src="assets/antes.webp" alt="Cabina de BMW X6 con su volante original de generación F">
-            </div>
-            <span class="ba-tag ba-tag--before">Antes</span>
-            <span class="ba-tag ba-tag--after">Después</span>
-            <div class="ba-handle" data-ba-handle role="slider" tabindex="0" aria-label="Comparar antes y después" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-orientation="horizontal"><span class="ba-handle-knob">‹ ›</span></div>
-          </div>
-          <p class="ba-note">Arrastra para comparar, o usa las flechas del teclado sobre el control. Un volante de generación G, adaptado a una cabina de generación F con un adaptador estudiado para esa aplicación.</p>
-        </div>
+      <span class="eyebrow">Collection · Cinco volantes</span>
+      <h2 class="serif" id="home-wheels-title">Cinco formas de sentir tu BMW.</h2>
+      <p class="muted">Todos OEM, originales de agencia. Toca uno para verlo de cerca.</p>
+      <div class="wheel-grid">
+        <a class="wheel-card" href="volante-m-sport.html">
+          <span class="wheel-photo"><img width="1400" height="1400" src="assets/volantes/volante-m-sport.webp" alt="Volante M Sport de BMW, fondo blanco" loading="lazy" decoding="async"></span>
+          <span class="wheel-name">M Sport</span>
+          <span class="wheel-line">El de todos los días, con carácter M.</span>
+          <span class="wheel-price">Precio de referencia: $13,500 MXN</span>
+        </a>
+        <a class="wheel-card" href="volante-m-performance.html">
+          <span class="wheel-photo"><img width="1400" height="1400" src="assets/volantes/volante-m-performance-alcantara.webp" alt="Volante M Performance de Alcántara, fondo blanco" loading="lazy" decoding="async"></span>
+          <span class="wheel-name">M Performance · Alcántara</span>
+          <span class="wheel-line">Alcántara y franja roja. El tacto M.</span>
+          <span class="wheel-price">Precio de referencia: $21,500 MXN</span>
+        </a>
+        <a class="wheel-card" href="volante-m-competition.html">
+          <span class="wheel-photo"><img width="1400" height="1400" src="assets/volantes/volante-m-competition.webp" alt="Volante M Competition de piel, fondo blanco" loading="lazy" decoding="async"></span>
+          <span class="wheel-name">M Competition · Piel</span>
+          <span class="wheel-line">El del M3 y M4. Piel, M1 y M2.</span>
+          <span class="wheel-price">Precio de referencia: $23,500 MXN</span>
+        </a>
+        <a class="wheel-card" href="volante-m-lci.html">
+          <span class="wheel-photo"><img width="1400" height="1400" src="assets/volantes/volante-m-lci-flatbottom.webp" alt="Volante M LCI de base plana, fondo blanco" loading="lazy" decoding="async"></span>
+          <span class="wheel-name">M LCI · Base plana</span>
+          <span class="wheel-line">El nuevo, de base plana. Alcántara, M1 y M2.</span>
+          <span class="wheel-price">Precio de referencia: $25,500 MXN</span>
+        </a>
+        <a class="wheel-card" href="volante-m-cs.html">
+          <span class="wheel-photo"><img width="1400" height="1400" src="assets/volantes/volante-m-cs-alcantara.webp" alt="Volante M CS de Alcántara y carbono, fondo blanco" loading="lazy" decoding="async"></span>
+          <span class="wheel-name">M CS · Alcántara y carbono</span>
+          <span class="wheel-line">El tope. Alcántara, carbono, M1 y M2.</span>
+          <span class="wheel-price">Precio de referencia: $31,500 MXN</span>
+        </a>
       </div>
+      <p class="muted" style="margin-top:18px">Los precios son de referencia y están por confirmar.</p>
+    </div>
+  </section>
+
+  <div class="m-divider" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <section class="home-fit" aria-labelledby="home-fit-title">
+    <div class="shell">
+      <span class="eyebrow">Serie F · Serie G</span>
+      <h2 class="serif" id="home-fit-title">¿Le queda a mi BMW?</h2>
+      <p class="muted">Si tienes un Serie F, estos volantes de generación G se le pueden montar. Si tienes un Serie G, es directo y rápido. Dinos tu modelo y te decimos cuáles le quedan.</p>
       <div class="button-row" style="margin-top:28px">
-        <a class="button" href="proyecto-retrofit-x6.html">Ver el antes y después</a>
-        <a class="quiet-link" href="finder.html">¿Es para mi BMW?</a>
+        <a class="button" href="finder.html">Revisar mi modelo</a>
+        <a class="quiet-link" href="proyectos.html">Ver los proyectos</a>
       </div>
     </div>
   </section>
+
+  <div class="m-divider" aria-hidden="true"><i></i><i></i><i></i></div>
 
   <section class="home-atelier" aria-labelledby="home-atelier-title">
     <div class="shell">
-      <span class="eyebrow">ATELIER · Citas privadas</span>
-      <h2 class="serif" id="home-atelier-title">Tu idea empieza con una conversación.</h2>
+      <span class="eyebrow">ATELIER · A tu medida</span>
+      <h2 class="serif" id="home-atelier-title">¿Quieres algo más personal?</h2>
       <p>Cuéntanos qué tienes y qué imaginas, con tus palabras y sin prisa. Lo leemos con calma y lo revisamos contigo, en persona, en San Pedro.</p>
       <div class="button-row" style="margin-top:28px">
         <a class="button" href="atelier.html">Hablar de mi proyecto</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="home-ba home-notas" aria-labelledby="home-notas-title">
-    <div class="shell">
-      <span class="eyebrow">Notas</span>
-      <h2 class="serif" id="home-notas-title">Historias que ya pasaron, contadas como pasaron.</h2>
-      <p class="muted">Cómo se adaptó un volante de generación G a una cabina de generación F, qué se tuvo que estudiar y qué quedó por revisar. Una nota, con su foto.</p>
-      <div class="button-row" style="margin-top:28px">
-        <a class="button" href="notas.html">Leer las notas</a>
-        <a class="quiet-link" href="como-trabajamos.html">Cómo trabajamos</a>
       </div>
     </div>
   </section>
@@ -139,11 +178,9 @@
       <a href="proyectos.html">Proyectos</a>
       <a href="atelier.html">ATELIER</a>
       <a href="firma.html">La Firma</a>
-      <a href="como-trabajamos.html">Cómo trabajamos</a>
-      <a href="notas.html">Notas</a>
     </nav>
   </div>
-  <p class="footer-note">Los precios son de referencia y están por confirmar. El carrito es una demostración: no se cobra nada y no se envía ningún pago. Los proyectos G20 son estudios conceptuales, no trabajos terminados para un cliente.</p>
+  <p class="footer-note">Los precios son de referencia y están por confirmar. Las fotos de los proyectos X5/X6 son de referencia y se cambiarán por fotos de nuestros propios instalados. La compatibilidad se verifica por vehículo.</p>
   <div class="footer-bottom">
     <nav aria-label="Avisos">
       <a href="aviso-privacidad.html">Aviso de privacidad</a>
@@ -155,8 +192,22 @@
   </div>
 </footer>
 <a class="sticky-cta" href="atelier.html">Hablar de mi proyecto</a>
+<button type="button" class="chat-fab" data-chat-open aria-label="Abrir el chat">Chat</button>
+<div class="chat-panel" data-chat-panel hidden role="dialog" aria-label="Chat de IMPARE">
+  <div class="chat-head">
+    <span class="chat-title">IMPARE · Chat</span>
+    <button type="button" class="chat-close" data-chat-close aria-label="Cerrar el chat">×</button>
+  </div>
+  <div class="chat-log" data-chat-log aria-live="polite"></div>
+  <form class="chat-form" data-chat-form>
+    <label class="visually-hidden" for="chat-input">Escribe tu mensaje</label>
+    <input id="chat-input" type="text" autocomplete="off" placeholder="Pregunta por un volante, tu modelo…" data-chat-input>
+    <button type="submit">Enviar</button>
+  </form>
+  <p class="chat-note">Respuestas sobre nuestros volantes y tu BMW. Para agendar, escríbenos en ATELIER.</p>
+</div>
 <script src="liquid-glass.js" defer></script>
-<script src="cart.js" defer></script>
+<script src="chat.js" defer></script>
 <script src="app.js" defer></script>
 </body>
 </html>

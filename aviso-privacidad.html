@@ -36,7 +36,6 @@
     <a href="atelier.html">ATELIER</a>
     <a href="firma.html">La Firma</a>
   </nav>
-  <a class="cart-link" href="carrito.html" aria-label="Carrito de compras"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M2 3h3l2.6 12.4a1 1 0 0 0 1 .6h8.9a1 1 0 0 0 1-.8L20.5 7H6"/></svg><span class="visually-hidden">Carrito de compras</span><span class="cart-count" data-cart-count aria-live="polite" hidden>0</span></a>
   <details class="menu">
     <summary>Menú</summary>
     <nav class="menu-panel" aria-label="Menú móvil">
@@ -45,7 +44,6 @@
       <a href="proyectos.html">Proyectos</a>
       <a href="atelier.html">ATELIER</a>
       <a href="firma.html">La Firma</a>
-      <a href="carrito.html">Carrito</a>
     </nav>
   </details>
 </header>
@@ -78,11 +76,9 @@
       <a href="proyectos.html">Proyectos</a>
       <a href="atelier.html">ATELIER</a>
       <a href="firma.html">La Firma</a>
-      <a href="como-trabajamos.html">Cómo trabajamos</a>
-      <a href="notas.html">Notas</a>
     </nav>
   </div>
-  <p class="footer-note">Los precios son de referencia y están por confirmar. El carrito es una demostración: no se cobra nada y no se envía ningún pago. Los proyectos G20 son estudios conceptuales, no trabajos terminados para un cliente.</p>
+  <p class="footer-note">Los precios son de referencia y están por confirmar. La compatibilidad se verifica por vehículo.</p>
   <div class="footer-bottom">
     <nav aria-label="Avisos">
       <a href="aviso-privacidad.html">Aviso de privacidad</a>
@@ -94,8 +90,22 @@
   </div>
 </footer>
 <a class="sticky-cta" href="atelier.html">Hablar de mi proyecto</a>
+<button type="button" class="chat-fab" data-chat-open aria-label="Abrir el chat">Chat</button>
+<div class="chat-panel" data-chat-panel hidden role="dialog" aria-label="Chat de IMPARE">
+  <div class="chat-head">
+    <span class="chat-title">IMPARE · Chat</span>
+    <button type="button" class="chat-close" data-chat-close aria-label="Cerrar el chat">×</button>
+  </div>
+  <div class="chat-log" data-chat-log aria-live="polite"></div>
+  <form class="chat-form" data-chat-form>
+    <label class="visually-hidden" for="chat-input">Escribe tu mensaje</label>
+    <input id="chat-input" type="text" autocomplete="off" placeholder="Pregunta por un volante, tu modelo…" data-chat-input>
+    <button type="submit">Enviar</button>
+  </form>
+  <p class="chat-note">Respuestas sobre nuestros volantes y tu BMW. Para agendar, escríbenos en ATELIER.</p>
+</div>
 <script src="liquid-glass.js" defer></script>
-<script src="cart.js" defer></script>
+<script src="chat.js" defer></script>
 <script src="app.js" defer></script>
 </body>
 </html>
