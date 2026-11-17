@@ -1,3 +1,14 @@
+## v2.4.1 — Los subtítulos: IMPARE / Personalización Premium, ATELIER / A tu medida (2026-11-16)
+
+Mauricio aprobó "Personalización Premium" como subtítulo chiquito abajito de IMPARE, y preguntó por ATELIER: "Individual", "Privado" o algo de personalización. Edgard había dicho que el idioma tiene que entenderse para todos, no solo para los que saben de autos. Pecas opinó: "Individual" es el nombre del programa oficial de BMW (BMW Individual) y puede hacer pensar que hay convenio con BMW; "Privado" ya está dicho en la página ("Citas privadas · San Pedro"); "A tu medida" lo entiende cualquiera al instante y dice exactamente lo que ATELIER hace. Quedó "A tu medida" (si Mauricio prefiere "Privado", es un cambio de una palabra).
+
+- **Intro (solo Inicio):** el subtítulo bajo IMPARE pasa de "Automotive · Monterrey" a **"Personalización Premium"** (Monterrey se conserva en el hero).
+- **Hero de Inicio:** el eyebrow pasa de "IMPARE Automotive · Monterrey" a **"Personalización Premium · Monterrey"**.
+- **ATELIER:** bajo el título, en chiquito y con el mismo estilo de letras separadas, **"A tu medida"** (nueva clase `.atelier-sub`, color bronce oscuro #534b43 como los demás eyebrows de la página).
+
+### QA (por script)
+- **qa-v24.js: 65/66** — el único fallo es el intencional y conocido del video pendiente (`assets/video-volante.mp4` no existe; lo graban los fundadores).
+
 ## v2.4 — Las dos fotos nuevas + tercera pieza: el umbral (2026-11-13)
 
 Mauricio subió 4 fotos nuevas del volante G a Drive (carpeta 01) y eligió 2: la de los guantes poniendo la bolsa (la principal, se ve profesional, como de preparación) y la de la bolsa con el umbral de carbono. Las otras dos (el volante solo de frente y el acercamiento de la tapa) las descartó él mismo y no se usan en ningún lado. Aprobó el plan: las 2 fotos en el caso del X6 y en la galería del volante, y el umbral como tercera pieza en Collection.

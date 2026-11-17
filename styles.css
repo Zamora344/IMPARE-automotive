@@ -244,7 +244,8 @@ h3.serif{font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.12}
 .atelier-hero-new{background:var(--marfil);color:var(--light-ink);
   padding:calc(var(--nav-h) + 56px) 0 clamp(56px,7vw,96px)}
 .atelier-hero-new .shell{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
-.atelier-hero-new h1{margin:14px 0 18px;color:var(--obsidian)}
+.atelier-hero-new h1{margin:14px 0 8px;color:var(--obsidian)}
+.atelier-sub{display:block;margin:0 0 18px;font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:#534b43}
 .atelier-hero-new p{color:var(--light-muted);max-width:46ch;font-size:1.06rem}
 .atelier-hero-new .eyebrow,.atelier-book .eyebrow,.home-atelier .eyebrow{color:#534b43}
 .atelier-photo{margin:0;border:1px solid color-mix(in srgb, var(--obsidian) 16%, transparent);
