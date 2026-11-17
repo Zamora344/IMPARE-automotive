@@ -13,6 +13,10 @@ Mauricio revisó la vista previa v3.0 y marcó 7 puntos; dijo "anótalo, no haga
 ### QA (por script)
 - **qa-v30.js: 733/733** (712 de v3.0 + 21 checks nuevos de v3.0.1: sin "Edgard" en páginas ni chat, sin la línea del Competition, X5/X6 = M Sport, 30 imgs 1400×1400, marco `.project-photo` 16/9, La Firma sin menosprecio, chat con `IMPARE_CHAT`, patrones de modelo, rotación anti-bucle, sin módulo/kit/adaptador en las respuestas). **qa-chat-v30.js: 63/63.** **node --check** pasa en app.js y chat.js. 5/5 WebP verificados 1400×1400 en disco.
 
+### Publicado en vivo (2026-11-16 ~23:34)
+- Mauricio dio la palabra a las 23:18 ("hay que subirlo a github, porque desde ahi lo ve"). Textos: commit 483d8b7d (23 archivos). Imágenes por web UI: f3ad70e (carpeta volantes), f519337 (5 volantes), 9430d55 (2 del 220i). Las 15 páginas viejas borradas por web UI (último commit ce5739f). Verificado en vivo: index/collection/proyecto-x5-x6/firma 200, imágenes 200, carrito.html y volante.html 404, cero "Edgard" en las páginas en vivo. El sitio en vivo es v3.0.1.
+- **Lección para la próxima:** este despliegue tomó ~20 min en tres flujos (conector + web UI para fotos + borrados uno por uno). La forma rápida es git + token: repo clonado en `impare/repo/`; falta que Mauricio guarde un PAT fino (solo IMPARE-automotive, Contents read+write) en la bóveda para armar el script de un solo empujón.
+
 ## v3.0 — Giro 360: la página es de volantes (2026-11-16)
 
 Mauricio dio el visto bueno al rediseño completo, centrado en los volantes, con los puntos de Edgard: noble y sencillo, sonido y apertura de Serie F y G, M3 y M4, antes y después en video (después, no ahora), sin precios en la página final, chat con IA, separadores M custom. La página es sencilla, friendly, rápida, intuitiva, sin tecnicismo, premium como "Desbloqueo Premium". Los cinco volantes son los que tiene Edgard (Drive + fotos); ellos van sumando más por su lado. Precios: se quitan de la página final, pero en este borrador van de referencia para que Edgard los ajuste.
